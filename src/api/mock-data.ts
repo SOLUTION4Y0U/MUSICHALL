@@ -19,9 +19,7 @@ export const products: Product[] = [
     category: '1',
     thumbnail: 'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
     images: [
-      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
-      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
-      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png'
     ]
   },
   {
@@ -33,7 +31,7 @@ export const products: Product[] = [
     stock: 30,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: 'https://via.placeholder.com/300x200?text=Sonata',
+    thumbnail: '/MusicHallSonata.png',
     images: [
       'https://via.placeholder.com/800x600?text=Sonata_White',
       'https://via.placeholder.com/800x600?text=Sonata_Black',
