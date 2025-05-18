@@ -17,9 +17,10 @@ export const products: Product[] = [
     stock: 15,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: 'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
+    thumbnail: 'https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7437929078.jpg',
     images: [
-      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png'
+      'https://ir.ozone.ru/s3/multimedia-1-2/wc1000/7437929078.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-r/wc100/7175325519.jpg'
     ]
   },
   {
