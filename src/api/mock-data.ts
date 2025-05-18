@@ -1,9 +1,9 @@
 import { Product, Category } from '../types/product';
 
 export const categories: Category[] = [
-  { id: '1', name: 'Клавишные инструменты', image: 'https://via.placeholder.com/150?text=Keyboards' },
-  { id: '2', name: 'Ударные инструменты', image: 'https://via.placeholder.com/150?text=Drums' },
-  { id: '3', name: 'Стойки и аксессуары', image: 'https://via.placeholder.com/150?text=Stands' },
+  { id: '1', name: 'Клавишные инструменты'},
+  { id: '2', name: 'Ударные инструменты'},
+  { id: '3', name: 'Стойки и аксессуары'},
 ];
 
 export const products: Product[] = [
@@ -32,10 +32,10 @@ export const products: Product[] = [
     stock: 30,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: '/MusicHallSonata.png',
+    thumbnail: 'https://ir.ozone.ru/s3/multimedia-1-f/wc1000/7437930207.jpg',
     images: [
-      'https://via.placeholder.com/800x600?text=Sonata_White',
-      'https://via.placeholder.com/800x600?text=Sonata_Black',
+      'https://ir.ozone.ru/s3/multimedia-1-8/wc100/7216458884.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-k/wc100/7209563960.jpg'
     ]
   },
   {
@@ -48,13 +48,11 @@ export const products: Product[] = [
     stock: 50,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: 'https://via.placeholder.com/300x200?text=Fantasia',
+    thumbnail: 'https://ir.ozone.ru/s3/multimedia-1-p/wc100/7543627369.jpg',
     images: [
-      'https://via.placeholder.com/800x600?text=Fantasia_Black',
-      'https://via.placeholder.com/800x600?text=Fantasia_White',
-      'https://via.placeholder.com/800x600?text=Fantasia_Green',
-      'https://via.placeholder.com/800x600?text=Fantasia_Purple',
-      'https://via.placeholder.com/800x600?text=Fantasia_Pink',
+      'https://ir.ozone.ru/s3/multimedia-1-4/wc100/7488562828.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-m/wc100/7420248778.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-m/wc100/7420248778.jpg'
     ]
   },
   {
@@ -66,10 +64,9 @@ export const products: Product[] = [
     stock: 20,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: 'https://via.placeholder.com/300x200?text=Gamma',
+    thumbnail: 'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Gamma.png',
     images: [
-      'https://via.placeholder.com/800x600?text=Gamma_Black',
-      'https://via.placeholder.com/800x600?text=Gamma_White',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Gamma.png'
     ]
   },
   {
@@ -82,10 +79,9 @@ export const products: Product[] = [
     stock: 10,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: 'https://via.placeholder.com/300x200?text=Allegro',
+    thumbnail: 'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Allegro.png',
     images: [
-      'https://via.placeholder.com/800x600?text=Allegro_Black',
-      'https://via.placeholder.com/800x600?text=Allegro_White',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Allegro.png'
     ]
   },
   {
@@ -97,10 +93,10 @@ export const products: Product[] = [
     stock: 8,
     brand: 'MusicHall',
     category: '2',
-    thumbnail: 'https://via.placeholder.com/300x200?text=DeepBass',
+    thumbnail: 'https://ir.ozone.ru/s3/multimedia-1-3/wc1000/7437928575.jpg',
     images: [
-      'https://via.placeholder.com/800x600?text=DeepBass1',
-      'https://via.placeholder.com/800x600?text=DeepBass2',
+      'https://ir.ozone.ru/s3/multimedia-1-p/wc100/7230039037.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-a/wc100/7192531882.jpg',
     ]
   },
   {
@@ -113,10 +109,9 @@ export const products: Product[] = [
     stock: 12,
     brand: 'MusicHall',
     category: '2',
-    thumbnail: 'https://via.placeholder.com/300x200?text=StrongWave',
+    thumbnail: 'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Strong%20Wave.png',
     images: [
-      'https://via.placeholder.com/800x600?text=StrongWave1',
-      'https://via.placeholder.com/800x600?text=StrongWave2',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Strong%20Wave.png'
     ]
   },
   {
@@ -128,10 +123,10 @@ export const products: Product[] = [
     stock: 30,
     brand: 'MusicHall',
     category: '3',
-    thumbnail: 'https://via.placeholder.com/300x200?text=KeyStandX',
+    thumbnail: 'https://ir.ozone.ru/s3/multimedia-1-r/wc1000/7348181319.jpg',
     images: [
-      'https://via.placeholder.com/800x600?text=KeyStandX1',
-      'https://via.placeholder.com/800x600?text=KeyStandX2',
+      'https://ir.ozone.ru/s3/multimedia-1-d/wc100/7348181377.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-p/wc100/7054669825.jpg',
     ]
   },
   {
@@ -144,10 +139,10 @@ export const products: Product[] = [
     stock: 25,
     brand: 'MusicHall',
     category: '3',
-    thumbnail: 'https://via.placeholder.com/300x200?text=KeyStandX2',
+    thumbnail: 'https://ir.ozone.ru/s3/multimedia-1-t/wc100/7348180889.jpg',
     images: [
-      'https://via.placeholder.com/800x600?text=KeyStandX2_1',
-      'https://via.placeholder.com/800x600?text=KeyStandX2_2',
+      'https://ir.ozone.ru/s3/multimedia-1-f/wc100/7348180803.jpg',
+      'https://ir.ozone.ru/s3/multimedia-1-z/wc100/7054670015.jpg',
     ]
   },
 ];

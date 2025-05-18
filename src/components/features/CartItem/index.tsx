@@ -62,12 +62,14 @@ const CartItem: FC<CartItemProps> = ({
       <div className="cart-item-info">
         <h3 className="cart-item-title">{product.title}</h3>
         <p className="cart-item-price">
-          ${itemPrice.toFixed(2)}
           {product.discountPercentage && (
             <span className="cart-item-original-price">
               ${product.price.toFixed(2)}
             </span>
           )}
+          <span className="cart-item-current-price">
+            ${itemPrice.toFixed(2)}
+          </span>
         </p>
       </div>
 
