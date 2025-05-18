@@ -16,7 +16,7 @@
 }
 
 .cart-item-image {
-  width: 80px;
+  width: 60px;
   height: 80px;
   border-radius: 8px;
   overflow: hidden;
@@ -142,7 +142,7 @@
 
   .cart-item-image {
     grid-area: image;
-    width: 60px;
+    width: 45px;
     height: 60px;
   }
 

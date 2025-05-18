@@ -96,7 +96,7 @@
 }
 
 .category-image {
-  height: 120px;
+  height: 150px;
   overflow: hidden;
   background-color: var(--brand-white);
 }
