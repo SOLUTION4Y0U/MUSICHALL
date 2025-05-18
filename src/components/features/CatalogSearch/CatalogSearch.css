@@ -1,0 +1,97 @@
+.catalog-search-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.search-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  max-width: calc(100% - 100px); /* Оставляем место для кнопки фильтра */
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: #999;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 10px 10px 36px;
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: 8px;
+  font-size: 14px;
+  height: 40px;
+  box-sizing: border-box;
+}
+
+.clear-search {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.filter-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: var(--primary-color, #0088cc);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  height: 40px;
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 88px;
+  justify-content: center;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 480px) {
+  .catalog-search-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-input-wrap {
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .filter-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .filter-text {
+    display: inline-block; /* Всегда показываем текст на узких экранах */
+  }
+}
+
+/* Средние экраны - компактный режим */
+@media (min-width: 481px) and (max-width: 768px) {
+  .filter-text {
+    display: none; /* Скрываем текст на средних экранах */
+  }
+
+  .filter-button {
+    min-width: 40px;
+    padding: 8px;
+  }
+}

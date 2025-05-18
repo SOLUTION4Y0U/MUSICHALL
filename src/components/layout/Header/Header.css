@@ -1,0 +1,97 @@
+.header {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.5rem 16px;
+  box-sizing: border-box;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #333;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  gap: 0.5rem;
+}
+
+.nav-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* По умолчанию скрываем текст на маленьких экранах */
+.nav-text {
+  display: none;
+}
+
+.platform-indicator {
+  font-size: 0.75rem;
+  background-color: #f0f0f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  color: #666;
+}
+
+/* Медиа-запрос для показа текста на более широких экранах */
+@media (min-width: 768px) {
+  .nav-text {
+    display: inline;
+  }
+
+  .platform-indicator {
+    font-size: 0.875rem;
+    padding: 0.35rem 0.7rem;
+  }
+
+  .header-right {
+    gap: 1.5rem;
+  }
+
+  .nav {
+    gap: 1.5rem;
+  }
+}
+
+/* Для больших экранов: увеличиваем отступы по бокам */
+@media (min-width: 1201px) {
+  .header-container {
+    padding: 0.5rem 24px;
+  }
+}
+
+/* Для мобильных устройств: уменьшаем отступы по бокам */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0.5rem 12px;
+  }
+}

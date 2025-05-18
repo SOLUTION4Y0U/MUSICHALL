@@ -1,0 +1,16 @@
+.recommended-products {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.recommended-products h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.recommended-loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}

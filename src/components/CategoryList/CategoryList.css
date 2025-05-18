@@ -1,0 +1,28 @@
+/* Полностью скрыть скроллбар вместо стилизации */
+.category-list {
+  /* Сохраняем прокрутку */
+  overflow-x: auto;
+  /* Скрытие скроллбаров для Firefox */
+  scrollbar-width: none;
+  /* Скрытие скроллбаров для IE и Edge */
+  -ms-overflow-style: none;
+}
+
+/* Полностью скрыть скроллбар для WebKit браузеров */
+.category-list::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Удалить или закомментировать старые стили:
+.category-list::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.category-list::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+*/

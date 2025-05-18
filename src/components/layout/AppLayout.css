@@ -1,0 +1,32 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Запасной вариант */
+  min-height: calc(var(--vh, 1vh) * 100); /* Точный вариант */
+  width: 100%;
+  background-color: var(--background);
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 16px; /* Добавляем небольшие отступы по бокам */
+  box-sizing: border-box;
+}
+
+/* Для больших экранов: ограничиваем максимальную ширину */
+@media (min-width: 1201px) {
+  .main-content {
+    padding: 0 24px;
+  }
+}
+
+/* Для мобильных устройств: уменьшаем отступы */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 0 12px;
+  }
+}

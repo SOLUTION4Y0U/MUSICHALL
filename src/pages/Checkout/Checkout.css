@@ -1,0 +1,36 @@
+.checkout-page {
+  padding: 20px 0;
+}
+
+.checkout-page h1 {
+  margin-bottom: 20px;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 20px;
+}
+
+.checkout-form-container {
+  position: relative;
+}
+
+.payment-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  padding: 15px;
+  border-radius: 4px;
+  margin-top: 15px;
+  border-left: 4px solid #ffc107;
+}
+
+@media (max-width: 960px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-summary-container {
+    order: -1;
+  }
+}

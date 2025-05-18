@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>Vite + React + TS</title>
+    <style>
+      /* Принудительное переопределение на самом раннем этапе */
+      :root {
+        color-scheme: light !important;
+      }
+
+      body {
+        background-color: #ffffff !important;
+        color: #333333 !important;
+      }
+    </style>
+    <script>
+      // Проверяем sessionStorage на наличие сохраненного пути
+      (function() {
+        const redirect = sessionStorage.getItem('redirect');
+        if (redirect) {
+          sessionStorage.removeItem('redirect');
+          if (redirect !== window.location.pathname) {
+            // Устанавливаем правильный URL с помощью History API
+            window.history.replaceState(null, null, redirect);
+          }
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
