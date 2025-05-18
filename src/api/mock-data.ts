@@ -17,11 +17,11 @@ export const products: Product[] = [
     stock: 15,
     brand: 'MusicHall',
     category: '1',
-    thumbnail: 'https://via.placeholder.com/300x200?text=Virtuoso',
+    thumbnail: 'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
     images: [
-      'https://via.placeholder.com/800x600?text=Virtuoso_Black',
-      'https://via.placeholder.com/800x600?text=Virtuoso_White',
-      'https://via.placeholder.com/800x600?text=Virtuoso_Detail',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
+      'https://github.com/SOLUTION4Y0U/MUSICHALL/blob/main/public/MusicHall%20Virtuoso.png',
     ]
   },
   {
