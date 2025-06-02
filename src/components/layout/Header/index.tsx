@@ -10,7 +10,7 @@ const Header = () => {
       {/* Логотип */}
       <Link to={ROUTES.HOME} className="h-[50px] w-[240px] shrink-0">
         <img
-          src="public/logo main light.svg" 
+          src="./public/logo main light.svg"
           alt="Логотип MusicHall"
           className="h-full w-full object-contain"
         />
@@ -18,22 +18,22 @@ const Header = () => {
 
       {/* Основная навигация - теперь в одну строку */}
       <nav className="flex flex-1 items-center justify-center gap-8 px-4">
-        <Link 
-          to="#info" 
+        <Link
+          to="#info"
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           О нас
         </Link>
-        
-        <Link 
-          to={ROUTES.CATALOG} 
+
+        <Link
+          to={ROUTES.CATALOG}
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           Каталог
         </Link>
-        
-        <Link 
-          to="#contacts" 
+
+        <Link
+          to="#contacts"
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           Контакты
@@ -42,7 +42,7 @@ const Header = () => {
 
       {/* Правая часть с корзиной и кнопкой */}
       <div className="flex shrink-0 items-center gap-4">
-        <Link 
+        <Link
           to={ROUTES.CART}
           className="flex items-center gap-2 text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
           title="Корзина"
@@ -52,14 +52,14 @@ const Header = () => {
           </svg>
           <span>Корзина</span>
         </Link>
-        
+
         <Link
           to={ROUTES.CATALOG}
           className="rounded-full bg-brand-copper px-4 py-2 text-brand-black transition-all hover:bg-brand-dark-copper hover:translate-x-0.5 whitespace-nowrap"
         >
           Перейти в каталог
         </Link>
-        
+
         {/* Индикатор платформы */}
         <div className="rounded border border-brand-mid-gray bg-brand-mid-gray px-2 py-1 text-xs text-brand-white">
           {platformInfo.isTma ? 'TMA' : 'Web'}
