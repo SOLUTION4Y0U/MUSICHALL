@@ -10,16 +10,16 @@ const Footer: FC = () => {
           {/* Company Info */}
           <div className="mt-5 space-y-4">
             <img
-              src="public/logo main light.svg" 
+              src="./logo main light.svg"
               alt="Логотип MusicHall"
               className="h-[34px] w-[200px] object-contain"
             />
             <p className="text-sm text-brand-light-gray">
               Ваш надежный партнер в мире электроники.
-              
+
             </p>
             <p className="text-sm text-brand-light-gray">
-              
+
               Качественные товары по доступным ценам.
             </p>
           </div>

@@ -60,10 +60,10 @@ const Home = () => {
   }
 
   const categoryImages = [
-    '/philips_banner.jpg',
-    '/music_banner.jpg',
-    '/emtop_banner.jpg',
-    '/others_banner.jpg'
+    './philips_banner.jpg',
+    './music_banner.jpg',
+    './emtop_banner.jpg',
+    './others_banner.jpg'
   ];
 
   return (
