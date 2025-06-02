@@ -10,7 +10,7 @@ const Header = () => {
       {/* Логотип */}
       <Link to={ROUTES.HOME} className="h-[50px] w-[240px] shrink-0">
         <img
-          src="./public/logo main light.svg"
+          src="./logo main light.svg"
           alt="Логотип MusicHall"
           className="h-full w-full object-contain"
         />
