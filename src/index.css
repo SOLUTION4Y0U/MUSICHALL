@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Roboto Flex', sans-serif;
+}
+* {
+  font-family: 'Roboto Flex', sans-serif;
+}
+/* @font-face {
+  font-family: 'Gotham Pro';
+  src: url('/fonts/GothamPro.woff2') format('woff2'),
+       url('/fonts/GothamPro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham Pro';
+  src: url('/fonts/GothamPro-Bold.woff2') format('woff2'),
+       url('/fonts/GothamPro-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RF Rufo';
+  src: url('/fonts/RFRufo-Regular.woff2') format('woff2'),
+       url('/fonts/RFRufo-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'RF Rufo';
+  src: url('/fonts/RFRufo-Bold.woff2') format('woff2'),
+       url('/fonts/RFRufo-Bold.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+} */
+
+/* Компоненты в стиле темного дизайна */
+@layer components {
+  .faq-content {
+    @apply px-[18px] text-brand-light-gray bg-transparent text-justify;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.4s, padding 0.4s;
+  }
+
+  .faq-content.active {
+    max-height: max-content;
+  }
+
+  .faq-accordion:hover {
+    @apply bg-brand-dark;
+  }
+
+  .collapsible-header {
+    @apply lg:relative lg:flex-row lg:opacity-100 lg:h-auto lg:w-auto lg:justify-start lg:p-0 lg:bg-transparent lg:shadow-none;
+  }
+
+  .header-links {
+    @apply text-brand-white;
+  }
+
+  .dark-card {
+    @apply bg-brand-black text-brand-light-gray border border-brand-mid-gray/20 rounded-lg p-[18px] shadow-card;
+    transition: all 0.4s ease;
+  }
+
+  .dark-card:hover {
+    @apply bg-brand-dark;
+  }
+
+  .btn-primary {
+    @apply bg-brand-copper text-brand-black px-6 py-3 rounded-lg font-medium transition-all duration-400 hover:bg-brand-dark-copper;
+  }
+
+  .btn-secondary {
+    @apply bg-transparent border-2 border-brand-copper text-brand-copper px-6 py-3 rounded-lg font-medium transition-all duration-400 hover:bg-brand-copper hover:text-brand-black;
+  }
+
+  .btn-outline {
+    @apply border border-brand-mid-gray text-brand-light-gray bg-transparent px-6 py-3 rounded-md font-primary font-medium transition-all duration-300 hover:bg-brand-dark focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2;
+  }
+
+  /* .card {
+    @apply bg-brand-black  text-brand-light-gray rounded-lg shadow-card p-4 transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  } */
+.card {
+  @apply bg-brand-black/80 text-brand-light-gray border border-brand-mid-gray/10 rounded-xl p-5 transition-all duration-500 hover:-translate-y-1.5;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  position: relative;
+}
+
+.card::before {
+  @apply absolute inset-0 bg-gradient-to-br from-brand-copper/5 via-transparent to-transparent opacity-0 transition-opacity duration-500;
+  content: '';
+}
+
+.card:hover {
+  box-shadow: 
+    0 10px 15px -3px rgba(211, 162, 115, 0.15),
+    0 4px 6px -2px rgba(211, 162, 115, 0.05);
+  border-color: rgba(211, 162, 115, 0.3);
+}
+
+.card:hover::before {
+  @apply opacity-100;
+}
+
+.card-image {
+  @apply transition-transform duration-700 ease-[cubic-bezier(.15,.75,.5,1)];
+}
+
+.card:hover .card-image {
+  transform: scale(1.03) translateZ(0);
+}
+  .category-card {
+    @apply card text-center cursor-pointer;
+  }
+
+  .product-card {
+    @apply card overflow-hidden;
+  }
+}
+
+/* Специальные стили для Telegram Mini App */
+@layer utilities {
+  .telegram-safe-area {
+    @apply pb-4;
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+
+  .force-light-theme {
+    color-scheme: light !important;
+  }
+
+  @media not all and (min-width: 1024px) {
+    .collapsible-header {
+      @apply fixed right-0 flex-col opacity-0 h-screen min-h-screen w-0 justify-between p-[5px] pt-[5%] pb-[5%] items-end bg-brand-black text-brand-white overflow-y-auto;
+      box-shadow: 3px 0px 3px 2px #9f9f9f;
+      height: 100dvh;
+    }
+  }
+}
+
+/* Глобальные переопределения для TMA */
+:root {
+  --tg-theme-bg-color: #040404 !important;
+  --tg-theme-text-color: #e4e4e4 !important;
+  --tg-theme-secondary-bg-color: #2e2c2c !important;
+}
+
+/* Базовые стили */
+@layer base {
+  body {
+    @apply bg-brand-black text-brand-light-gray font-primary;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-secondary font-bold text-brand-white;
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  height: 8px;
+}
+.scrollbar-hide::-webkit-scrollbar-track {
+  background: #2e2c2c;
+}
+.scrollbar-hide::-webkit-scrollbar-thumb {
+  background: #d3a273;
+  border-radius: 4px;
+}
+/* Скрытие стандартного scrollbar */
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
+}
+/* Для вебкит-браузеров (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px; /* Толщина вертикального скроллбара */
+  height: 6px; /* Толщина горизонтального скроллбара */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон трека */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d3a273; /* brand-copper цвет */
+  border-radius: 3px; /* Скругление углов */
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b8956b; /* brand-dark-copper при наведении */
+}
+
+/* Для Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d3a273 transparent;
+}
+/* Для вебкит-браузеров (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 6px; /* Толщина вертикального скроллбара */
+  height: 6px; /* Толщина горизонтального скроллбара */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный фон трека */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d3a273; /* brand-copper цвет */
+  border-radius: 3px; /* Скругление углов */
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #b8956b; /* brand-dark-copper при наведении */
+}
+
+/* Для Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d3a273 transparent;
+}
+.scrollbar-transparent::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+}
+.glass-card {
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(63, 161, 111, 0.15);
+  box-shadow:
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.01);
+  transition: all 0.5s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(63, 161, 111, 0.3);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 12px rgba(63, 161, 111, 0.1);
+}
