@@ -37,11 +37,11 @@ const Cart = () => {
   if (cart.items.length === 0) {
     return (
       <div className="min-h-screen bg-brand-black flex flex-col items-center justify-center text-brand-white p-4">
-        <h1 className="text-2xl font-bold mb-4">Корзина пуста</h1>
-        <p className="text-brand-light-gray mb-6">Вы еще не добавили товары в корзину</p>
-        <Link 
-          to={ROUTES.CATALOG} 
-          className="btn-primary px-6 py-3 rounded-lg"
+        <h1 className="text-xl md:text-2xl font-bold mb-4">Корзина пуста</h1>
+        <p className="text-brand-light-gray mb-6 text-center">Вы еще не добавили товары в корзину</p>
+        <Link
+          to={ROUTES.CATALOG}
+          className="btn-primary px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base"
         >
           Перейти в каталог
         </Link>
@@ -50,12 +50,12 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white p-4">
-      <h1 className="text-2xl font-bold mb-6">Корзина</h1>
+    <div className="min-h-screen bg-brand-black text-brand-white p-2 md:p-4">
+      <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Корзина</h1>
 
       <div className="mb-4">
         <button
-          className="text-brand-copper hover:text-brand-dark-copper transition-colors"
+          className="text-brand-copper hover:text-brand-dark-copper transition-colors text-sm md:text-base"
           onClick={() => {
             hapticFeedback.impactOccurred('light');
             clearCart();
@@ -65,13 +65,21 @@ const Cart = () => {
         </button>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-8">
+      <div className="flex flex-col lg:flex-row gap-4 md:gap-8">
         <div className="flex-grow">
-          <div className="grid grid-cols-12 gap-4 mb-4 text-brand-light-gray">
+          {/* Заголовки - скрыты на мобильных, показаны на планшетах и выше */}
+          <div className="hidden md:grid grid-cols-12 gap-2 md:gap-4 mb-4 text-brand-light-gray text-sm">
             <div className="col-span-6">Товар</div>
-            <div className="col-span-4 text-right">Количество</div>
-            <div className="col-span-1 text-right">Сумма</div>
+            <div className="col-span-3 text-center">Количество</div>
+            <div className="col-span-2 text-right">Сумма</div>
             <div className="col-span-1"></div>
+          </div>
+
+          {/* Мобильная версия заголовков */}
+          <div className="grid md:hidden grid-cols-4 gap-2 mb-4 text-brand-light-gray text-xs">
+            <div className="col-span-2">Товар</div>
+            <div className="text-center">Кол-во</div>
+            <div className="text-right">Сумма</div>
           </div>
 
           {cart.items.map(item => (
@@ -84,7 +92,7 @@ const Cart = () => {
           ))}
         </div>
 
-        <div className="lg:w-80">
+        <div className="lg:w-80 mt-4 lg:mt-0">
           <CartSummary
             cart={cart}
             onCheckout={handleGoToCheckout}
