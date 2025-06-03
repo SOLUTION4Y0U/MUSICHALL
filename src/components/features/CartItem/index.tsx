@@ -28,63 +28,131 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
   const itemTotal = item.product.price * item.quantity;
 
   return (
-    <div className="bg-brand-light-gray rounded-lg p-4 flex items-center space-x-4">
-      {/* Product Image */}
-      <div className="w-20 h-20 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
-        <img
-          src={item.product.thumbnail}
-          alt={item.product.title}
-          className="w-full h-full object-cover"
-        />
+    <div className="bg-brand-light-gray rounded-lg p-3 md:p-4 mb-3">
+      {/* Мобильная версия - вертикальная компоновка */}
+      <div className="block md:hidden">
+        {/* Верхняя часть: изображение, название, цена, кнопка удаления */}
+        <div className="flex items-start space-x-3 mb-3">
+          <div className="w-16 h-16 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
+            <img
+              src={item.product.thumbnail}
+              alt={item.product.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+
+          <div className="flex-1 min-w-0">
+            <h3 className="font-secondary font-semibold text-brand-black text-sm leading-tight mb-1">
+              {item.product.title}
+            </h3>
+            <p className="text-xs text-brand-mid-gray mb-1">
+              Бренд: {item.product.brand}
+            </p>
+            <p className="text-base font-bold text-brand-copper">
+              ${item.product.price.toFixed(2)}
+            </p>
+          </div>
+
+          <button
+            onClick={handleRemove}
+            className="w-7 h-7 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300 flex-shrink-0"
+            aria-label="Удалить товар"
+          >
+            <span className="text-sm">✕</span>
+          </button>
+        </div>
+
+        {/* Нижняя часть: количество и общая стоимость */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <span className="text-sm text-brand-black font-medium">Количество:</span>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => handleQuantityChange(item.quantity - 1)}
+                className="w-7 h-7 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
+              >
+                <span className="text-sm">-</span>
+              </button>
+              <span className="w-8 text-center font-medium text-brand-black text-sm">
+                {item.quantity}
+              </span>
+              <button
+                onClick={() => handleQuantityChange(item.quantity + 1)}
+                className="w-7 h-7 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
+              >
+                <span className="text-sm">+</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="text-right">
+            <p className="text-sm text-brand-mid-gray">Итого:</p>
+            <p className="text-base font-bold text-brand-black">
+              ${itemTotal.toFixed(2)}
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Product Info */}
-      <div className="flex-1 min-w-0">
-        <h3 className="font-secondary font-semibold text-brand-black truncate">
-          {item.product.title}
-        </h3>
-        <p className="text-sm text-brand-mid-gray">
-          Бренд: {item.product.brand}
-        </p>
-        <p className="text-lg font-bold text-brand-copper">
-          ${item.product.price.toFixed(2)}
-        </p>
-      </div>
+      {/* Десктопная версия - горизонтальная компоновка */}
+      <div className="hidden md:flex items-center space-x-4">
+        {/* Product Image */}
+        <div className="w-20 h-20 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
+          <img
+            src={item.product.thumbnail}
+            alt={item.product.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
 
-      {/* Quantity Controls */}
-      <div className="flex items-center space-x-2">
+        {/* Product Info */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-secondary font-semibold text-brand-black truncate">
+            {item.product.title}
+          </h3>
+          <p className="text-sm text-brand-mid-gray">
+            Бренд: {item.product.brand}
+          </p>
+          <p className="text-lg font-bold text-brand-copper">
+            ${item.product.price.toFixed(2)}
+          </p>
+        </div>
+
+        {/* Quantity Controls */}
+        <div className="flex items-center space-x-2">
+          <button
+            onClick={() => handleQuantityChange(item.quantity - 1)}
+            className="w-8 h-8 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
+          >
+            -
+          </button>
+          <span className="w-8 text-center font-medium text-brand-black">
+            {item.quantity}
+          </span>
+          <button
+            onClick={() => handleQuantityChange(item.quantity + 1)}
+            className="w-8 h-8 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
+          >
+            +
+          </button>
+        </div>
+
+        {/* Total Price */}
+        <div className="text-right">
+          <p className="text-lg font-bold text-brand-black">
+            ${itemTotal.toFixed(2)}
+          </p>
+        </div>
+
+        {/* Remove Button */}
         <button
-          onClick={() => handleQuantityChange(item.quantity - 1)}
-          className="w-8 h-8 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-black-copper transition-colors duration-300"
+          onClick={handleRemove}
+          className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300"
+          aria-label="Удалить товар"
         >
-          -
-        </button>
-        <span className="w-8 text-center font-medium text-brand-black">
-          {item.quantity}
-        </span>
-        <button
-          onClick={() => handleQuantityChange(item.quantity + 1)}
-          className="w-8 h-8 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-black-copper transition-colors duration-300"
-        >
-          +
+          ✕
         </button>
       </div>
-
-      {/* Total Price */}
-      <div className="text-right">
-        <p className="text-lg font-bold text-brand-black">
-          ${itemTotal.toFixed(2)}
-        </p>
-      </div>
-
-      {/* Remove Button */}
-      <button
-        onClick={handleRemove}
-        className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300"
-        aria-label="Удалить товар"
-      >
-        ✕
-      </button>
     </div>
   );
 };

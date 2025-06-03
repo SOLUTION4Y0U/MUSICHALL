@@ -67,19 +67,12 @@ const Cart = () => {
 
       <div className="flex flex-col lg:flex-row gap-4 md:gap-8">
         <div className="flex-grow">
-          {/* Заголовки - скрыты на мобильных, показаны на планшетах и выше */}
-          <div className="hidden md:grid grid-cols-12 gap-2 md:gap-4 mb-4 text-brand-light-gray text-sm">
+          {/* Заголовки только для десктопа */}
+          <div className="hidden lg:grid grid-cols-12 gap-4 mb-4 text-brand-light-gray text-sm">
             <div className="col-span-6">Товар</div>
             <div className="col-span-3 text-center">Количество</div>
             <div className="col-span-2 text-right">Сумма</div>
             <div className="col-span-1"></div>
-          </div>
-
-          {/* Мобильная версия заголовков */}
-          <div className="grid md:hidden grid-cols-4 gap-2 mb-4 text-brand-light-gray text-xs">
-            <div className="col-span-2">Товар</div>
-            <div className="text-center">Кол-во</div>
-            <div className="text-right">Сумма</div>
           </div>
 
           {cart.items.map(item => (
