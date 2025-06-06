@@ -678,7 +678,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "5995977",
-    "product_id": 71717767
+    "product_id": 71717767,
+    "marketing_seller_price": 24390
   },
   {
     "result": [
@@ -1037,6 +1038,16 @@
         ],
         "complex_attributes": [
           {
+            "id": 21841,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-40/01HSDQBR9N2M38W1899XRPF70M/asset_1_h264.mp4"
+              }
+            ]
+          },
+          {
             "id": 21845,
             "complex_id": 100002,
             "values": [
@@ -1053,16 +1064,6 @@
               {
                 "dictionary_value_id": 0,
                 "value": "Черный (online-video-cutter.com) (1).mp4"
-              }
-            ]
-          },
-          {
-            "id": 21841,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-40/01HSDQBR9N2M38W1899XRPF70M/asset_1_h264.mp4"
               }
             ]
           }
@@ -1094,7 +1095,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON-Adv",
-    "product_id": 125697017
+    "product_id": 125697017,
+    "marketing_seller_price": 8190
   },
   {
     "result": [
@@ -1544,7 +1546,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-KL-Cybovac D2",
-    "product_id": 125938978
+    "product_id": 125938978,
+    "marketing_seller_price": 13990
   },
   {
     "result": [
@@ -1962,13 +1965,14 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON-Adv White",
-    "product_id": 348403153
+    "product_id": 348403153,
+    "marketing_seller_price": 8390
   },
   {
     "result": [
       {
         "id": 349519750,
-        "barcode": "OZN692685710",
+        "barcode": "4650191190088",
         "name": "Синтезатор ON Music Basic 54 клавиши Black",
         "offer_id": "TU-ON-Basic Black",
         "height": 115,
@@ -2311,6 +2315,16 @@
         ],
         "complex_attributes": [
           {
+            "id": 21841,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-40/01HSGPXW66M6C6B9CN53F0YVC2/asset_1_h264.mp4"
+              }
+            ]
+          },
+          {
             "id": 21845,
             "complex_id": 100002,
             "values": [
@@ -2329,21 +2343,12 @@
                 "value": "54 Черный (online-video-cutter.com).mp4"
               }
             ]
-          },
-          {
-            "id": 21841,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-40/01HSGPXW66M6C6B9CN53F0YVC2/asset_1_h264.mp4"
-              }
-            ]
           }
         ],
         "color_image": "",
         "sku": 692685710,
         "barcodes": [
+          "4650191190088",
           "OZN692685710"
         ],
         "attributes_with_defaults": [
@@ -2369,7 +2374,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON-Basic Black",
-    "product_id": 349519750
+    "product_id": 349519750,
+    "marketing_seller_price": 6200
   },
   {
     "result": [
@@ -2990,7 +2996,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-GF7S-SG",
-    "product_id": 418020847
+    "product_id": 418020847,
+    "marketing_seller_price": 72990
   },
   {
     "result": [
@@ -3359,7 +3366,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-GSP4",
-    "product_id": 513551189
+    "product_id": 513551189,
+    "marketing_seller_price": 23990
   },
   {
     "result": [
@@ -3803,7 +3811,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DOM2-SR",
-    "product_id": 514508381
+    "product_id": 514508381,
+    "marketing_seller_price": 5490
   },
   {
     "result": [
@@ -4247,7 +4256,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DOM2-SB",
-    "product_id": 514508383
+    "product_id": 514508383,
+    "marketing_seller_price": 5490
   },
   {
     "result": [
@@ -4695,22 +4705,22 @@
         ],
         "complex_attributes": [
           {
-            "id": 21837,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "D9 Видео.mp4"
-              }
-            ]
-          },
-          {
             "id": 21841,
             "complex_id": 100001,
             "values": [
               {
                 "dictionary_value_id": 0,
                 "value": "https://cdnvideo.v.ozone.ru/vod/video-26/01HF8YH583F189K1TGZ00CR6KE/asset_3_h264.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21837,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "D9 Видео.mp4"
               }
             ]
           }
@@ -4740,7 +4750,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-KL-D9",
-    "product_id": 519843087
+    "product_id": 519843087,
+    "marketing_seller_price": 13990
   },
   {
     "result": [
@@ -5290,7 +5301,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-Robot VC Kyvol E31",
-    "product_id": 519957657
+    "product_id": 519957657,
+    "marketing_seller_price": 13990
   },
   {
     "result": [
@@ -5854,7 +5866,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-GE Pro Gen 2-S-GL/CR-42",
-    "product_id": 614039976
+    "product_id": 614039976,
+    "marketing_seller_price": 94990
   },
   {
     "result": [
@@ -6251,7 +6264,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON-Basic White",
-    "product_id": 617382615
+    "product_id": 617382615,
+    "marketing_seller_price": 6200
   },
   {
     "result": [
@@ -6822,7 +6836,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-GE Pro Gen 2-S-BK-S-47",
-    "product_id": 634011341
+    "product_id": 634011341,
+    "marketing_seller_price": 99990
   },
   {
     "result": [
@@ -7388,7 +7403,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-GE Pro Gen 2-S-BK-51",
-    "product_id": 634028536
+    "product_id": 634028536,
+    "marketing_seller_price": 104990
   },
   {
     "result": [
@@ -7959,7 +7975,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-GE Pro Gen 2-BK-51",
-    "product_id": 634086042
+    "product_id": 634086042,
+    "marketing_seller_price": 84990
   },
   {
     "result": [
@@ -8645,13 +8662,14 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-AiP15_256_BL",
-    "product_id": 650296773
+    "product_id": 650296773,
+    "marketing_seller_price": 116990
   },
   {
     "result": [
       {
         "id": 802848726,
-        "barcode": "OZN1359768644",
+        "barcode": "4650191190163",
         "name": "Цифровое пианино-синтезатор ON Music Maestro, MIDI, 88 клавиш (компактные), черный",
         "offer_id": "TU-ON Maestro BL",
         "height": 275,
@@ -8986,20 +9004,6 @@
         ],
         "complex_attributes": [
           {
-            "id": 21841,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-40/01HSB03EPKESH51F8TVTY4V4TW/asset_1_h264.mp4"
-              },
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JAG08J3CVAJ0K5WMBSSSM1GG/asset_2_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21837,
             "complex_id": 100001,
             "values": [
@@ -9010,6 +9014,20 @@
               {
                 "dictionary_value_id": 0,
                 "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
+              }
+            ]
+          },
+          {
+            "id": 21841,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-40/01HSB03EPKESH51F8TVTY4V4TW/asset_1_h264.mp4"
+              },
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JAG08J3CVAJ0K5WMBSSSM1GG/asset_2_h264.mp4"
               }
             ]
           },
@@ -9027,6 +9045,7 @@
         "color_image": "",
         "sku": 1359768644,
         "barcodes": [
+          "4650191190163",
           "OZN1359768644"
         ],
         "attributes_with_defaults": [
@@ -9052,13 +9071,14 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro BL",
-    "product_id": 802848726
+    "product_id": 802848726,
+    "marketing_seller_price": 9870
   },
   {
     "result": [
       {
         "id": 802848768,
-        "barcode": "OZN1359768647",
+        "barcode": "4650191190101",
         "name": "Цифровое пианино-синтезатор ON Music Maestro, MIDI, 88 клавиш (компактные), белый",
         "offer_id": "TU-ON Maestro WH",
         "height": 275,
@@ -9385,6 +9405,20 @@
         ],
         "complex_attributes": [
           {
+            "id": 21837,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "On Maestro   белый (online-video-cutter.com).mp4"
+              },
+              {
+                "dictionary_value_id": 0,
+                "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
+              }
+            ]
+          },
+          {
             "id": 21841,
             "complex_id": 100001,
             "values": [
@@ -9407,25 +9441,12 @@
                 "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JDFC17GNV0EPEJTXAYM4W8AB/asset_1_h264.mp4"
               }
             ]
-          },
-          {
-            "id": 21837,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "On Maestro   белый (online-video-cutter.com).mp4"
-              },
-              {
-                "dictionary_value_id": 0,
-                "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
-              }
-            ]
           }
         ],
         "color_image": "",
         "sku": 1359768647,
         "barcodes": [
+          "4650191190101",
           "OZN1359768647"
         ],
         "attributes_with_defaults": [
@@ -9451,13 +9472,14 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro WH",
-    "product_id": 802848768
+    "product_id": 802848768,
+    "marketing_seller_price": 9870
   },
   {
     "result": [
       {
         "id": 802876274,
-        "barcode": "OZN1359795709",
+        "barcode": "4650191190170",
         "name": "Цифровое пианино-синтезатор ON Music Maestro Pro, MIDI, 88 клавиш, белый",
         "offer_id": "TU-ON Maestro Pro WH",
         "height": 325,
@@ -9825,6 +9847,20 @@
         ],
         "complex_attributes": [
           {
+            "id": 21841,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-39/01HSE16YGXCY7TGGCC0W7DTGNG/asset_1_h264.mp4"
+              },
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JAG0BFV7F6C1GZSY6RZW94BP/asset_2_h264.mp4"
+              }
+            ]
+          },
+          {
             "id": 21845,
             "complex_id": 100002,
             "values": [
@@ -9847,25 +9883,12 @@
                 "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
               }
             ]
-          },
-          {
-            "id": 21841,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-39/01HSE16YGXCY7TGGCC0W7DTGNG/asset_1_h264.mp4"
-              },
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JAG0BFV7F6C1GZSY6RZW94BP/asset_2_h264.mp4"
-              }
-            ]
           }
         ],
         "color_image": "",
         "sku": 1359795709,
         "barcodes": [
+          "4650191190170",
           "OZN1359795709"
         ],
         "attributes_with_defaults": [
@@ -9891,18 +9914,19 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro Pro WH",
-    "product_id": 802876274
+    "product_id": 802876274,
+    "marketing_seller_price": 17390
   },
   {
     "result": [
       {
         "id": 802876344,
-        "barcode": "OZN1359795212",
+        "barcode": "4650191190118",
         "name": "Цифровое пианино-синтезатор ON Music Maestro Pro, MIDI, 88 клавиш, черный",
         "offer_id": "TU-ON Maestro Pro BL",
-        "height": 325,
-        "depth": 1390,
-        "width": 155,
+        "height": 166,
+        "depth": 1396,
+        "width": 379,
         "dimension_unit": "mm",
         "weight": 6500,
         "weight_unit": "g",
@@ -10281,6 +10305,16 @@
         ],
         "complex_attributes": [
           {
+            "id": 21845,
+            "complex_id": 100002,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-60/01JDFBYX8YV6S2QCTM5JN8V8C9/asset_1_h264.mp4"
+              }
+            ]
+          },
+          {
             "id": 21837,
             "complex_id": 100001,
             "values": [
@@ -10307,21 +10341,12 @@
                 "value": "https://cdnvideo.v.ozone.ru/vod/video-58/01JAG0B2WQZJ0ZCRNQQWXGHA7Q/asset_2_h264.mp4"
               }
             ]
-          },
-          {
-            "id": 21845,
-            "complex_id": 100002,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-60/01JDFBYX8YV6S2QCTM5JN8V8C9/asset_1_h264.mp4"
-              }
-            ]
           }
         ],
         "color_image": "",
         "sku": 1359795212,
         "barcodes": [
+          "4650191190118",
           "OZN1359795212"
         ],
         "attributes_with_defaults": [
@@ -10347,7 +10372,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro Pro BL",
-    "product_id": 802876344
+    "product_id": 802876344,
+    "marketing_seller_price": 17390
   },
   {
     "result": [
@@ -10855,7 +10881,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-MOSWZ40-PB",
-    "product_id": 858583897
+    "product_id": 858583897,
+    "marketing_seller_price": 3490
   },
   {
     "result": [
@@ -11247,20 +11274,6 @@
             ]
           },
           {
-            "id": 21837,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "On Maestro PRO черный (online-video-cutter.com).mp4"
-              },
-              {
-                "dictionary_value_id": 0,
-                "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
-              }
-            ]
-          },
-          {
             "id": 21841,
             "complex_id": 100001,
             "values": [
@@ -11271,6 +11284,20 @@
               {
                 "dictionary_value_id": 0,
                 "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JAG0AC9B0GP0Q5GPKMKVZ66F/asset_2_h264.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21837,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "On Maestro PRO черный (online-video-cutter.com).mp4"
+              },
+              {
+                "dictionary_value_id": 0,
+                "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
               }
             ]
           }
@@ -11303,7 +11330,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro_Pro_BL",
-    "product_id": 863501994
+    "product_id": 863501994,
+    "marketing_seller_price": 19850
   },
   {
     "result": [
@@ -11685,16 +11713,6 @@
         ],
         "complex_attributes": [
           {
-            "id": 21845,
-            "complex_id": 100002,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JDFC0KDA66C024T7SK95WAM2/asset_1_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21837,
             "complex_id": 100001,
             "values": [
@@ -11705,6 +11723,16 @@
               {
                 "dictionary_value_id": 0,
                 "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
+              }
+            ]
+          },
+          {
+            "id": 21845,
+            "complex_id": 100002,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-59/01JDFC0KDA66C024T7SK95WAM2/asset_1_h264.mp4"
               }
             ]
           },
@@ -11751,7 +11779,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro_Pro_WH",
-    "product_id": 863504286
+    "product_id": 863504286,
+    "marketing_seller_price": 19850
   },
   {
     "result": [
@@ -12102,16 +12131,6 @@
             ]
           },
           {
-            "id": 21845,
-            "complex_id": 100002,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-58/01JDFBXBWXS86RKSA5CS5KPPZS/asset_1_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21837,
             "complex_id": 100001,
             "values": [
@@ -12122,6 +12141,16 @@
               {
                 "dictionary_value_id": 0,
                 "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
+              }
+            ]
+          },
+          {
+            "id": 21845,
+            "complex_id": 100002,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-58/01JDFBXBWXS86RKSA5CS5KPPZS/asset_1_h264.mp4"
               }
             ]
           }
@@ -12154,7 +12183,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro_WH",
-    "product_id": 867359743
+    "product_id": 867359743,
+    "marketing_seller_price": 12400
   },
   {
     "result": [
@@ -12491,16 +12521,12 @@
         ],
         "complex_attributes": [
           {
-            "id": 21837,
-            "complex_id": 100001,
+            "id": 21845,
+            "complex_id": 100002,
             "values": [
               {
                 "dictionary_value_id": 0,
-                "value": "On Maestro   черный (online-video-cutter.com).mp4"
-              },
-              {
-                "dictionary_value_id": 0,
-                "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-57/01JDFBVSY52NZ9W28W81G812ER/asset_1_h264.mp4"
               }
             ]
           },
@@ -12519,12 +12545,16 @@
             ]
           },
           {
-            "id": 21845,
-            "complex_id": 100002,
+            "id": 21837,
+            "complex_id": 100001,
             "values": [
               {
                 "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-57/01JDFBVSY52NZ9W28W81G812ER/asset_1_h264.mp4"
+                "value": "On Maestro   черный (online-video-cutter.com).mp4"
+              },
+              {
+                "dictionary_value_id": 0,
+                "value": "On Maestro в карточку (online-video-cutter.com) (1).mp4"
               }
             ]
           }
@@ -12557,7 +12587,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-ON Maestro_BL",
-    "product_id": 867361581
+    "product_id": 867361581,
+    "marketing_seller_price": 12400
   },
   {
     "result": [
@@ -12928,7 +12959,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-LFZ-010-KL",
-    "product_id": 871044361
+    "product_id": 871044361,
+    "marketing_seller_price": 890
   },
   {
     "result": [
@@ -13299,7 +13331,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-LFZ-020-KL",
-    "product_id": 871060402
+    "product_id": 871060402,
+    "marketing_seller_price": 1090
   },
   {
     "result": [
@@ -13660,7 +13693,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-LFL-030-KL",
-    "product_id": 871073520
+    "product_id": 871073520,
+    "marketing_seller_price": 1190
   },
   {
     "result": [
@@ -13963,7 +13997,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "PSC-203-WT",
-    "product_id": 965893305
+    "product_id": 965893305,
+    "marketing_seller_price": 1690
   },
   {
     "result": [
@@ -14246,22 +14281,22 @@
         ],
         "complex_attributes": [
           {
-            "id": 21837,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "Snake white.mp4"
-              }
-            ]
-          },
-          {
             "id": 21841,
             "complex_id": 100001,
             "values": [
               {
                 "dictionary_value_id": 0,
                 "value": "https://v.ozone.ru/vod/video-13/01HVRJNSJRD2210BE7GDW5V240/asset_3_h264.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21837,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "Snake white.mp4"
               }
             ]
           }
@@ -14295,7 +14330,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "PSS-302-WWT",
-    "product_id": 969284439
+    "product_id": 969284439,
+    "marketing_seller_price": 990
   },
   {
     "result": [
@@ -14579,22 +14615,22 @@
         ],
         "complex_attributes": [
           {
-            "id": 21837,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "Snake black.mp4"
-              }
-            ]
-          },
-          {
             "id": 21841,
             "complex_id": 100001,
             "values": [
               {
                 "dictionary_value_id": 0,
                 "value": "https://v.ozone.ru/vod/video-20/01HVRJMR1KXPTAMHV21F49R0GY/asset_3_h264.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21837,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "Snake black.mp4"
               }
             ]
           }
@@ -14624,7 +14660,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "PSS-302-BBK",
-    "product_id": 988909979
+    "product_id": 988909979,
+    "marketing_seller_price": 990
   },
   {
     "result": [
@@ -15008,7 +15045,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-KL-SK-HM040R-GR",
-    "product_id": 995669830
+    "product_id": 995669830,
+    "marketing_seller_price": 3990
   },
   {
     "result": [
@@ -15442,7 +15480,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-KL-SK-SB150R-GR",
-    "product_id": 995709485
+    "product_id": 995709485,
+    "marketing_seller_price": 4990
   },
   {
     "result": [
@@ -15816,7 +15855,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-KL-SK-KE170R-GR",
-    "product_id": 995745195
+    "product_id": 995745195,
+    "marketing_seller_price": 5390
   },
   {
     "result": [
@@ -16237,7 +16277,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-KL-SK-HB080R-GR",
-    "product_id": 997788163
+    "product_id": 997788163,
+    "marketing_seller_price": 5290
   },
   {
     "result": [
@@ -16506,16 +16547,6 @@
         ],
         "complex_attributes": [
           {
-            "id": 21841,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-41/01J0QMMHNZHWAFBG64QDAGXB05/asset_3_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21845,
             "complex_id": 100002,
             "values": [
@@ -16532,6 +16563,16 @@
               {
                 "dictionary_value_id": 0,
                 "value": "Черный.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21841,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-41/01J0QMMHNZHWAFBG64QDAGXB05/asset_3_h264.mp4"
               }
             ]
           }
@@ -16565,7 +16606,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-VSC-100-KK",
-    "product_id": 1050614958
+    "product_id": 1050614958,
+    "marketing_seller_price": 3990
   },
   {
     "result": [
@@ -16834,16 +16876,6 @@
         ],
         "complex_attributes": [
           {
-            "id": 21845,
-            "complex_id": 100002,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-45/01J0QTJXF3WFJK2Q8H0TN2Z13G/asset_2_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21841,
             "complex_id": 100001,
             "values": [
@@ -16860,6 +16892,16 @@
               {
                 "dictionary_value_id": 0,
                 "value": "Белый.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21845,
+            "complex_id": 100002,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-45/01J0QTJXF3WFJK2Q8H0TN2Z13G/asset_2_h264.mp4"
               }
             ]
           }
@@ -16893,7 +16935,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-VSC-100-WW",
-    "product_id": 1050648244
+    "product_id": 1050648244,
+    "marketing_seller_price": 3990
   },
   {
     "result": [
@@ -17274,7 +17317,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-A-USB-C",
-    "product_id": 1057711449
+    "product_id": 1057711449,
+    "marketing_seller_price": 1949
   },
   {
     "result": [
@@ -17989,22 +18033,22 @@
         ],
         "complex_attributes": [
           {
-            "id": 21841,
-            "complex_id": 100001,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://v.ozone.ru/vod/video-43/01HZ2C73HBTSM0KBV2M60XK3KN/asset_3_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21837,
             "complex_id": 100001,
             "values": [
               {
                 "dictionary_value_id": 0,
                 "value": "videos-ksp-video-popup.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21841,
+            "complex_id": 100001,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://v.ozone.ru/vod/video-43/01HZ2C73HBTSM0KBV2M60XK3KN/asset_3_h264.mp4"
               }
             ]
           }
@@ -18038,7 +18082,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-OP-12R 16/256-CB",
-    "product_id": 1057785234
+    "product_id": 1057785234,
+    "marketing_seller_price": 67990
   },
   {
     "result": [
@@ -18406,7 +18451,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-A-Lightning-2m",
-    "product_id": 1057799750
+    "product_id": 1057799750,
+    "marketing_seller_price": 1890
   },
   {
     "result": [
@@ -18794,7 +18840,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-A-USB-2m",
-    "product_id": 1057799782
+    "product_id": 1057799782,
+    "marketing_seller_price": 3490
   },
   {
     "result": [
@@ -19181,7 +19228,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-A-Lightning Cable",
-    "product_id": 1057799783
+    "product_id": 1057799783,
+    "marketing_seller_price": 1690
   },
   {
     "result": [
@@ -19563,7 +19611,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-S-USB C-DN-5a-1m",
-    "product_id": 1058234655
+    "product_id": 1058234655,
+    "marketing_seller_price": 1090
   },
   {
     "result": [
@@ -19866,7 +19915,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-OMS-X",
-    "product_id": 1086948897
+    "product_id": 1086948897,
+    "marketing_seller_price": 2690
   },
   {
     "result": [
@@ -20129,22 +20179,22 @@
             ]
           },
           {
-            "id": 21845,
-            "complex_id": 100002,
-            "values": [
-              {
-                "dictionary_value_id": 0,
-                "value": "https://cdnvideo.v.ozone.ru/vod/video-46/01J3MT16PYCWZAKV106P7N55Z5/asset_1_h264.mp4"
-              }
-            ]
-          },
-          {
             "id": 21837,
             "complex_id": 100001,
             "values": [
               {
                 "dictionary_value_id": 0,
                 "value": "X2 Stand.mp4"
+              }
+            ]
+          },
+          {
+            "id": 21845,
+            "complex_id": 100002,
+            "values": [
+              {
+                "dictionary_value_id": 0,
+                "value": "https://cdnvideo.v.ozone.ru/vod/video-46/01J3MT16PYCWZAKV106P7N55Z5/asset_1_h264.mp4"
               }
             ]
           }
@@ -20177,7 +20227,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "TU-OMS-X2",
-    "product_id": 1086949252
+    "product_id": 1086949252,
+    "marketing_seller_price": 3410
   },
   {
     "result": [
@@ -20493,7 +20544,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2135BA/51",
-    "product_id": 1090102842
+    "product_id": 1090102842,
+    "marketing_seller_price": 1465
   },
   {
     "result": [
@@ -20809,7 +20861,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2135WA/51",
-    "product_id": 1090118717
+    "product_id": 1090118717,
+    "marketing_seller_price": 1619
   },
   {
     "result": [
@@ -21129,7 +21182,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2135BB/51",
-    "product_id": 1090130683
+    "product_id": 1090130683,
+    "marketing_seller_price": 1889
   },
   {
     "result": [
@@ -21449,7 +21503,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2135WB/51",
-    "product_id": 1090158942
+    "product_id": 1090158942,
+    "marketing_seller_price": 1505
   },
   {
     "result": [
@@ -21765,7 +21820,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2145BB/51",
-    "product_id": 1090173704
+    "product_id": 1090173704,
+    "marketing_seller_price": 1934
   },
   {
     "result": [
@@ -22082,7 +22138,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2145WB/51",
-    "product_id": 1090183122
+    "product_id": 1090183122,
+    "marketing_seller_price": 1934
   },
   {
     "result": [
@@ -22402,7 +22459,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2145BC/51",
-    "product_id": 1090197892
+    "product_id": 1090197892,
+    "marketing_seller_price": 2519
   },
   {
     "result": [
@@ -22722,7 +22780,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2145WC/51",
-    "product_id": 1090202193
+    "product_id": 1090202193,
+    "marketing_seller_price": 2519
   },
   {
     "result": [
@@ -23039,7 +23098,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2155BA/51",
-    "product_id": 1090220938
+    "product_id": 1090220938,
+    "marketing_seller_price": 1889
   },
   {
     "result": [
@@ -23355,7 +23415,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2155WA/51",
-    "product_id": 1090225236
+    "product_id": 1090225236,
+    "marketing_seller_price": 1889
   },
   {
     "result": [
@@ -23675,7 +23736,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP2155BB/51",
-    "product_id": 1090231104
+    "product_id": 1090231104,
+    "marketing_seller_price": 2069
   },
   {
     "result": [
@@ -24008,7 +24070,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4336BB/51",
-    "product_id": 1090400453
+    "product_id": 1090400453,
+    "marketing_seller_price": 3509
   },
   {
     "result": [
@@ -24341,7 +24404,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4336WB/51",
-    "product_id": 1090405408
+    "product_id": 1090405408,
+    "marketing_seller_price": 3509
   },
   {
     "result": [
@@ -24670,7 +24734,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4346BA/51",
-    "product_id": 1090436172
+    "product_id": 1090436172,
+    "marketing_seller_price": 3329
   },
   {
     "result": [
@@ -25003,7 +25068,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4346BB/51",
-    "product_id": 1090453336
+    "product_id": 1090453336,
+    "marketing_seller_price": 3509
   },
   {
     "result": [
@@ -25337,7 +25403,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4346WB/51",
-    "product_id": 1090464428
+    "product_id": 1090464428,
+    "marketing_seller_price": 3509
   },
   {
     "result": [
@@ -25674,7 +25741,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4346BC/51",
-    "product_id": 1090469301
+    "product_id": 1090469301,
+    "marketing_seller_price": 4229
   },
   {
     "result": [
@@ -26011,7 +26079,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP4346WC/51",
-    "product_id": 1090483075
+    "product_id": 1090483075,
+    "marketing_seller_price": 4229
   },
   {
     "result": [
@@ -26340,7 +26409,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP8236WB/51",
-    "product_id": 1094859788
+    "product_id": 1094859788,
+    "marketing_seller_price": 4229
   },
   {
     "result": [
@@ -26674,7 +26744,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP8236BB/51",
-    "product_id": 1094863635
+    "product_id": 1094863635,
+    "marketing_seller_price": 4229
   },
   {
     "result": [
@@ -27007,7 +27078,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP8246BA/51",
-    "product_id": 1094867277
+    "product_id": 1094867277,
+    "marketing_seller_price": 2640
   },
   {
     "result": [
@@ -27340,7 +27412,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP8246WA/51",
-    "product_id": 1094876168
+    "product_id": 1094876168,
+    "marketing_seller_price": 4139
   },
   {
     "result": [
@@ -27669,7 +27742,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP8246BB/51",
-    "product_id": 1094878112
+    "product_id": 1094878112,
+    "marketing_seller_price": 4319
   },
   {
     "result": [
@@ -27998,7 +28072,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "CHP8246WB/51",
-    "product_id": 1094879676
+    "product_id": 1094879676,
+    "marketing_seller_price": 4319
   },
   {
     "result": [
@@ -28368,7 +28443,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV2110/56",
-    "product_id": 1094926920
+    "product_id": 1094926920,
+    "marketing_seller_price": 1079
   },
   {
     "result": [
@@ -28734,7 +28810,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV4110/56",
-    "product_id": 1100420109
+    "product_id": 1100420109,
+    "marketing_seller_price": 1304
   },
   {
     "result": [
@@ -29100,7 +29177,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV4150/56",
-    "product_id": 1100471154
+    "product_id": 1100471154,
+    "marketing_seller_price": 3005
   },
   {
     "result": [
@@ -29466,7 +29544,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV7110/56",
-    "product_id": 1100490680
+    "product_id": 1100490680,
+    "marketing_seller_price": 1583
   },
   {
     "result": [
@@ -29832,7 +29911,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV7150/56",
-    "product_id": 1100495857
+    "product_id": 1100495857,
+    "marketing_seller_price": 3626
   },
   {
     "result": [
@@ -30203,7 +30283,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV7110C/56",
-    "product_id": 1102909236
+    "product_id": 1102909236,
+    "marketing_seller_price": 1844
   },
   {
     "result": [
@@ -30578,7 +30659,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "SWV7130C/56",
-    "product_id": 1102930987
+    "product_id": 1102930987,
+    "marketing_seller_price": 2609
   },
   {
     "result": [
@@ -30965,7 +31047,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP4327CW/70",
-    "product_id": 1137998906
+    "product_id": 1137998906,
+    "marketing_seller_price": 1299
   },
   {
     "result": [
@@ -31352,7 +31435,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP2560DB/97",
-    "product_id": 1137998911
+    "product_id": 1137998911,
+    "marketing_seller_price": 1529
   },
   {
     "result": [
@@ -31745,7 +31829,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP2561DW/97",
-    "product_id": 1137998912
+    "product_id": 1137998912,
+    "marketing_seller_price": 3059
   },
   {
     "result": [
@@ -32104,7 +32189,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP4320CB/67",
-    "product_id": 1137998924
+    "product_id": 1137998924,
+    "marketing_seller_price": 1490
   },
   {
     "result": [
@@ -32531,7 +32617,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP2561DB/97",
-    "product_id": 1137998937
+    "product_id": 1137998937,
+    "marketing_seller_price": 3059
   },
   {
     "result": [
@@ -32924,7 +33011,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP5331CB/74",
-    "product_id": 1137998974
+    "product_id": 1137998974,
+    "marketing_seller_price": 1911
   },
   {
     "result": [
@@ -33356,7 +33444,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP2560DW/97",
-    "product_id": 1137998975
+    "product_id": 1137998975,
+    "marketing_seller_price": 1506
   },
   {
     "result": [
@@ -33767,7 +33856,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP4317CB/70",
-    "product_id": 1137998983
+    "product_id": 1137998983,
+    "marketing_seller_price": 1047
   },
   {
     "result": [
@@ -34174,7 +34264,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP5331CW/74",
-    "product_id": 1137998987
+    "product_id": 1137998987,
+    "marketing_seller_price": 1988
   },
   {
     "result": [
@@ -34585,7 +34676,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP4327CB/70",
-    "product_id": 1137998994
+    "product_id": 1137998994,
+    "marketing_seller_price": 1299
   },
   {
     "result": [
@@ -34991,7 +35083,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP4317CW/70",
-    "product_id": 1137998996
+    "product_id": 1137998996,
+    "marketing_seller_price": 993
   },
   {
     "result": [
@@ -35400,7 +35493,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP6333CW/74",
-    "product_id": 1137998997
+    "product_id": 1137998997,
+    "marketing_seller_price": 3594
   },
   {
     "result": [
@@ -35755,7 +35849,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLP4320CW/67",
-    "product_id": 1137999000
+    "product_id": 1137999000,
+    "marketing_seller_price": 1567
   },
   {
     "result": [
@@ -36024,7 +36119,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC8631B/74",
-    "product_id": 1149507591
+    "product_id": 1149507591,
+    "marketing_seller_price": 2554
   },
   {
     "result": [
@@ -36298,7 +36394,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC8701B/74",
-    "product_id": 1149507592
+    "product_id": 1149507592,
+    "marketing_seller_price": 649
   },
   {
     "result": [
@@ -36572,7 +36669,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC8601B/74",
-    "product_id": 1149507593
+    "product_id": 1149507593,
+    "marketing_seller_price": 718
   },
   {
     "result": [
@@ -36845,7 +36943,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC9530B/67",
-    "product_id": 1149507594
+    "product_id": 1149507594,
+    "marketing_seller_price": 848
   },
   {
     "result": [
@@ -37118,7 +37217,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC5531CW/97",
-    "product_id": 1149507595
+    "product_id": 1149507595,
+    "marketing_seller_price": 572
   },
   {
     "result": [
@@ -37391,7 +37491,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC8701P/74",
-    "product_id": 1149507596
+    "product_id": 1149507596,
+    "marketing_seller_price": 649
   },
   {
     "result": [
@@ -37668,7 +37769,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC9530C/97",
-    "product_id": 1149507597
+    "product_id": 1149507597,
+    "marketing_seller_price": 802
   },
   {
     "result": [
@@ -37941,7 +38043,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC8601V/74",
-    "product_id": 1149507602
+    "product_id": 1149507602,
+    "marketing_seller_price": 718
   },
   {
     "result": [
@@ -38219,7 +38322,8 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC9102B/74",
-    "product_id": 1149507603
+    "product_id": 1149507603,
+    "marketing_seller_price": 1758
   },
   {
     "result": [
@@ -38488,6 +38592,7 @@
     "total": 1,
     "last_id": "",
     "offer_id": "DLC8601P/74",
-    "product_id": 1149507605
+    "product_id": 1149507605,
+    "marketing_seller_price": 718
   }
 ]
