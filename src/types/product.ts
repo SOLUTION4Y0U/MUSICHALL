@@ -10,6 +10,10 @@ export interface Product {
   category: string;
   thumbnail: string;
   images: string[];
+  color: string;
+  dimensions: {height: number; depth: number; width: number; unit: string;};
+  weight: {value: number; unit: string;} ;
+  
 }
 
 export interface Category {
