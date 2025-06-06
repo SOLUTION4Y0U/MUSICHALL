@@ -1,0 +1,29 @@
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#000000">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  /* Принудительное переопределение на самом раннем этапе */
+  :root {
+    color-scheme: dark !important;
+  }
+
+  body {
+    background-color: #000000 !important;
+    color: #333333 !important;
+  }
+</style>
+<script>
+  // Проверяем sessionStorage на наличие сохраненного пути
+  (function() {
+    const redirect = sessionStorage.getItem('redirect');
+    if (redirect) {
+      sessionStorage.removeItem('redirect');
+      if (redirect !== window.location.pathname) {
+        // Устанавливаем правильный URL с помощью History API
+        window.history.replaceState(null, null, redirect);
+      }
+    }
+  })();
+</script>
