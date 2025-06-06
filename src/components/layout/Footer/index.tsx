@@ -30,16 +30,16 @@ const Footer: FC = () => {
               Быстрые ссылки
             </h4>
             <nav className="space-y-2">
-              <a href="/catalog" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="/#/catalog" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Каталог
               </a>
-              <a href="/about" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="/#/about" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 О нас
               </a>
-              <a href="/contact" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="/#/contact" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Контакты
               </a>
-              <a href="/help" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="/#/help" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Помощь
               </a>
             </nav>
