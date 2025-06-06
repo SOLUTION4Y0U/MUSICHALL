@@ -52,7 +52,7 @@ def parse_active_products(product_list_response):
     active_products = []
 
     for item in items:
-        if not item.get('archived', True):  # Если archived = false или отсутствует
+        if item.get('has_fbo_stocks', True):  # Если archived = false или отсутствует
             product_info = {
                 'offer_id': item.get('offer_id'),
                 'product_id': item.get('product_id')
@@ -165,8 +165,8 @@ def get_product_attributes_for_active_products(active_products):
     print(f"Обработано товаров: {len(all_attributes)}/{len(active_products)}")
 
     return all_attributes
-    
-    
+
+
 def get_product_prices(product_ids):
     """Получает цены товаров"""
     url = "https://api-seller.ozon.ru/v5/product/info/prices"
@@ -230,70 +230,70 @@ def get_product_prices(product_ids):
 
 import logging
 
-def get_product_attributes_for_active_products(active_products):
-    """Получает характеристики и цены для всех активных товаров"""
-    url = "https://api-seller.ozon.ru/v4/product/info/attributes"
-    headers = {
-        "Client-Id": "69819",  # Замените на реальные данные
-        "Api-Key": "dfd3581a-04ad-4149-aead-563e17f6f3a8",      # Замените на реальные данные
-        "Content-Type": "application/json"
-    }
-    all_attributes = []
-    # Получаем список product_ids для запроса цен
-    product_ids = [str(product['product_id']) for product in active_products]
+# def get_product_attributes_for_active_products(active_products):
+    # """Получает характеристики и цены для всех активных товаров"""
+    # url = "https://api-seller.ozon.ru/v4/product/info/attributes"
+    # headers = {
+    #     "Client-Id": "69819",  # Замените на реальные данные
+    #     "Api-Key": "dfd3581a-04ad-4149-aead-563e17f6f3a8",      # Замените на реальные данные
+    #     "Content-Type": "application/json"
+    # }
+    # all_attributes = []
+    # # Получаем список product_ids для запроса цен
+    # product_ids = [str(product['product_id']) for product in active_products]
 
-    # Получаем цены товаров
-    prices_response = get_product_prices(product_ids)
+    # # Получаем цены товаров
+    # prices_response = get_product_prices(product_ids)
 
-    # Проверяем, что prices_response является словарем
-    if not isinstance(prices_response, dict):
-        logging.error("✗ Ошибка: Некорректный формат данных о ценах.")
-        return []
+    # # Проверяем, что prices_response является словарем
+    # if not isinstance(prices_response, dict):
+    #     logging.error("✗ Ошибка: Некорректный формат данных о ценах.")
+    #     return []
 
-    # Создаем словарь product_prices для быстрого доступа к ценам по product_id
-    product_prices = prices_response
-    for i, product in enumerate(active_products):
-        logging.info(f"\nПолучение характеристик для товара {i+1}/{len(active_products)}")
-        logging.info(f"offer_id: {product['offer_id']}, product_id: {product['product_id']}")
-        payload = {
-            "filter": {
-                "product_id": [str(product['product_id'])],
-                "offer_id": [product['offer_id']],
-                "visibility": "ALL"
-            },
-            "limit": 100,
-            "sort_dir": "ASC"
-        }
-        try:
-            response = requests.post(url, headers=headers, json=payload)
-            if response.status_code == 200:
-                attributes_data = response.json()
-                logging.info(f"✓ Характеристики получены успешно!")
-                # Добавляем идентификаторы товара к характеристикам для удобства
-                attributes_data['offer_id'] = product['offer_id']
-                attributes_data['product_id'] = product['product_id']
-                # Добавляем цену из product_prices
-                product_id = product['product_id']
-                price = product_prices.get(product_id, 0)  # Берем цену или 0, если цена отсутствует
-                attributes_data['marketing_seller_price'] = price
-                all_attributes.append(attributes_data)
-                # Выводим краткую информацию
-                if attributes_data.get('result'):
-                    items_count = len(attributes_data['result'])
-                    logging.info(f"  Найдено характеристик: {items_count}")
-            else:
-                logging.error(f"✗ Ошибка при получении характеристик! Статус код: {response.status_code}")
-                logging.error(f"Ответ: {response.text}")
-                continue  # Пропускаем текущий товар
-        except requests.exceptions.RequestException as e:
-            logging.error(f"✗ Ошибка при выполнении запроса: {e}")
+    # # Создаем словарь product_prices для быстрого доступа к ценам по product_id
+    # product_prices = prices_response
+    # for i, product in enumerate(active_products):
+    #     logging.info(f"\nПолучение характеристик для товара {i+1}/{len(active_products)}")
+    #     logging.info(f"offer_id: {product['offer_id']}, product_id: {product['product_id']}")
+    #     payload = {
+    #         "filter": {
+    #             "product_id": [str(product['product_id'])],
+    #             "offer_id": [product['offer_id']],
+    #             "visibility": "ALL"
+    #         },
+    #         "limit": 100,
+    #         "sort_dir": "ASC"
+    #     }
+    #     try:
+    #         response = requests.post(url, headers=headers, json=payload)
+    #         if response.status_code == 200:
+    #             attributes_data = response.json()
+    #             logging.info(f"✓ Характеристики получены успешно!")
+    #             # Добавляем идентификаторы товара к характеристикам для удобства
+    #             attributes_data['offer_id'] = product['offer_id']
+    #             attributes_data['product_id'] = product['product_id']
+    #             # Добавляем цену из product_prices
+    #             product_id = product['product_id']
+    #             price = product_prices.get(product_id, 0)  # Берем цену или 0, если цена отсутствует
+    #             attributes_data['marketing_seller_price'] = price
+    #             all_attributes.append(attributes_data)
+    #             # Выводим краткую информацию
+    #             if attributes_data.get('result'):
+    #                 items_count = len(attributes_data['result'])
+    #                 logging.info(f"  Найдено характеристик: {items_count}")
+    #         else:
+    #             logging.error(f"✗ Ошибка при получении характеристик! Статус код: {response.status_code}")
+    #             logging.error(f"Ответ: {response.text}")
+    #             continue  # Пропускаем текущий товар
+    #     except requests.exceptions.RequestException as e:
+    #         logging.error(f"✗ Ошибка при выполнении запроса: {e}")
 
-        # Небольшая задержка между запросами, чтобы не перегружать API
-        time.sleep(0.2)
+    #     # Небольшая задержка между запросами, чтобы не перегружать API
+    #     time.sleep(0.2)
 
-    logging.info(f"\n" + "="*50)
-    logging.info(f"Обработано товаров: {len(all_attributes)}/{len(active_products)}")
-    return all_attributes
+    # logging.info(f"\n" + "="*50)
+    # logging.info(f"Обработано товаров: {len(all_attributes)}/{len(active_products)}")
+    # return all_attributes
 
 
 
@@ -305,7 +305,7 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
         with open(json_file_path, 'r', encoding='utf-8') as f:
             all_attributes = json.load(f)
         print(f"Загружено {len(all_attributes)} товаров из {json_file_path}")
-        
+
         # Собираем категории и товары
         categories = {}
         products = []
@@ -314,10 +314,10 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 continue
             product_data = item['result'][0]  # Берем первый результат
             offer_id = item.get('offer_id', f'product_{i+1}')
-            
+
             # Извлекаем основные данные товара
             name = product_data.get('name', f'Товар {i+1}')
-            
+
             # Извлекаем описание из атрибута с id: 4191
             description = "Описание товара"
             attributes = product_data.get('attributes', [])
@@ -325,11 +325,11 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 if attr.get('id') == 4191 and attr.get('values'):
                     description = attr['values'][0].get('value', description)
                     break
-            
+
             # Извлекаем изображения напрямую из структуры товара
             primary_image = product_data.get('primary_image', '')
             product_images = product_data.get('images', [])
-            
+
             # Собираем все изображения: primary_image + остальные images
             images = []
             if primary_image and primary_image.startswith('http'):
@@ -337,7 +337,7 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
             for img in product_images:
                 if img and img.startswith('http') and img.strip() not in images:
                     images.append(img.strip())
-            
+
             # Извлекаем размеры и вес
             height = product_data.get('height', 0)
             depth = product_data.get('depth', 0)
@@ -346,7 +346,7 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
             weight = product_data.get('weight', 0)
             weight_unit = product_data.get('weight_unit', 'g')
             category = product_data.get('description_category_id', 1)
-            
+
             # Ищем атрибуты товара для извлечения бренда, цвета и других данных
             category_name = 'Общая категория'
             brand = 'MusicHall'
@@ -362,8 +362,8 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 if attr_id == 10096 and values:
                     color = values[0].get('value', color)
                 # Можно добавить другие атрибуты по их ID если нужно
-            
-            
+
+
             # Извлекаем цену из marketing_seller_price или retail_price
             # price = item.get('marketing_seller_price', item.get('retail_price', 999.99))
             # Извлекаем product_id
@@ -404,19 +404,19 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
             if i % 3 == 0:
                 product['discountPercentage'] = 5 + (i % 15)
             products.append(product)
-            
+
             # Выводим информацию о найденных изображениях
             if images:
                 print(f"✓ Товар {len(products)}: {name[:50]}... - найдено {len(images)} изображений")
             else:
                 print(f"⚠ Товар {len(products)}: {name[:50]}... - изображения не найдены")
-        
+
         # Формируем TypeScript код
         ts_content = '''import { Product, Category } from '../types/product';
 export const categories: Category[] = [
 '''
 
-        
+
         ts_content += '''];
 export const products: Product[] = [
 '''
