@@ -30,7 +30,7 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
   return (
     <div className="bg-brand-light-gray rounded-lg p-3 md:p-4 mb-3">
       {/* Мобильная версия - вертикальная компоновка */}
-      <div className="block md:hidden">
+      <div className="block lg:hidden">
         {/* Верхняя часть: изображение, название, цена, кнопка удаления */}
         <div className="flex items-start space-x-3 mb-3">
           <div className="w-16 h-16 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
@@ -94,32 +94,32 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
         </div>
       </div>
 
-      {/* Десктопная версия - горизонтальная компоновка */}
-      <div className="hidden md:flex items-center space-x-4">
-        {/* Product Image */}
-        <div className="w-20 h-20 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
-          <img
-            src={item.product.thumbnail}
-            alt={item.product.title}
-            className="w-full h-full object-cover"
-          />
+      {/* Десктопная версия - grid layout (соответствует заголовкам в Cart.tsx) */}
+      <div className="hidden lg:grid grid-cols-12 gap-4 items-center">
+        {/* Товар (6 колонок) */}
+        <div className="col-span-6 flex items-center space-x-4">
+          <div className="w-20 h-20 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
+            <img
+              src={item.product.thumbnail}
+              alt={item.product.title}
+              className="w-full h-full object-cover"
+            />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h3 className="font-secondary font-semibold text-brand-black text-base leading-tight mb-1">
+              {item.product.title}
+            </h3>
+            <p className="text-sm text-brand-mid-gray mb-1">
+              Бренд: {item.product.brand}
+            </p>
+            <p className="text-lg font-bold text-brand-copper">
+              ${item.product.price.toFixed(2)}
+            </p>
+          </div>
         </div>
 
-        {/* Product Info */}
-        <div className="flex-1 min-w-0">
-          <h3 className="font-secondary font-semibold text-brand-black truncate">
-            {item.product.title}
-          </h3>
-          <p className="text-sm text-brand-mid-gray">
-            Бренд: {item.product.brand}
-          </p>
-          <p className="text-lg font-bold text-brand-copper">
-            ${item.product.price.toFixed(2)}
-          </p>
-        </div>
-
-        {/* Quantity Controls */}
-        <div className="flex items-center space-x-2">
+        {/* Количество (3 колонки) */}
+        <div className="col-span-3 flex items-center justify-center space-x-2">
           <button
             onClick={() => handleQuantityChange(item.quantity - 1)}
             className="w-8 h-8 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
@@ -137,21 +137,23 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
           </button>
         </div>
 
-        {/* Total Price */}
-        <div className="text-right">
+        {/* Сумма (2 колонки) */}
+        <div className="col-span-2 text-right">
           <p className="text-lg font-bold text-brand-black">
             ${itemTotal.toFixed(2)}
           </p>
         </div>
 
-        {/* Remove Button */}
-        <button
-          onClick={handleRemove}
-          className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300"
-          aria-label="Удалить товар"
-        >
-          ✕
-        </button>
+        {/* Кнопка удаления (1 колонка) */}
+        <div className="col-span-1 flex justify-center">
+          <button
+            onClick={handleRemove}
+            className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center hover:bg-red-600 transition-colors duration-300"
+            aria-label="Удалить товар"
+          >
+            ✕
+          </button>
+        </div>
       </div>
     </div>
   );

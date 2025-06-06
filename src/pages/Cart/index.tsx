@@ -50,46 +50,51 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white p-2 md:p-4">
-      <h1 className="text-xl md:text-2xl font-bold mb-4 md:mb-6">Корзина</h1>
-
-      <div className="mb-4">
-        <button
-          className="text-brand-copper hover:text-brand-dark-copper transition-colors text-sm md:text-base"
-          onClick={() => {
-            hapticFeedback.impactOccurred('light');
-            clearCart();
-          }}
-        >
-          Очистить корзину
-        </button>
-      </div>
-
-      <div className="flex flex-col lg:flex-row gap-4 md:gap-8">
-        <div className="flex-grow">
-          {/* Заголовки только для десктопа */}
-          <div className="hidden lg:grid grid-cols-12 gap-4 mb-4 text-brand-light-gray text-sm">
-            <div className="col-span-6">Товар</div>
-            <div className="col-span-3 text-center">Количество</div>
-            <div className="col-span-2 text-right">Сумма</div>
-            <div className="col-span-1"></div>
-          </div>
-
-          {cart.items.map(item => (
-            <CartItem
-              key={item.id}
-              item={item}
-              onQuantityChange={() => hapticFeedback.selectionChanged()}
-              onRemove={() => hapticFeedback.impactOccurred('medium')}
-            />
-          ))}
+    <div className="min-h-screen bg-brand-black text-brand-white">
+      <div className="max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+        <div className="mb-6 lg:mb-8">
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Корзина</h1>
+          <button
+            className="text-brand-copper hover:text-brand-dark-copper transition-colors text-sm md:text-base"
+            onClick={() => {
+              hapticFeedback.impactOccurred('light');
+              clearCart();
+            }}
+          >
+            Очистить корзину
+          </button>
         </div>
 
-        <div className="lg:w-80 mt-4 lg:mt-0">
-          <CartSummary
-            cart={cart}
-            onCheckout={handleGoToCheckout}
-          />
+        <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
+          <div className="flex-1 min-w-0">
+            {/* Заголовки только для больших экранов */}
+            <div className="hidden lg:grid grid-cols-12 gap-4 mb-6 text-brand-light-gray text-sm font-medium bg-brand-dark/50 p-4 rounded-lg">
+              <div className="col-span-6">Товар</div>
+              <div className="col-span-3 text-center">Количество</div>
+              <div className="col-span-2 text-right">Сумма</div>
+              <div className="col-span-1 text-center">Действие</div>
+            </div>
+
+            <div className="space-y-4">
+              {cart.items.map(item => (
+                <CartItem
+                  key={item.id}
+                  item={item}
+                  onQuantityChange={() => hapticFeedback.selectionChanged()}
+                  onRemove={() => hapticFeedback.impactOccurred('medium')}
+                />
+              ))}
+            </div>
+          </div>
+
+          <div className="xl:w-96 xl:flex-shrink-0">
+            <div className="sticky top-4">
+              <CartSummary
+                cart={cart}
+                onCheckout={handleGoToCheckout}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
