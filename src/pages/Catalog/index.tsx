@@ -49,8 +49,8 @@ const Catalog = () => {
   };
 
   return (
-    <div className="space-y-6 bg-brand-black">
-      <div className="flex flex-col space-y-4">
+    <div className="bg-brand-black">
+      <div className="flex flex-col space-y-4 mb-6">
         <h1 className="text-2xl md:text-3xl font-secondary font-bold text-brand-white">
           Каталог товаров
         </h1>
@@ -59,12 +59,14 @@ const Catalog = () => {
         </p>
       </div>
 
-      <CatalogSearch
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-      />
+      <div className="mb-6">
+        <CatalogSearch
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+        />
+      </div>
 
       <CategoryList
         categories={categories}
