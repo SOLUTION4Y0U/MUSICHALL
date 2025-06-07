@@ -3,7 +3,5 @@ export const ROUTES = {
   CATALOG: '/catalog',
   PRODUCT: '/product/:id',
   CART: '/cart',
-  CHECKOUT: '/checkout',
-  PHILIPS_CATALOG: '/philips_catalog',
-  MUSIC_CATALOG: '/music_catalog'
+  CHECKOUT: '/checkout'
 };

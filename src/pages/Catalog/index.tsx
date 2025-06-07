@@ -1,15 +1,13 @@
 import { useState, useEffect } from 'react';
 import ProductList from '../../components/features/ProductList';
 import CategoryList from '../../components/features/CategoryList';
-import { useProducts } from '../../hooks/useProducts';
+import { useProducts, SortOption } from '../../hooks/useProducts';
 import { useCategories } from '../../hooks/useCategories';
 import { usePlatformUIControls } from '../../platform';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import { usePlatform } from '../../hooks/usePlatform';
 import CatalogSearch from '../../components/features/CatalogSearch';
-
-type SortOption = 'price-asc' | 'price-desc' | 'rating-desc';
 
 const Catalog = () => {
   const { categories } = useCategories();
