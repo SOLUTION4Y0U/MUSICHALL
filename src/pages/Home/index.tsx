@@ -170,10 +170,7 @@ const Home = () => {
           <div className="w-20 h-1 bg-gradient-copper rounded-full"></div>
         </div>
 
-        {/* Адаптивный контейнер для карточек товаров */}
-        <div className="[&_.product-card]:scale-90 md:[&_.product-card]:scale-100 [&_.product-grid]:grid-cols-2 md:[&_.product-grid]:grid-cols-3 lg:[&_.product-grid]:grid-cols-4">
-          <ProductList products={featuredProducts} loading={loading} />
-        </div>
+        <ProductList products={featuredProducts} loading={loading} />
 
         <div className="text-center mt-8">
           <Link

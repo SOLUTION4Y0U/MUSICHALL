@@ -5,14 +5,22 @@ import ProductCard from '../ProductCard';
 interface ProductListProps {
   products: Product[];
   loading?: boolean;
+  variant?: 'default' | 'compact';
 }
 
-const ProductList: FC<ProductListProps> = ({ products, loading }) => {
+const ProductList: FC<ProductListProps> = ({ products, loading, variant = 'default' }) => {
+  const isCompact = variant === 'compact';
   if (loading) {
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6">
+      <div className={isCompact
+        ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
+        : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      }>
         {[...Array(8)].map((_, index) => (
-          <div key={index} className="animate-pulse scale-90 sm:scale-100 -mb-2 sm:mb-0">
+          <div key={index} className={isCompact
+            ? "animate-pulse scale-90 sm:scale-100 -mb-2 sm:mb-0"
+            : "animate-pulse"
+          }>
             <div className="bg-brand-black rounded-lg h-80 w-full"></div>
           </div>
         ))}
@@ -35,9 +43,15 @@ const ProductList: FC<ProductListProps> = ({ products, loading }) => {
   }
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6">
+    <div className={isCompact
+      ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    }>
       {products.map(product => (
-        <div key={product.id} className="scale-90 sm:scale-100 transform transition-transform -mb-2 sm:mb-0">
+        <div key={product.id} className={isCompact
+          ? "scale-90 sm:scale-100 transform transition-transform -mb-2 sm:mb-0"
+          : ""
+        }>
           <ProductCard product={product} />
         </div>
       ))}

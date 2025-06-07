@@ -75,6 +75,7 @@ const Catalog = () => {
       <ProductList
         products={products}
         loading={productsLoading}
+        variant="compact"
       />
     </div>
   );
