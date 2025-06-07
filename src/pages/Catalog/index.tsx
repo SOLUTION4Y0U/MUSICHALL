@@ -25,6 +25,21 @@ const Catalog = () => {
   const navigate = useNavigate();
   const { isTma } = usePlatform();
 
+  // Восстановление позиции скролла при возврате из товара
+  useEffect(() => {
+    if (sessionStorage.getItem('fromCatalog') === 'true') {
+      const scrollPos = sessionStorage.getItem('catalogScrollPosition');
+      if (scrollPos) {
+        // Небольшая задержка для рендера контента
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(scrollPos));
+          sessionStorage.removeItem('catalogScrollPosition');
+          sessionStorage.removeItem('fromCatalog');
+        }, 100);
+      }
+    }
+  }, []);
+
   useEffect(() => {
     // Показываем MainButton для TMA
     if (products.length > 0) {

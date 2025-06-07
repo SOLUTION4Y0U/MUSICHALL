@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Product } from '../../../types/product';
 import { useCartStore } from '../../../store/cart';
 
@@ -9,6 +9,7 @@ interface ProductCardProps {
 
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const { addToCart, isInCart } = useCartStore();
+  const navigate = useNavigate();
   const inCart = isInCart(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -17,14 +18,24 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     addToCart(product);
   };
 
+  const handleProductClick = () => {
+    // Сохраняем позицию скролла только если мы в каталоге
+    const currentPath = window.location.hash.slice(1) || window.location.pathname;
+    if (currentPath === '/catalog' || currentPath.startsWith('/catalog')) {
+      sessionStorage.setItem('catalogScrollPosition', window.scrollY.toString());
+      sessionStorage.setItem('fromCatalog', 'true');
+    }
+    navigate(`/product/${product.id}`);
+  };
+
   const discountedPrice = product.discountPercentage
     ? product.price - (product.price * product.discountPercentage / 100)
     : null;
 
   return (
-    <Link
-      to={`/product/${product.id}`}
-      className="glass-card group relative block rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5"
+    <div
+      onClick={handleProductClick}
+      className="glass-card group relative block rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5 cursor-pointer"
     >
       {/* Discount Badge */}
       {product.discountPercentage && (
@@ -109,7 +120,7 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           }
         </button>
       </div>
-    </Link>
+    </div>
   );
 };
 
