@@ -27,16 +27,41 @@ const Catalog = () => {
 
   // Восстановление позиции скролла при возврате из товара
   useEffect(() => {
-    if (sessionStorage.getItem('fromCatalog') === 'true') {
-      const scrollPos = sessionStorage.getItem('catalogScrollPosition');
-      if (scrollPos) {
-        // Небольшая задержка для рендера контента
+    console.log('Catalog mounted, checking for scroll restore...');
+
+    const shouldRestore = sessionStorage.getItem('fromCatalog') === 'true';
+    const scrollPos = sessionStorage.getItem('catalogScrollPosition');
+    const alreadyRestored = sessionStorage.getItem('scrollRestored') === 'true';
+
+    if (shouldRestore && scrollPos && !alreadyRestored) {
+      console.log('Restoring scroll to:', scrollPos);
+      sessionStorage.setItem('scrollRestored', 'true');
+
+      // Попробуем несколько раз с увеличивающимися задержками
+      const targetScroll = parseInt(scrollPos);
+
+      const attemptScroll = (attempt = 1) => {
         setTimeout(() => {
-          window.scrollTo(0, parseInt(scrollPos));
-          sessionStorage.removeItem('catalogScrollPosition');
-          sessionStorage.removeItem('fromCatalog');
-        }, 100);
-      }
+          console.log(`Scroll attempt ${attempt}, target: ${targetScroll}, current: ${window.scrollY}`);
+          window.scrollTo(0, targetScroll);
+
+          // Проверяем, удалось ли проскроллить
+          setTimeout(() => {
+            const currentScroll = window.scrollY;
+            console.log(`After scroll attempt ${attempt}: current ${currentScroll}, target: ${targetScroll}`);
+
+            // Если не достигли цели и это не последняя попытка
+            if (Math.abs(currentScroll - targetScroll) > 100 && attempt < 3) {
+              attemptScroll(attempt + 1);
+            }
+          }, 25);
+
+        }, attempt * 100); // 100ms, 200ms, 300ms - быстрее!
+      };
+
+      attemptScroll();
+    } else {
+      console.log('Skip restore:', { shouldRestore, scrollPos, alreadyRestored });
     }
   }, []);
 

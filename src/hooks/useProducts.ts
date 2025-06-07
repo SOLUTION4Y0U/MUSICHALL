@@ -10,6 +10,11 @@ interface UseProductsOptions {
 }
 export type SortOption = 'price-asc' | 'price-desc' | 'rating-desc' | 'brand-asc' | 'brand-desc';
 
+// Кэш для результатов
+const cache = new Map<string, Product[]>();
+const cacheTimestamps = new Map<string, number>();
+const CACHE_DURATION = 5 * 60 * 1000; // 5 минут
+
 export const useProducts = (options: UseProductsOptions = {}) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -20,8 +25,25 @@ export const useProducts = (options: UseProductsOptions = {}) => {
       try {
         setLoading(true);
 
-        // Имитация запроса к API с задержкой
-        await new Promise(resolve => setTimeout(resolve, 800));
+        // Создаем ключ кэша из параметров
+        const cacheKey = JSON.stringify(options);
+        const cached = cache.get(cacheKey);
+        const cacheTime = cacheTimestamps.get(cacheKey);
+        const now = Date.now();
+
+        // Проверяем кэш
+        if (cached && cacheTime && (now - cacheTime) < CACHE_DURATION) {
+          console.log('Using cached products for:', cacheKey);
+          setProducts(cached);
+          setError(null);
+          setLoading(false);
+          return;
+        }
+
+        console.log('Fetching fresh products for:', cacheKey);
+
+        // Имитация запроса к API с уменьшенной задержкой
+        await new Promise(resolve => setTimeout(resolve, 300));
 
         let filteredProducts = [...mockProducts];
 
@@ -70,6 +92,10 @@ export const useProducts = (options: UseProductsOptions = {}) => {
               break;
           }
         }
+
+        // Сохраняем в кэш
+        cache.set(cacheKey, filteredProducts);
+        cacheTimestamps.set(cacheKey, now);
 
         setProducts(filteredProducts);
         setError(null);

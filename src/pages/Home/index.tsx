@@ -15,6 +15,12 @@ const Home = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
+  // Очищаем данные скролла каталога при переходе на главную
+  useEffect(() => {
+    sessionStorage.removeItem('catalogScrollPosition');
+    sessionStorage.removeItem('fromCatalog');
+  }, []);
+
   // Обработчик прокрутки
   const handleScroll = () => {
     if (sliderRef.current) {

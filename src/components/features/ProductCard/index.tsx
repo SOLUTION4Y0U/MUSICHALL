@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Product } from '../../../types/product';
 import { useCartStore } from '../../../store/cart';
 
@@ -10,6 +10,7 @@ interface ProductCardProps {
 const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const { addToCart, isInCart } = useCartStore();
   const navigate = useNavigate();
+  const location = useLocation();
   const inCart = isInCart(product.id);
 
   const handleAddToCart = (e: React.MouseEvent) => {
@@ -19,11 +20,12 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
   };
 
   const handleProductClick = () => {
-    // Сохраняем позицию скролла только если мы в каталоге
-    const currentPath = window.location.hash.slice(1) || window.location.pathname;
-    if (currentPath === '/catalog' || currentPath.startsWith('/catalog')) {
+    console.log('Current location:', location.pathname);
+    if (location.pathname === '/catalog') {
+      console.log('Saving scroll position:', window.scrollY);
       sessionStorage.setItem('catalogScrollPosition', window.scrollY.toString());
       sessionStorage.setItem('fromCatalog', 'true');
+      sessionStorage.removeItem('scrollRestored');
     }
     navigate(`/product/${product.id}`);
   };

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import { Product } from '../../../types/product';
 import ProductCard from '../ProductCard';
 
@@ -8,8 +8,9 @@ interface ProductListProps {
   variant?: 'default' | 'compact';
 }
 
-const ProductList: FC<ProductListProps> = ({ products, loading, variant = 'default' }) => {
+const ProductList: FC<ProductListProps> = memo(({ products, loading, variant = 'default' }) => {
   const isCompact = variant === 'compact';
+
   if (loading) {
     return (
       <div className={isCompact
@@ -57,6 +58,8 @@ const ProductList: FC<ProductListProps> = ({ products, loading, variant = 'defau
       ))}
     </div>
   );
-};
+});
+
+ProductList.displayName = 'ProductList';
 
 export default ProductList;

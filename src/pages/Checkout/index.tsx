@@ -23,6 +23,12 @@ const CheckoutPage = () => {
     submitOrder
   } = useOrder();
 
+  // Очищаем данные скролла каталога при переходе в чекаут
+  useEffect(() => {
+    sessionStorage.removeItem('catalogScrollPosition');
+    sessionStorage.removeItem('fromCatalog');
+  }, []);
+
   const navigate = useNavigate();
   const { hapticFeedback } = useTelegramUI();
   const { isTma } = usePlatform();

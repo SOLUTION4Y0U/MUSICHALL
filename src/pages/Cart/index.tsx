@@ -11,6 +11,12 @@ const Cart = () => {
   const { cart, goToCheckout, clearCart } = useCart();
   const { hapticFeedback } = useTelegramUI();
 
+  // Очищаем данные скролла каталога при переходе в корзину
+  useEffect(() => {
+    sessionStorage.removeItem('catalogScrollPosition');
+    sessionStorage.removeItem('fromCatalog');
+  }, []);
+
   const mainButton = useTelegramMainButton({
     text: 'Оформить заказ',
     isVisible: cart.items.length > 0
