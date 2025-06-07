@@ -1,4 +1,4 @@
-type SortOption = 'price-asc' | 'price-desc' | 'rating-desc';
+import { SortOption } from '../../../hooks/useProducts';
 
 interface CatalogSearchProps {
   searchQuery: string;
@@ -36,6 +36,8 @@ const CatalogSearch = ({ searchQuery, onSearchChange, sortBy, onSortChange }: Ca
           <option value="rating-desc">По рейтингу</option>
           <option value="price-asc">Цена: по возрастанию</option>
           <option value="price-desc">Цена: по убыванию</option>
+          <option value="brand-asc">Бренд: А-Я</option>
+          <option value="brand-desc">Бренд: Я-А</option>
         </select>
         <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
           <svg className="w-5 h-5 text-brand-mid-gray" fill="none" stroke="currentColor" viewBox="0 0 24 24">
