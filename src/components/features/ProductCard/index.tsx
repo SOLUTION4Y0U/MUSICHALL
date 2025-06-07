@@ -74,15 +74,17 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
           {discountedPrice ? (
             <>
               <span className="text-xl font-bold text-brand-copper">
-                ${discountedPrice.toFixed(2)}
+                {discountedPrice
+                  ? discountedPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                  : product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
               </span>
-              <span className="text-sm text-brand-mid-gray/80 line-through">
-                ${product.price.toFixed(2)}
-              </span>
+              <span className="text-xl text-brand-mid-gray/80 line-through">
+                  {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+                </span>
             </>
           ) : (
             <span className="text-xl font-bold text-brand-copper">
-              ${product.price.toFixed(2)}
+              {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
             </span>
           )}
         </div>

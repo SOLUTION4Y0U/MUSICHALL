@@ -5,8 +5,10 @@ import { products as mockProducts } from '../api/mock-data';
 interface UseProductsOptions {
   categoryId?: string;
   searchQuery?: string;
-  sortBy?: 'price-asc' | 'price-desc' | 'rating-desc';
+  brands?: string[];
+  sortBy?: 'price-asc' | 'price-desc' | 'rating-desc' | 'brand-asc' | 'brand-desc';
 }
+export type SortOption = 'price-asc' | 'price-desc' | 'rating-desc' | 'brand-asc' | 'brand-desc';
 
 export const useProducts = (options: UseProductsOptions = {}) => {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,6 +29,13 @@ export const useProducts = (options: UseProductsOptions = {}) => {
         if (options.categoryId) {
           filteredProducts = filteredProducts.filter(
             product => product.category === options.categoryId
+          );
+        }
+
+        // Фильтрация по бренду
+        if (options.brands?.length) {
+          filteredProducts = filteredProducts.filter(p =>
+            options.brands!.some(b => p.brand.toLowerCase() === b.toLowerCase())
           );
         }
 
@@ -53,6 +62,12 @@ export const useProducts = (options: UseProductsOptions = {}) => {
             case 'rating-desc':
               filteredProducts.sort((a, b) => b.rating - a.rating);
               break;
+            case 'brand-asc':
+              filteredProducts.sort((a, b) => a.brand.localeCompare(b.brand));
+              break;
+            case 'brand-desc':
+              filteredProducts.sort((a, b) => b.brand.localeCompare(a.brand));
+              break;
           }
         }
 
@@ -67,7 +82,7 @@ export const useProducts = (options: UseProductsOptions = {}) => {
     };
 
     fetchProducts();
-  }, [options.categoryId, options.searchQuery, options.sortBy]);
+  }, [options.categoryId, options.searchQuery, options.sortBy, options.brands]);
 
   return { products, loading, error };
 };

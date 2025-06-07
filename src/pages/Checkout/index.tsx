@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import { useCartStore } from '../../store/cart';
 import { useTelegramUI } from '../../context/TelegramUIContext';
 import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
@@ -9,7 +9,6 @@ import CheckoutForm from '../../components/features/CheckoutForm';
 import OrderSummary from '../../components/features/OrderSummary';
 import OrderSuccess from '../../components/features/OrderSuccess';
 import { ROUTES } from '../../constants/routes';
-import { useTmaSafeNavigation } from '../../hooks/useTmaSafeNavigation';
 
 const CheckoutPage = () => {
   const { cart } = useCartStore();
@@ -23,7 +22,7 @@ const CheckoutPage = () => {
     submitOrder
   } = useOrder();
 
-  const { navigate } = useTmaSafeNavigation();
+  const navigate = useNavigate();
   const { hapticFeedback } = useTelegramUI();
 
   // Используем новые хуки для работы с кнопками Telegram
@@ -115,7 +114,7 @@ const CheckoutPage = () => {
 
 const OrderSuccessPage = () => {
   const { currentOrder } = useOrder();
-  const { navigate } = useTmaSafeNavigation();
+  const navigate = useNavigate();
 
   // Скрываем MainButton на странице успешного оформления
   const mainButton = useTelegramMainButton();

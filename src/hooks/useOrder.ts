@@ -1,9 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../constants/routes';
 import { usePlatformUIControls } from '../platform';
 import { useOrderStore } from '../store/order';
 import { Customer, OrderDetails } from '../types/cart';
-import { useTmaSafeNavigation } from './useTmaSafeNavigation';
 
 export const useOrder = () => {
   const [orderFormData, setOrderFormData] = useState<Customer>({
@@ -18,7 +18,7 @@ export const useOrder = () => {
 
   const { createOrder, currentOrder, clearCurrentOrder, loading, error } = useOrderStore();
   const { showAlert } = usePlatformUIControls();
-  const { navigate } = useTmaSafeNavigation();
+  const navigate = useNavigate();
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;

@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useProduct } from '../../hooks/useProduct';
 import { useCartStore } from '../../store/cart';
 import { ROUTES } from '../../constants/routes';
 import RecommendedProducts from '../../components/features/RecommendedProducts';
 import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
 import { useTelegramUI } from '../../context/TelegramUIContext';
-import { useTmaSafeNavigation } from '../../hooks/useTmaSafeNavigation';
+
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const { navigate } = useTmaSafeNavigation();
+  const navigate = useNavigate();
   const { product, loading, error } = useProduct(id);
   const { addToCart, isInCart } = useCartStore();
   const { hapticFeedback } = useTelegramUI();
   const [selectedImage, setSelectedImage] = useState(0);
-
+  const [isZoomed, setIsZoomed] = useState(false);
   const inCart = product ? isInCart(product.id) : false;
 
   const mainButton = useTelegramMainButton({
@@ -38,6 +38,47 @@ const ProductDetail = () => {
     }, 500);
   };
 
+  const colorMap: Record<string, string> = {
+      'черный': '#000000',
+      'чёрный': '#000000',
+      'белый': '#ffffff',
+      'красный': '#ff0000',
+      'зеленый': '#00ff00',
+      'синий': '#0000ff',
+      'голубой': '#00ffff',
+      'желтый': '#ffff00',
+      'оранжевый': '#ffa500',
+      'фиолетовый': '#800080',
+      'розовый': '#ffc0cb',
+      'серый': '#808080',
+      'серебристый': '#c0c0c0',
+      'золотой': '#ffd700',
+      'коричневый': '#a52a2a',
+
+    };
+    const getSafeColor = (colorStr: string): string => {
+      if (!colorStr) return '#cccccc';
+
+      // Приводим к нижнему регистру и обрезаем пробелы
+      const normalizedColor = colorStr.toLowerCase().trim();
+
+      // Проверяем наличие в colorMap
+      if (colorMap[normalizedColor]) {
+        return colorMap[normalizedColor];
+      }
+
+      // Проверяем HEX формат
+      if (/^#([0-9A-F]{3}){1,2}$/i.test(normalizedColor)) {
+        return normalizedColor;
+      }
+
+      // Проверяем RGB/RGBA/HSL/HSLA
+      if (/^(rgb|hsl)(a?\([\d%\s,]+\))$/i.test(normalizedColor)) {
+        return normalizedColor;
+      }
+
+      return '#cccccc'; // Fallback цвет
+    };
   useEffect(() => {
     if (!loading && (error || !product)) {
       console.log('❌ Товар не найден, перенаправляем в каталог');
@@ -107,11 +148,14 @@ const ProductDetail = () => {
       <div className="grid grid-cols-1 bg-brand-black lg:grid-cols-2 gap-8">
         {/* Image Gallery */}
         <div className="space-y-4">
-          <div className="aspect-square bg-brand-light-gray rounded-lg overflow-hidden">
+          <div
+            className="relative bg-brand-black rounded-lg overflow-hidden cursor-zoom-in"
+            onClick={() => setIsZoomed(true)}
+          >
             <img
               src={product.images?.[selectedImage] || product.thumbnail}
               alt={product.title}
-              className="w-full h-full object-cover"
+              className="w-full h-auto max-h-[70vh] object-contain"
             />
           </div>
 
@@ -136,7 +180,74 @@ const ProductDetail = () => {
               ))}
             </div>
           )}
+          {/* Модальное окно для увеличенного изображения */}
+          {isZoomed && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-90"
+              onClick={() => setIsZoomed(false)}
+            >
+              <div className="relative w-full max-w-6xl">
+                {/* Кнопка закрытия */}
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsZoomed(false);
+                  }}
+                  className="absolute top-4 right-4 z-10 p-2 text-white bg-black bg-opacity-50 rounded-full hover:bg-opacity-100 transition-all"
+                  aria-label="Закрыть"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                {/* Стрелка влево (предыдущее фото) */}
+                {product.images && product.images.length > 1 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImage(prev => (prev - 1 + product.images.length) % product.images.length);
+                    }}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 text-white bg-black bg-opacity-50 rounded-full hover:bg-opacity-100 transition-all"
+                    aria-label="Предыдущее изображение"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                )}
+
+                {/* Основное изображение */}
+                <div className="flex justify-center items-center h-full">
+                  <img
+                    src={product.images?.[selectedImage] || product.thumbnail}
+                    alt={product.title}
+                    className="max-w-full max-h-[90vh] object-contain"
+                    onClick={(e) => e.stopPropagation()}
+                  />
+                </div>
+
+                {/* Стрелка вправо (следующее фото) */}
+                {product.images && product.images.length > 1 && (
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setSelectedImage(prev => (prev + 1) % product.images.length);
+                    }}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 text-white bg-black bg-opacity-50 rounded-full hover:bg-opacity-100 transition-all"
+                    aria-label="Следующее изображение"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+
         </div>
+
 
         {/* Product Info */}
         <div className="space-y-6">
@@ -153,11 +264,13 @@ const ProductDetail = () => {
           <div className="space-y-2">
             <div className="flex items-center space-x-3">
               <span className="text-3xl font-bold text-brand-white">
-                ${discountedPrice ? discountedPrice.toFixed(2) : product.price.toFixed(2)}
+                {discountedPrice
+                  ? discountedPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+                  : product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
               </span>
               {discountedPrice && (
                 <span className="text-xl text-brand-mid-gray line-through">
-                  ${product.price.toFixed(2)}
+                  {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                 </span>
               )}
               {product.discountPercentage && (
@@ -203,12 +316,55 @@ const ProductDetail = () => {
 
           {/* Description */}
           <div className="space-y-2">
-            <h3 className="text-lg font-secondary font-semibold text-brand-black">
+            <h3 className="text-lg font-secondary font-semibold text-brand-white">
               Описание
             </h3>
-            <p className="text-brand-mid-gray leading-relaxed">
-              {product.description}
-            </p>
+            <div
+              className="text-brand-mid-gray leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: product.description }}
+            />
+          </div>
+
+          {/* Specifications */}
+          <div className="space-y-2">
+            <h3 className="text-lg font-secondary font-semibold text-brand-white">
+              Характеристики
+            </h3>
+            <div className="grid grid-cols-2 gap-4 text-brand-mid-gray">
+              {product.dimensions && (
+                <div className="space-y-1">
+                  <p className="font-medium">Габариты:</p>
+                  <p>
+                    {`${product.dimensions.height} × ${product.dimensions.width} × ${product.dimensions.depth} ${product.dimensions.unit}`}
+                  </p>
+                </div>
+              )}
+
+              {product.weight && (
+                <div className="space-y-1">
+                  <p className="font-medium">Вес:</p>
+                  <p>
+                    {`${product.weight.value} ${product.weight.unit}`}
+                  </p>
+                </div>
+              )}
+
+
+              {product.color && (
+              <div className="space-y-1">
+                <p className="font-medium">Цвет:</p>
+                <div className="flex items-center gap-2">
+                  <div
+                    className="w-6 h-6 rounded-full border border-gray-300"
+                    style={{
+                      backgroundColor: colorMap[product.color.toLowerCase().trim()] || getSafeColor(product.color),
+                    }}
+                  />
+                  <span className="capitalize">{product.color.toLowerCase()}</span>
+                </div>
+              </div>
+            )}
+            </div>
           </div>
 
           {/* Add to Cart */}
