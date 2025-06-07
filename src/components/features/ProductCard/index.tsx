@@ -52,8 +52,8 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
       </div>
 
       {/* Content */}
-      <div className="p-4 space-y-3 bg-gradient-to-b from-black/60 to-transparent">
-        <h3 className="font-medium text-lg text-brand-white group-hover:text-brand-copper transition-colors duration-300 line-clamp-2">
+      <div className="p-3 sm:p-4 space-y-2 sm:space-y-3 bg-gradient-to-b from-black/60 to-transparent">
+        <h3 className="font-medium text-sm sm:text-lg text-brand-white group-hover:text-brand-copper transition-colors duration-300 line-clamp-2">
           {product.title}
         </h3>
 
@@ -70,20 +70,20 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         </div>
 
         {/* Price */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1 sm:space-x-2">
           {discountedPrice ? (
             <>
-              <span className="text-xl font-bold text-brand-copper">
+              <span className="text-lg sm:text-xl font-bold text-brand-copper">
                 {discountedPrice
                   ? discountedPrice.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")
                   : product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
               </span>
-              <span className="text-xl text-brand-mid-gray/80 line-through">
+              <span className="text-sm sm:text-xl text-brand-mid-gray/80 line-through">
                   {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
                 </span>
             </>
           ) : (
-            <span className="text-xl font-bold text-brand-copper">
+            <span className="text-lg sm:text-xl font-bold text-brand-copper">
               {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
             </span>
           )}

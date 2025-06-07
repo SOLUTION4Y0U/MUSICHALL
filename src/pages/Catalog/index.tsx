@@ -72,13 +72,10 @@ const Catalog = () => {
         onCategorySelect={handleSelectCategory}
       />
 
-      {/* Альтернативный вариант с 3 колонками на мобильных */}
-      <div className="[&_.product-card]:scale-70 md:[&_.product-card]:scale-100 [&_.product-grid]:grid-cols-3 md:[&_.product-grid]:grid-cols-3 lg:[&_.product-grid]:grid-cols-4">
-        <ProductList
-          products={products}
-          loading={productsLoading}
-        />
-      </div>
+      <ProductList
+        products={products}
+        loading={productsLoading}
+      />
     </div>
   );
 };
