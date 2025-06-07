@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import ProductList from '../../components/features/ProductList';
 import CategoryList from '../../components/features/CategoryList';
-import { useProducts, SortOption } from '../../hooks/useProducts';
+import { useProducts } from '../../hooks/useProducts';
 import { useCategories } from '../../hooks/useCategories';
 import { usePlatformUIControls } from '../../platform';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
+import { usePlatform } from '../../hooks/usePlatform';
 import CatalogSearch from '../../components/features/CatalogSearch';
 
-
+type SortOption = 'price-asc' | 'price-desc' | 'rating-desc';
 
 const Catalog = () => {
   const { categories } = useCategories();
@@ -21,17 +22,20 @@ const Catalog = () => {
     searchQuery,
     sortBy
   });
-  const handleSortChange = (value: SortOption) => {
-    setSortBy(value);
-  };
-  const { showMainButton, hideMainButton } = usePlatformUIControls();
+
+  const { showMainButton, hideMainButton, navigateTo } = usePlatformUIControls();
   const navigate = useNavigate();
+  const { isTma } = usePlatform();
 
   useEffect(() => {
     // Показываем MainButton для TMA
     if (products.length > 0) {
       showMainButton('Перейти в корзину', () => {
-        navigate(ROUTES.CART);
+        if (isTma) {
+          navigateTo(ROUTES.CART);
+        } else {
+          navigate(ROUTES.CART);
+        }
       });
     } else {
       hideMainButton();
@@ -40,7 +44,7 @@ const Catalog = () => {
     return () => {
       hideMainButton();
     };
-  }, [products, showMainButton, hideMainButton, navigate]);
+  }, [products, showMainButton, hideMainButton, navigate, navigateTo, isTma]);
 
   const handleSelectCategory = (selectedCategoryId: string | undefined) => {
     setSelectedCategoryId(selectedCategoryId);
@@ -57,24 +61,11 @@ const Catalog = () => {
         </p>
       </div>
 
-      {/* Горизонтальный баннер */}
-        <div className="w-full h-32 md:h-48 bg-gradient-to-r from-brand-copper to-brand-dark-copper rounded-lg overflow-hidden">
-        <div className="h-full flex items-center justify-between px-6 md:px-10">
-            <div className="text-white max-w-md">
-            <h2 className="text-xl md:text-2xl font-bold mb-2">Специальное предложение</h2>
-            <p className="text-sm md:text-base">Только этой недели скидки до 30% на избранные товары</p>
-            </div>
-            <button className="bg-white text-brand-copper px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all">
-            Подробнее
-            </button>
-        </div>
-        </div>
-
       <CatalogSearch
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         sortBy={sortBy}
-        onSortChange={handleSortChange}
+        onSortChange={setSortBy}
       />
 
       <CategoryList

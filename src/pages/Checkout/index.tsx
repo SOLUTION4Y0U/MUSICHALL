@@ -9,6 +9,7 @@ import CheckoutForm from '../../components/features/CheckoutForm';
 import OrderSummary from '../../components/features/OrderSummary';
 import OrderSuccess from '../../components/features/OrderSuccess';
 import { ROUTES } from '../../constants/routes';
+import { usePlatform } from '../../hooks/usePlatform';
 
 const CheckoutPage = () => {
   const { cart } = useCartStore();
@@ -24,6 +25,16 @@ const CheckoutPage = () => {
 
   const navigate = useNavigate();
   const { hapticFeedback } = useTelegramUI();
+  const { isTma } = usePlatform();
+
+  // Функция-помощник для навигации
+  const handleNavigation = (path: string) => {
+    if (isTma) {
+      window.location.hash = `#${path}`;
+    } else {
+      navigate(path);
+    }
+  };
 
   // Используем новые хуки для работы с кнопками Telegram
   const mainButton = useTelegramMainButton({
@@ -57,9 +68,9 @@ const CheckoutPage = () => {
   // Перенаправляем на корзину, если она пуста
   useEffect(() => {
     if (cart.items.length === 0) {
-      navigate(ROUTES.CART);
+      handleNavigation(ROUTES.CART);
     }
-  }, [cart.items.length, navigate]);
+  }, [cart.items.length, navigate, handleNavigation]);
 
   // Настраиваем MainButton
   useEffect(() => {
@@ -115,13 +126,23 @@ const CheckoutPage = () => {
 const OrderSuccessPage = () => {
   const { currentOrder } = useOrder();
   const navigate = useNavigate();
+  const { isTma } = usePlatform();
+
+  // Функция-помощник для навигации
+  const handleNavigation = (path: string) => {
+    if (isTma) {
+      window.location.hash = `#${path}`;
+    } else {
+      navigate(path);
+    }
+  };
 
   // Скрываем MainButton на странице успешного оформления
   const mainButton = useTelegramMainButton();
 
   // Настраиваем BackButton для перехода в каталог
   const backButton = useTelegramBackButton({
-    onClick: () => navigate(ROUTES.CATALOG),
+    onClick: () => handleNavigation(ROUTES.CATALOG),
     isVisible: true,
     enableNavigationHistory: false
   });
@@ -130,13 +151,13 @@ const OrderSuccessPage = () => {
     mainButton.hide();
 
     if (!currentOrder) {
-      navigate(ROUTES.CHECKOUT);
+      handleNavigation(ROUTES.CHECKOUT);
     }
 
     return () => {
       backButton.hide();
     };
-  }, [currentOrder, navigate, mainButton, backButton]);
+  }, [currentOrder, navigate, mainButton, backButton, handleNavigation]);
 
   if (!currentOrder) {
     return null;

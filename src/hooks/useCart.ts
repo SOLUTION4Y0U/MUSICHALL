@@ -1,8 +1,9 @@
-import { useTmaSafeNavigation } from './useTmaSafeNavigation';
+import { useNavigate } from 'react-router-dom';
 import { usePlatformUIControls } from '../platform';
 import { useCartStore } from '../store/cart';
 import { ROUTES } from '../constants/routes';
 import { Product } from '../types/product';
+import { usePlatform } from './usePlatform';
 
 export const useCart = () => {
   const {
@@ -15,8 +16,9 @@ export const useCart = () => {
     getCartItemById
   } = useCartStore();
 
-  const { showAlert } = usePlatformUIControls();
-  const { navigate } = useTmaSafeNavigation();
+  const { showAlert, navigateTo } = usePlatformUIControls();
+  const navigate = useNavigate();
+  const { isTma } = usePlatform();
 
   const handleAddToCart = (product: Product, quantity = 1) => {
     if (product.stock < quantity) {
@@ -57,7 +59,12 @@ export const useCart = () => {
       return;
     }
 
-    navigate(ROUTES.CHECKOUT);
+    // Используем разную навигацию для TMA и браузера
+    if (isTma) {
+      navigateTo(ROUTES.CHECKOUT);
+    } else {
+      navigate(ROUTES.CHECKOUT);
+    }
   };
 
   return {

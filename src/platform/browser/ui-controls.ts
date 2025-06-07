@@ -19,3 +19,9 @@ export const disableBackButton = () => {
 export const showAlert = (message: string) => {
   alert(message);
 };
+
+// Функция навигации для браузера - использует hash навигацию
+export const navigateTo = (path: string) => {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  window.location.hash = `#${cleanPath}`;
+};

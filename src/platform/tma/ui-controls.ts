@@ -24,3 +24,9 @@ export const disableBackButton = () => {
 export const showAlert = (message: string) => {
   WebApp.showAlert(message);
 };
+
+// Функция навигации для TMA - использует прямые URL переходы
+export const navigateTo = (path: string) => {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  window.location.hash = `#${cleanPath}`;
+};

@@ -6,6 +6,7 @@ import { ROUTES } from '../../constants/routes';
 import RecommendedProducts from '../../components/features/RecommendedProducts';
 import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
 import { useTelegramUI } from '../../context/TelegramUIContext';
+import { usePlatform } from '../../hooks/usePlatform';
 
 
 const ProductDetail = () => {
@@ -14,9 +15,19 @@ const ProductDetail = () => {
   const { product, loading, error } = useProduct(id);
   const { addToCart, isInCart } = useCartStore();
   const { hapticFeedback } = useTelegramUI();
+  const { isTma } = usePlatform();
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const inCart = product ? isInCart(product.id) : false;
+
+  // Функция-помощник для навигации
+  const handleNavigation = (path: string) => {
+    if (isTma) {
+      window.location.hash = `#${path}`;
+    } else {
+      navigate(path);
+    }
+  };
 
   const mainButton = useTelegramMainButton({
     text: 'Добавить в корзину',
@@ -33,7 +44,7 @@ const ProductDetail = () => {
       hapticFeedback.notificationOccurred('success');
       mainButton.setText('Перейти в корзину');
       mainButton.setOnClick(() => {
-        navigate(ROUTES.CART);
+        handleNavigation(ROUTES.CART);
       });
     }, 500);
   };
@@ -82,9 +93,9 @@ const ProductDetail = () => {
   useEffect(() => {
     if (!loading && (error || !product)) {
       console.log('❌ Товар не найден, перенаправляем в каталог');
-      navigate(ROUTES.CATALOG);
+      handleNavigation(ROUTES.CATALOG);
     }
-  }, [loading, product, error, navigate]);
+  }, [loading, product, error, navigate, handleNavigation]);
 
   useEffect(() => {
     console.log('🔍 ProductDetail Debug:');
@@ -125,7 +136,7 @@ const ProductDetail = () => {
         <ol className="flex items-center space-x-2 text-brand-mid-gray">
           <li>
             <button
-              onClick={() => navigate(ROUTES.HOME)}
+              onClick={() => handleNavigation(ROUTES.HOME)}
               className="hover:text-brand-copper transition-colors duration-300"
             >
               Главная
@@ -134,7 +145,7 @@ const ProductDetail = () => {
           <li>/</li>
           <li>
             <button
-              onClick={() => navigate(ROUTES.CATALOG)}
+              onClick={() => handleNavigation(ROUTES.CATALOG)}
               className="hover:text-brand-copper transition-colors duration-300"
             >
               Каталог
@@ -389,7 +400,7 @@ const ProductDetail = () => {
             </button>
 
             <button
-              onClick={() => navigate(ROUTES.CATALOG)}
+              onClick={() => handleNavigation(ROUTES.CATALOG)}
               className="w-full py-3 px-6 border border-brand-copper text-brand-copper rounded-lg font-medium transition-all duration-300 hover:bg-brand-copper hover:text-white"
             >
               Продолжить покупки
