@@ -5,11 +5,13 @@ import { useCategories } from '../../hooks/useCategories';
 import { useProducts } from '../../hooks/useProducts';
 import ProductList from '../../components/features/ProductList';
 import { usePlatformUIControls } from '../../platform';
+import { useTmaSafeNavigation } from '../../hooks/useTmaSafeNavigation';
 
 const Home = () => {
   const { categories, loading } = useCategories();
   const { products } = useProducts({ sortBy: 'rating-desc' });
   const { showMainButton, hideMainButton } = usePlatformUIControls();
+  const { navigate } = useTmaSafeNavigation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -44,10 +46,10 @@ const Home = () => {
 
   useEffect(() => {
     showMainButton('Перейти в каталог', () => {
-      window.location.href = ROUTES.CATALOG;
+      navigate(ROUTES.CATALOG);
     });
     return () => hideMainButton();
-  }, [showMainButton, hideMainButton]);
+  }, [showMainButton, hideMainButton, navigate]);
 
   const featuredProducts = products.slice(0, 4);
 

@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useProduct } from '../../hooks/useProduct';
 import { useCartStore } from '../../store/cart';
 import { ROUTES } from '../../constants/routes';
 import RecommendedProducts from '../../components/features/RecommendedProducts';
 import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
 import { useTelegramUI } from '../../context/TelegramUIContext';
+import { useTmaSafeNavigation } from '../../hooks/useTmaSafeNavigation';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+  const { navigate } = useTmaSafeNavigation();
   const { product, loading, error } = useProduct(id);
   const { addToCart, isInCart } = useCartStore();
   const { hapticFeedback } = useTelegramUI();

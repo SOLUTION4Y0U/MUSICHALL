@@ -1,7 +1,8 @@
 import { useEffect, useState, useCallback } from 'react';
 import WebApp from '@twa-dev/sdk';
 import { usePlatform } from './usePlatform';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import { useTmaSafeNavigation } from './useTmaSafeNavigation';
 
 interface BackButtonOptions {
   onClick?: () => void;
@@ -12,7 +13,7 @@ interface BackButtonOptions {
 export const useTelegramBackButton = (options?: BackButtonOptions) => {
   const { isTma } = usePlatform();
   const [visible, setVisible] = useState(options?.isVisible ?? false);
-  const navigate = useNavigate();
+  const { goBack } = useTmaSafeNavigation();
   const location = useLocation();
 
   const show = useCallback(() => {
@@ -49,7 +50,7 @@ export const useTelegramBackButton = (options?: BackButtonOptions) => {
 
         // Устанавливаем действие по умолчанию - возврат назад
         const defaultBackAction = () => {
-          navigate(-1);
+          goBack();
         };
 
         WebApp.BackButton.onClick(options?.onClick || defaultBackAction);
@@ -73,7 +74,7 @@ export const useTelegramBackButton = (options?: BackButtonOptions) => {
         WebApp.BackButton.hide();
       }
     };
-  }, [isTma, location.pathname, navigate, options]);
+  }, [isTma, location.pathname, goBack, options]);
 
   return {
     show,

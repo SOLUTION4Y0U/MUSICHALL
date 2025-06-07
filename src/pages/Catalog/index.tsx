@@ -4,9 +4,9 @@ import CategoryList from '../../components/features/CategoryList';
 import { useProducts } from '../../hooks/useProducts';
 import { useCategories } from '../../hooks/useCategories';
 import { usePlatformUIControls } from '../../platform';
-import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import CatalogSearch from '../../components/features/CatalogSearch';
+import { useTmaSafeNavigation } from '../../hooks/useTmaSafeNavigation';
 
 type SortOption = 'price-asc' | 'price-desc' | 'rating-desc';
 
@@ -23,7 +23,7 @@ const Catalog = () => {
   });
 
   const { showMainButton, hideMainButton } = usePlatformUIControls();
-  const navigate = useNavigate();
+  const { navigate } = useTmaSafeNavigation();
 
   useEffect(() => {
     // Показываем MainButton для TMA

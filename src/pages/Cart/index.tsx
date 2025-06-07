@@ -67,14 +67,6 @@ const Cart = () => {
 
         <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
           <div className="flex-1 min-w-0">
-            {/* Заголовки только для больших экранов */}
-            <div className="hidden lg:grid grid-cols-12 gap-4 mb-6 text-brand-light-gray text-sm font-medium bg-brand-dark/50 p-4 rounded-lg">
-              <div className="col-span-6">Товар</div>
-              <div className="col-span-3 text-center">Количество</div>
-              <div className="col-span-2 text-right">Сумма</div>
-              <div className="col-span-1 text-center">Действие</div>
-            </div>
-
             <div className="space-y-4">
               {cart.items.map(item => (
                 <CartItem

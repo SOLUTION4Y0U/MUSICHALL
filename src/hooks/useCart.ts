@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useTmaSafeNavigation } from './useTmaSafeNavigation';
 import { usePlatformUIControls } from '../platform';
 import { useCartStore } from '../store/cart';
 import { ROUTES } from '../constants/routes';
@@ -16,7 +16,7 @@ export const useCart = () => {
   } = useCartStore();
 
   const { showAlert } = usePlatformUIControls();
-  const navigate = useNavigate();
+  const { navigate } = useTmaSafeNavigation();
 
   const handleAddToCart = (product: Product, quantity = 1) => {
     if (product.stock < quantity) {
