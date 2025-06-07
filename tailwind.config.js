@@ -14,6 +14,9 @@ export default {
         'brand-mid-gray': '#9f9f9f',
         'brand-copper': '#3FA16F',
         'brand-dark-copper': '#173B29',
+        'brand-blue': '#194C99',
+        'brand-blue-dark': '#103163',
+        'brand-bronse': '#D3A273'
       },
       fontFamily: {
         sans: ['Roboto Flex', 'sans-serif'], // ← Это основной шрифт

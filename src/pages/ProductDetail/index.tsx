@@ -180,7 +180,7 @@ const ProductDetail = () => {
               ))}
             </div>
           )}
-          {/* Модальное окно для увеличенного изображения (без Headless UI) */}
+          {/* Модальное окно для увеличенного изображения */}
           {isZoomed && (
             <div 
               className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-90"

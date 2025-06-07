@@ -19,7 +19,7 @@ const Header = () => {
       {/* Основная навигация - скрыта на мобильных */}
       <nav className="hidden md:flex flex-1 items-center justify-center gap-8 px-4">
         <Link
-          to="#info"
+          to={ROUTES.MUSIC_CATALOG}
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           О нас
@@ -54,7 +54,7 @@ const Header = () => {
         </Link>
 
         <Link
-          to={ROUTES.CATALOG}
+          to={ROUTES.PHILIPS_CATALOG}
           className="rounded-full bg-brand-copper px-2 py-1 md:px-4 md:py-2 text-sm md:text-base text-brand-black transition-all hover:bg-brand-dark-copper hover:translate-x-0.5"
         >
           <span className="hidden md:inline">Перейти в каталог</span>

@@ -1,4 +1,4 @@
-type SortOption = 'price-asc' | 'price-desc' | 'rating-desc';
+import { SortOption } from "../../../hooks/useProducts";
 
 interface CatalogSearchProps {
   searchQuery: string;

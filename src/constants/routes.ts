@@ -4,4 +4,6 @@ export const ROUTES = {
   PRODUCT: '/product/:id',
   CART: '/cart',
   CHECKOUT: '/checkout',
+  PHILIPS_CATALOG: '/philips_catalog',
+  MUSIC_CATALOG: '/music_catalog'
 };
