@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { CartItem as CartItemType } from '../../../types/cart';
 import { useCartStore } from '../../../store/cart';
 
@@ -33,18 +34,23 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
       <div className="block lg:hidden">
         {/* Верхняя часть: изображение, название, цена, кнопка удаления */}
         <div className="flex items-start space-x-3 mb-3">
-          <div className="w-16 h-16 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
+          <Link
+            to={`/product/${item.product.id}`}
+            className="w-16 h-16 bg-brand-white rounded-md overflow-hidden flex-shrink-0 hover:opacity-80 transition-opacity"
+          >
             <img
               src={item.product.thumbnail}
               alt={item.product.title}
               className="w-full h-full object-cover"
             />
-          </div>
+          </Link>
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-secondary font-semibold text-brand-black text-sm leading-tight mb-1">
-              {item.product.title}
-            </h3>
+            <Link to={`/product/${item.product.id}`} className="hover:text-brand-copper transition-colors">
+              <h3 className="font-secondary font-semibold text-brand-black text-sm leading-tight mb-1">
+                {item.product.title}
+              </h3>
+            </Link>
             <p className="text-xs text-brand-mid-gray mb-1">
               Бренд: {item.product.brand}
             </p>
@@ -98,17 +104,22 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
       <div className="hidden lg:grid grid-cols-12 gap-4 items-center">
         {/* Товар (6 колонок) */}
         <div className="col-span-6 flex items-center space-x-4">
-          <div className="w-20 h-20 bg-brand-white rounded-md overflow-hidden flex-shrink-0">
+          <Link
+            to={`/product/${item.product.id}`}
+            className="w-20 h-20 bg-brand-white rounded-md overflow-hidden flex-shrink-0 hover:opacity-80 transition-opacity"
+          >
             <img
               src={item.product.thumbnail}
               alt={item.product.title}
               className="w-full h-full object-cover"
             />
-          </div>
+          </Link>
           <div className="flex-1 min-w-0">
-            <h3 className="font-secondary font-semibold text-brand-black text-base leading-tight mb-1">
-              {item.product.title}
-            </h3>
+            <Link to={`/product/${item.product.id}`} className="hover:text-brand-copper transition-colors">
+              <h3 className="font-secondary font-semibold text-brand-black text-base leading-tight mb-1">
+                {item.product.title}
+              </h3>
+            </Link>
             <p className="text-sm text-brand-mid-gray mb-1">
               Бренд: {item.product.brand}
             </p>
