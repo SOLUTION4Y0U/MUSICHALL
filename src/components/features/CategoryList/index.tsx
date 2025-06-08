@@ -24,7 +24,7 @@ const CategoryList = ({ categories, selectedCategoryId, onCategorySelect }: Cate
               minWidth: 'max-content'
             }}
           >
-            {allCategories.map((category, index) => (
+            {allCategories.map((category) => (
               <button
                 key={category.id || 'all'}
                 onClick={() => onCategorySelect(category.id)}
