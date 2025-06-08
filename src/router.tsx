@@ -7,6 +7,8 @@ import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
+import BrandsList from './pages/BrandsList';
+import BrandDetail from './pages/BrandDetail';
 import AppLayout from './components/layout/AppLayout';
 
 const router = createHashRouter([
@@ -33,6 +35,14 @@ const router = createHashRouter([
       {
         path: `${ROUTES.CHECKOUT}/*`,
         element: <Checkout />,
+      },
+      {
+        path: ROUTES.BRANDS,
+        element: <BrandsList />,
+      },
+      {
+        path: ROUTES.BRAND_DETAIL,
+        element: <BrandDetail />,
       },
       {
         path: '*',

@@ -267,7 +267,16 @@ const ProductDetail = () => {
               {product.title}
             </h1>
             <p className="text-brand-mid-gray">
-              Бренд: {product.brand}
+              Бренд:
+              <button
+                onClick={() => {
+                  const brandId = product.brand.toLowerCase().replace(/\s+/g, '-');
+                  handleNavigation(`/brands/${brandId}`);
+                }}
+                className="ml-1 text-brand-copper hover:text-brand-white transition-colors duration-200 underline"
+              >
+                {product.brand}
+              </button>
             </p>
           </div>
 

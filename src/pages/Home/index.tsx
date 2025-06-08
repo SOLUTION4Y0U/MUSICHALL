@@ -1,14 +1,14 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
-import { useCategories } from '../../hooks/useCategories';
+import { useBrands } from '../../hooks/useBrands';
 import { useProducts } from '../../hooks/useProducts';
 import ProductList from '../../components/features/ProductList';
 import { usePlatformUIControls } from '../../platform';
 import { usePlatform } from '../../hooks/usePlatform';
 
 const Home = () => {
-  const { categories, loading } = useCategories();
+  const { brands, loading } = useBrands();
   const { products } = useProducts({ sortBy: 'rating-desc' });
   const { showMainButton, hideMainButton, navigateTo } = usePlatformUIControls();
   const { isTma } = usePlatform();
@@ -44,11 +44,11 @@ const Home = () => {
   // Автоматическая прокрутка (опционально)
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextSlide = (currentSlide + 1) % Math.min(categories.length, 4);
+      const nextSlide = (currentSlide + 1) % Math.min(brands.length, 4);
       goToSlide(nextSlide);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentSlide, categories.length]);
+  }, [currentSlide, brands.length]);
 
   useEffect(() => {
     showMainButton('Перейти в каталог', () => {
@@ -63,6 +63,9 @@ const Home = () => {
 
   const featuredProducts = products.slice(0, 4);
 
+  // Берем топ-4 бренда для отображения
+  const topBrands = brands.slice(0, 4);
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -71,7 +74,7 @@ const Home = () => {
     );
   }
 
-  const categoryImages = [
+  const brandImages = [
     './philips_banner.jpg',
     './music_banner.jpg',
     './emtop_banner.jpg',
@@ -100,7 +103,7 @@ const Home = () => {
         </div>
       </div>
 
-      {/* Categories Section */}
+      {/* Brands Section */}
       <section className="py-8 md:py-16 px-[18px]">
         <div className="max-w-6xl mx-auto">
           <h2 className="font-secondary text-2xl md:text-3xl font-bold text-brand-white mb-4">
@@ -116,26 +119,31 @@ const Home = () => {
               onScroll={handleScroll}
               style={{ scrollBehavior: 'smooth' }}
             >
-              {categories.slice(0, 4).map((category, index) => (
+              {topBrands.map((brand, index) => (
                 <div
-                  key={category.id}
+                  key={brand.id}
                   className="flex-shrink-0 w-full snap-start px-1 md:px-2"
                 >
                   <Link
-                    to={`${ROUTES.CATALOG}?category=${category.id}`}
-                    className="block relative h-[280px] sm:h-[350px] md:h-[450px] lg:h-[500px]"
+                    to={index === topBrands.length - 1 ? ROUTES.BRANDS : `/brands/${brand.id}`}
+                    className="block relative h-[280px] sm:h-[350px] md:h-[450px] lg:h-[500px] group"
                   >
                     <div className="w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-lg">
                       <img
-                        src={categoryImages[index]}
-                        alt={category.name}
-                        className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        src={brandImages[index] || brandImages[3]}
+                        alt={brand.name}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                     <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
                       <h3 className="text-xl md:text-2xl font-bold text-brand-white group-hover:text-brand-copper transition-colors duration-300">
-                        {category.name}
+                        {index === topBrands.length - 1 ? 'Все бренды' : brand.name}
                       </h3>
+                      {index !== topBrands.length - 1 && (
+                        <p className="text-brand-light-gray/80 text-sm md:text-base mt-1">
+                          {brand.productsCount} товаров • Рейтинг {brand.averageRating}
+                        </p>
+                      )}
                     </div>
                   </Link>
                 </div>
@@ -144,7 +152,7 @@ const Home = () => {
 
             {/* Dots Indicator */}
             <div className="flex justify-center mt-4 md:mt-6 space-x-2">
-              {categories.slice(0, 4).map((_, index) => (
+              {topBrands.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
@@ -160,8 +168,8 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-8 md:mt-12">
-            <Link to={ROUTES.CATALOG} className="btn-secondary">
-              Посмотреть все категории
+            <Link to={ROUTES.BRANDS} className="btn-secondary">
+              Посмотреть все бренды
             </Link>
           </div>
         </div>

@@ -30,6 +30,13 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
     navigate(`/product/${product.id}`);
   };
 
+  const handleBrandClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const brandId = product.brand.toLowerCase().replace(/\s+/g, '-');
+    navigate(`/brands/${brandId}`);
+  };
+
   const discountedPrice = product.discountPercentage
     ? product.price - (product.price * product.discountPercentage / 100)
     : null;
@@ -69,6 +76,14 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
         <h3 className="font-medium text-sm sm:text-lg text-brand-white group-hover:text-brand-copper transition-colors duration-300 line-clamp-2">
           {product.title}
         </h3>
+
+        {/* Brand */}
+        <button
+          onClick={handleBrandClick}
+          className="text-xs sm:text-sm text-brand-mid-gray hover:text-brand-copper transition-colors duration-200 text-left"
+        >
+          {product.brand}
+        </button>
 
         {/* Rating */}
         <div className="flex items-center space-x-2">

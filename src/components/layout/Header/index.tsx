@@ -33,6 +33,13 @@ const Header = () => {
         </Link>
 
         <Link
+          to={ROUTES.BRANDS}
+          className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
+        >
+          Бренды
+        </Link>
+
+        <Link
           to="#contacts"
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
