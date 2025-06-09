@@ -1,11 +1,14 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useBrands } from '../../hooks/useBrands';
-import { useProducts } from '../../hooks/useProducts';
+import { useProducts, SortOption } from '../../hooks/useProducts';
 import ProductList from '../../components/features/ProductList';
 import { usePlatformUIControls } from '../../platform';
 import { usePlatform } from '../../hooks/usePlatform';
 import { ROUTES } from '../../constants/routes';
+import { useCategories } from '../../hooks/useCategories';
+import CatalogSearch from '../../components/features/CatalogSearch';
+import CategoryList from '../../components/features/CategoryList';
 
 const BrandDetail = () => {
   const { brandName } = useParams<{ brandName: string }>();
@@ -13,13 +16,33 @@ const BrandDetail = () => {
   const { getBrandByName } = useBrands();
   const { hideMainButton } = usePlatformUIControls();
   const { isTma } = usePlatform();
+  const { categories: allCategories } = useCategories();
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [sortBy, setSortBy] = useState<SortOption>('rating-desc');
 
   const brand = useMemo(() => {
     return brandName ? getBrandByName(brandName) : undefined;
   }, [brandName, getBrandByName]);
 
+  const { products: selectedProducts } = useProducts({
+    brands: brand ? [brand.name] : [],
+    sortBy
+  });
+  
+  const handleSelectCategory = (selectedCategoryId: string | undefined) => {
+    setSelectedCategoryId(selectedCategoryId);
+  };
+
+  const filteredCategories = allCategories.filter(category => 
+    selectedProducts.some(product => product.category === category.id)
+  );
+
   const { products, loading: productsLoading } = useProducts({
-    brands: brand ? [brand.name] : []
+    brands: brand ? [brand.name] : [],
+    categoryId: selectedCategoryId || undefined,
+    searchQuery,
+    sortBy
   });
 
   // Скрываем главную кнопку в ТМА
@@ -128,9 +151,25 @@ const BrandDetail = () => {
           </div>
         </div>
       </div>
+      <div className="mb-6">
+        <CatalogSearch
+          searchQuery={searchQuery}
+          onSearchChange={setSearchQuery}
+          sortBy={sortBy}
+          onSortChange={setSortBy}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 py-2"> 
+      <CategoryList
+        categories={filteredCategories}
+        selectedCategoryId={selectedCategoryId}
+        onCategorySelect={handleSelectCategory}
+      />
+      </div>
 
       {/* Products */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
+      <div className="max-w-fit mx-auto px-10 py-8">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-secondary font-bold text-brand-white">
             Товары бренда {brand.name}

@@ -19,7 +19,7 @@ const Header = () => {
       {/* Основная навигация - скрыта на мобильных */}
       <nav className="hidden md:flex flex-1 items-center justify-center gap-8 px-4">
         <Link
-          to={ROUTES.HOME}
+          to="https://maria-nik.github.io/landing-page-store-/"
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           О нас

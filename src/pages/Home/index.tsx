@@ -184,7 +184,7 @@ const Home = () => {
           <div className="w-20 h-1 bg-gradient-copper rounded-full"></div>
         </div>
 
-        <ProductList products={featuredProducts} loading={loading} />
+        <ProductList products={featuredProducts} loading={loading} variant="compact" />
 
         <div className="text-center mt-8">
           <Link
