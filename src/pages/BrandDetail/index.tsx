@@ -29,12 +29,12 @@ const BrandDetail = () => {
     brands: brand ? [brand.name] : [],
     sortBy
   });
-  
+
   const handleSelectCategory = (selectedCategoryId: string | undefined) => {
     setSelectedCategoryId(selectedCategoryId);
   };
 
-  const filteredCategories = allCategories.filter(category => 
+  const filteredCategories = allCategories.filter(category =>
     selectedProducts.some(product => product.category === category.id)
   );
 
@@ -55,7 +55,7 @@ const BrandDetail = () => {
   // Если бренд не найден
   if (!brand && brandName) {
     return (
-      <div className="min-h-screen bg-brand-dark text-brand-white flex items-center justify-center">
+      <div className="min-h-screen bg-brand-black text-brand-white flex items-center justify-center">
         <div className="text-center">
           <div className="text-6xl mb-4">🤷‍♂️</div>
           <h1 className="text-2xl font-secondary font-bold mb-2">
@@ -77,14 +77,14 @@ const BrandDetail = () => {
 
   if (!brand) {
     return (
-      <div className="min-h-screen bg-brand-dark text-brand-white flex items-center justify-center">
+      <div className="min-h-screen bg-brand-black text-brand-white flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-copper"></div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-brand-dark text-brand-white">
+    <div className="min-h-screen bg-brand-black text-brand-white">
       {/* Header */}
       <div className="bg-gradient-to-br from-brand-black/90 to-brand-black/60 border-b border-brand-mid-gray/20">
         <div className="max-w-6xl mx-auto px-4 py-8">
@@ -160,7 +160,7 @@ const BrandDetail = () => {
         />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-2"> 
+      <div className="max-w-7xl mx-auto px-4 py-2">
       <CategoryList
         categories={filteredCategories}
         selectedCategoryId={selectedCategoryId}
@@ -179,7 +179,7 @@ const BrandDetail = () => {
           </div>
         </div>
 
-        <ProductList products={products} loading={productsLoading} />
+        <ProductList products={products} loading={productsLoading} variant="catalog" />
       </div>
     </div>
   );
