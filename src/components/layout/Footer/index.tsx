@@ -36,7 +36,7 @@ const Footer: FC = () => {
               <a href="/#/brands" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Бренды
               </a>
-              <a href="/#/about" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="https://maria-nik.github.io/landing-page-store-/" target="_blank" rel="noopener noreferrer" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 О нас
               </a>
               <a href="/#/contact" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">

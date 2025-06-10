@@ -5,6 +5,13 @@ import { useAppContext } from '../../../context/AppContext';
 const Header = () => {
   const { platformInfo } = useAppContext();
 
+  const scrollToFooter = () => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="sticky top-0 z-20 flex h-[60px] w-full items-center justify-between bg-brand-black px-4 md:px-[5%] shadow-md">
       {/* Логотип */}
@@ -39,12 +46,12 @@ const Header = () => {
           Бренды
         </Link>
 
-        <Link
-          to="#contacts"
+        <button
+          onClick={scrollToFooter}
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           Контакты
-        </Link>
+        </button>
       </nav>
 
       {/* Правая часть с корзиной и кнопкой */}
