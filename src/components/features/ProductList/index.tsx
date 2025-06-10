@@ -14,8 +14,8 @@ const ProductList: FC<ProductListProps> = memo(({ products, loading, variant = '
   if (loading) {
     return (
       <div className={isCompact
-        ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
-        : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+        ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-0 gap-y-0 sm:gap-6"
+        : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
       }>
         {[...Array(8)].map((_, index) => (
           <div key={index} className={isCompact
@@ -32,7 +32,7 @@ const ProductList: FC<ProductListProps> = memo(({ products, loading, variant = '
   if (products.length === 0) {
     return (
       <div className="text-center py-12 bg-brand-light-gray rounded-lg">
-        <div className="text-6xl mb-4">🎵</div>
+        <div className="text-6xl mb-4">🙁</div>
         <h3 className="text-xl font-secondary font-bold text-brand-black mb-2">
           Товары не найдены
         </h3>
@@ -46,7 +46,7 @@ const ProductList: FC<ProductListProps> = memo(({ products, loading, variant = '
   return (
     <div className={isCompact
       ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
-      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
     }>
       {products.map(product => (
         <div key={product.id} className={isCompact
