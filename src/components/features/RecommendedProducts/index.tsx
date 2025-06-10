@@ -12,7 +12,7 @@ interface RecommendedProductsProps {
 const RecommendedProducts: FC<RecommendedProductsProps> = ({
   currentProductId,
   categoryId,
-  limit = 4
+  limit = 5
 }) => {
   const [recommendedProducts, setRecommendedProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);

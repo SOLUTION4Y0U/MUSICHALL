@@ -117,7 +117,7 @@ const Catalog = () => {
       <ProductList
         products={products}
         loading={productsLoading}
-        
+        variant="catalog"
       />
     </div>
   );

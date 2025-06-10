@@ -5,22 +5,30 @@ import ProductCard from '../ProductCard';
 interface ProductListProps {
   products: Product[];
   loading?: boolean;
-  variant?: 'default' | 'compact';
+  variant?: 'default' | 'compact' | 'home' | 'catalog';
 }
 
 const ProductList: FC<ProductListProps> = memo(({ products, loading, variant = 'default' }) => {
   const isCompact = variant === 'compact';
+  const isHome = variant === 'home';
+  const isCatalog = variant === 'catalog';
 
   if (loading) {
     return (
-      <div className={isCompact
-        ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-0 gap-y-0 sm:gap-6"
-        : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+      <div className={
+        isHome
+          ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
+          : isCatalog
+            ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-0 gap-y-0 sm:gap-6"
+            : isCompact
+              ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-0 gap-y-0 sm:gap-6"
+              : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
       }>
         {[...Array(8)].map((_, index) => (
-          <div key={index} className={isCompact
-            ? "animate-pulse scale-90 sm:scale-100 -mb-2 sm:mb-0"
-            : "animate-pulse"
+          <div key={index} className={
+            isHome || isCatalog || isCompact
+              ? "animate-pulse scale-90 sm:scale-100 -mb-2 sm:mb-0"
+              : "animate-pulse"
           }>
             <div className="bg-brand-black rounded-lg h-80 w-full"></div>
           </div>
@@ -44,14 +52,20 @@ const ProductList: FC<ProductListProps> = memo(({ products, loading, variant = '
   }
 
   return (
-    <div className={isCompact
-      ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
-      : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+    <div className={
+      isHome
+        ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
+        : isCatalog
+          ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-x-0 gap-y-0 sm:gap-6"
+          : isCompact
+            ? "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-0 gap-y-0 sm:gap-6"
+            : "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
     }>
       {products.map(product => (
-        <div key={product.id} className={isCompact
-          ? "scale-90 sm:scale-100 transform transition-transform -mb-2 sm:mb-0"
-          : ""
+        <div key={product.id} className={
+          isHome || isCatalog || isCompact
+            ? "scale-90 sm:scale-100 transform transition-transform -mb-2 sm:mb-0"
+            : ""
         }>
           <ProductCard product={product} />
         </div>
