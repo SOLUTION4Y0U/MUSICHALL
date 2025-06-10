@@ -20,6 +20,7 @@ const BrandDetail = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('rating-desc');
+  const [imageError, setImageError] = useState(false);
 
   const brand = useMemo(() => {
     return brandName ? getBrandByName(brandName) : undefined;
@@ -150,6 +151,33 @@ const BrandDetail = () => {
             </div>
           </div>
         </div>
+      </div>
+      {/* Компонент баннера с обработкой ошибок */}
+      <div className="mb-6 w-full h-48 rounded-lg overflow-hidden relative">
+        {/* Блок с изображением (скроется при ошибке) */}
+        <div className={`w-full h-full ${!imageError ? 'block' : 'hidden'}`}>
+          <img 
+            src={`/banners/${brand.name}.jpg`}
+            alt={`Акция ${brand.name}`}
+            className="w-full h-full object-cover"
+            onError={() => setImageError(true)}
+          />
+        </div>
+        
+        {/* Резервный баннер (покажется при ошибке) */}
+        {imageError && (
+          <div className="w-full h-full bg-gradient-to-r from-brand-copper to-brand-dark-copper">
+            <div className="h-full flex items-center justify-between px-6 md:px-10">
+              <div className="text-white max-w-md">
+                <h2 className="text-xl md:text-2xl font-bold mb-2">Специальное предложение</h2>
+                <p className="text-sm md:text-base">Только этой недели скидки до 30% на избранные товары</p>
+              </div>
+              <button className="bg-white text-brand-copper px-6 py-2 rounded-full font-medium hover:bg-opacity-90 transition-all">
+                Подробнее
+              </button>
+            </div>
+          </div>
+        )}
       </div>
       <div className="mb-6">
         <CatalogSearch
