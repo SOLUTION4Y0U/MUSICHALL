@@ -157,7 +157,7 @@ const BrandDetail = () => {
         {/* Блок с изображением (скроется при ошибке) */}
         <div className={`w-full h-full ${!imageError ? 'block' : 'hidden'}`}>
           <img 
-            src={`/banners/${brand.name}.jpg`}
+            src={`./banners/${brand.name}.jpg`}
             alt={`Акция ${brand.name}`}
             className="w-full h-full object-cover"
             onError={() => setImageError(true)}
