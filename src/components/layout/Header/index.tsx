@@ -5,15 +5,15 @@ import { useAppContext } from '../../../context/AppContext';
 const Header = () => {
   const { platformInfo } = useAppContext();
 
-  const scrollToFooter = () => {
-    const footer = document.querySelector('footer');
-    if (footer) {
-      footer.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // const scrollToFooter = () => {
+  //   const footer = document.querySelector('footer');
+  //   if (footer) {
+  //     footer.scrollIntoView({ behavior: 'smooth' });
+  //   }
+  // };
 
   return (
-    <header className="sticky top-0 z-20 flex h-[60px] w-full items-center justify-between bg-brand-black px-4 md:px-[5%] shadow-md">
+    <header className="sticky top-0 z-20 flex h-[60px] w-full items-center justify-between bg-black px-4 md:px-[5%] shadow-md">
       {/* Логотип */}
       <Link to={ROUTES.HOME} className="h-[40px] w-[160px] md:h-[50px] md:w-[240px] shrink-0">
         <img
@@ -45,13 +45,19 @@ const Header = () => {
         >
           Бренды
         </Link>
+        <Link
+          to={ROUTES.HOME}
+          className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
+        >
+          Контакты
+        </Link>
 
-        <button
+        {/* <button
           onClick={scrollToFooter}
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           Контакты
-        </button>
+        </button> */}
       </nav>
 
       {/* Правая часть с корзиной и кнопкой */}

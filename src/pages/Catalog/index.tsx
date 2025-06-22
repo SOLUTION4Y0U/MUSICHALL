@@ -89,7 +89,7 @@ const Catalog = () => {
   };
 
   return (
-    <div className="bg-brand-black">
+    <div className="bg-brand-black md:px-[5%]">
       <div className="flex flex-col space-y-4 mb-6">
         <h1 className="text-2xl md:text-3xl font-secondary font-bold text-brand-white">
           Каталог товаров
