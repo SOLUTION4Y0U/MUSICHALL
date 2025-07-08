@@ -10,9 +10,7 @@ import { usePlatform } from '../../hooks/usePlatform';
 import CatalogFilters from '../../components/features/CatalogFilters';
 import CategoryBanner from '../../components/features/CategoryBanner';
 
-// TEST: Import Spline for direct rendering
-import type { SplineProps } from '@splinetool/react-spline';
-import { useRef } from 'react';
+
 
 const Catalog = () => {
   const { categories } = useCategories();
@@ -35,15 +33,7 @@ const Catalog = () => {
   const navigate = useNavigate();
   const { isTma } = usePlatform();
 
-  // TEST: Spline direct render
-  const [Spline, setSpline] = useState<React.ComponentType<SplineProps> | null>(null);
-  useEffect(() => {
-    import('@splinetool/react-spline').then((module) => {
-      setSpline(() => module.default);
-    });
-  }, []);
-  const SplineComponent = Spline || (() => <div style={{color: 'red', fontWeight: 'bold'}}>Spline not loaded</div>);
-
+  
   // Восстановление позиции скролла при возврате из товара
   useEffect(() => {
     console.log('Catalog mounted, checking for scroll restore...');
@@ -103,9 +93,7 @@ const Catalog = () => {
     };
   }, [products, showMainButton, hideMainButton, navigate, navigateTo, isTma]);
 
-  const handleSelectCategory = (selectedCategoryId: string | undefined) => {
-    setSelectedCategoryId(selectedCategoryId);
-  };
+  
 
   const handleCategoryBannerSelect = (categoryId: string) => {
     setSelectedCategoryId(categoryId);

@@ -1,10 +1,9 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '../../constants/routes';
+import { useEffect } from 'react';
+
 import '../../styles/landing.css';
 
 const Landing = () => {
-  const [isHeaderCollapsed, setIsHeaderCollapsed] = useState(false);
+  
 
 
   // Partner logos array
@@ -34,38 +33,16 @@ const Landing = () => {
     'logos_partners/Market_DA_Logo.png'
   ];
 
-  // Choose 5 center logos (adjust as needed)
-  const centerLogos = [
-    'logos_partners/1200px-ОЗОН_ЛОГО.png',
-    'logos_partners/Wildberries_Logo.png',
-    'logos_partners/logo-mvideo.png',
-    'logos_partners/yandex_market.png',
-    'logos_partners/Sbermm_logo.png',
-  ];
-  // The rest go around
-  const outerLogos = partnerLogos.filter((logo) => !centerLogos.includes(logo));
+  
+  
 
-  // For ellipse layout
-  const ellipse = {
-    rx: 320, // horizontal radius
-    ry: 180, // vertical radius
-    centerX: 400,
-    centerY: 220,
-  };
+  
 
   // Responsive adjustments
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 600;
-  const rx = isMobile ? 140 : ellipse.rx;
-  const ry = isMobile ? 80 : ellipse.ry;
-  const centerX = isMobile ? 160 : ellipse.centerX;
-  const centerY = isMobile ? 110 : ellipse.centerY;
+  
 
-  // Rectangle grid settings
-  const columns = isMobile ? 2 : 6; // 2 columns on mobile, 6 on desktop
-  const logoWidth = isMobile ? 64 : 96;
-  const logoHeight = isMobile ? 48 : 72;
-  const rowGap = isMobile ? 16 : 28;
-  const colGap = isMobile ? 12 : 24;
+  
 
   // Responsive: 2 rows on mobile/tablet, 3 on desktop
   const isTablet = typeof window !== 'undefined' && window.innerWidth < 1024;
@@ -78,10 +55,7 @@ const Landing = () => {
     logoRows.push(partnerLogos.slice(i, i + logosPerRow));
   }
 
-  // Toggle header for mobile
-  const toggleHeader = () => {
-    setIsHeaderCollapsed(!isHeaderCollapsed);
-  };
+  
 
 
 
@@ -178,8 +152,8 @@ const Landing = () => {
             gap: isMobile ? 10 : 18,
           }}
         >
-          {logoRows.map((row, rowIdx) =>
-            row.map((logo, colIdx) => {
+          {logoRows.map((row) =>
+            row.map((logo) => {
               const duration = 2.5 + Math.random() * 2.5;
               const delay = Math.random() * 2;
               return (
