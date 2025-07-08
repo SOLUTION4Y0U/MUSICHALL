@@ -3,6 +3,7 @@ import { ROUTES } from './constants/routes';
 
 // Импорт страниц (заглушки, реализуем позже)
 import Home from './pages/Home';
+import Landing from './pages/Landing';
 import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
@@ -19,6 +20,10 @@ const router = createHashRouter([
       {
         path: ROUTES.HOME,
         element: <Home />,
+      },
+      {
+        path: ROUTES.LANDING,
+        element: <Landing />,
       },
       {
         path: ROUTES.CATALOG,

@@ -65,16 +65,9 @@ const Footer: FC = () => {
         <div className="border-t border-brand-mid-gray mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-brand-mid-gray">
-              © {currentYear} MusicHall. Все права защищены.
+              © {currentYear} ONEENERGY. Все права защищены.
             </p>
-            <div className="flex space-x-4">
-              <a href="/privacy" className="text-sm text-brand-mid-gray hover:text-brand-copper transition-colors duration-300">
-                Политика конфиденциальности
-              </a>
-              <a href="/terms" className="text-sm text-brand-mid-gray hover:text-brand-copper transition-colors duration-300">
-                Условия использования
-              </a>
-            </div>
+            
           </div>
         </div>
       </div>

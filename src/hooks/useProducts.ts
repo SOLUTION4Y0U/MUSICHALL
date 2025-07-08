@@ -6,6 +6,7 @@ interface UseProductsOptions {
   categoryId?: string;
   searchQuery?: string;
   brands?: string[];
+  priceRange?: string;
   sortBy?: 'price-asc' | 'price-desc' | 'rating-desc' | 'brand-asc' | 'brand-desc';
 }
 export type SortOption = 'price-asc' | 'price-desc' | 'rating-desc' | 'brand-asc' | 'brand-desc';
@@ -61,6 +62,20 @@ export const useProducts = (options: UseProductsOptions = {}) => {
           );
         }
 
+        // Фильтрация по ценовому диапазону
+        if (options.priceRange) {
+          const [min, max] = options.priceRange.split('-').map(Number);
+          filteredProducts = filteredProducts.filter(product => {
+            if (options.priceRange === '50000+') {
+              return product.price >= 50000;
+            }
+            if (min !== undefined && max !== undefined) {
+              return product.price >= min && product.price <= max;
+            }
+            return true;
+          });
+        }
+
         // Фильтрация по поисковому запросу
         if (options.searchQuery) {
           const query = options.searchQuery.toLowerCase();
@@ -108,7 +123,7 @@ export const useProducts = (options: UseProductsOptions = {}) => {
     };
 
     fetchProducts();
-  }, [options.categoryId, options.searchQuery, options.sortBy, options.brands]);
+  }, [options.categoryId, options.searchQuery, options.sortBy, options.brands, options.priceRange]);
 
   return { products, loading, error };
 };

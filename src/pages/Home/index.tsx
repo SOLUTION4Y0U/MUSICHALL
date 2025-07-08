@@ -110,7 +110,7 @@ const Home = () => {
           </p>
           <Link
             to={ROUTES.CATALOG}
-            className="inline-flex items-center justify-center rounded-full bg-brand-copper text-brand-black font-bold text-sm md:text-3xl px-6 py-3 md:px-8 md:py-4 w-1/2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-brand-dark-copper shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-full bg-brand-white text-brand-black font-bold text-sm md:text-3xl px-6 py-3 md:px-8 md:py-4 w-1/2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-brand-dark-copper shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2"
           >
             <span className="hidden md:inline">Перейти в каталог</span>
             <span className="md:hidden">Каталог</span>
@@ -127,78 +127,126 @@ const Home = () => {
           </div>
         </div>
       </div>
-
       {/* Brands Section */}
-      <section className="py-8 md:py-16 px-[18px]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-secondary text-2xl md:text-3xl font-bold text-brand-white mb-4">
-            Наши бренды
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-brand-copper to-transparent mb-6 md:mb-8"></div>
+      <section className="relative flex w-full max-w-[100vw] flex-col place-content-center place-items-center overflow-hidden p-8">
+        <h2 className="reveal-up text-3xl max-md:text-xl">
+          Нам доверяют бренды
+        </h2>
 
-          {/* Slider Container */}
-          <div className="relative overflow-hidden">
-            <div
-              ref={sliderRef}
-              className="flex snap-x snap-mandatory overflow-x-auto no-scrollbar"
-              onScroll={handleScroll}
-              style={{ scrollBehavior: 'smooth' }}
-            >
-              {topBrands.map((brand, index) => (
-                <div
-                  key={brand.id}
-                  className="flex-shrink-0 w-full snap-start px-1 md:px-2"
-                >
-                  <Link
-                    to={index === topBrands.length - 1 ? ROUTES.BRANDS : `/brands/${brand.id}`}
-                    className="block relative h-[600px] sm:h-[600px] md:h-[600px] lg:h-[600px] group"
-                  >
-                    <div className="w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-lg">
-                      <img
-                        src={brandImages[index] || brandImages[3]}
-                        alt={brand.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
-                      <h3 className="text-xl md:text-2xl font-bold text-brand-white group-hover:text-brand-copper transition-colors duration-300">
-                        {index === topBrands.length - 1 ? 'Все бренды' : brand.name}
-                      </h3>
-                      {index !== topBrands.length - 1 && (
-                        <p className="text-brand-light-gray/80 text-sm md:text-base mt-1">
-                          {brand.productsCount} товаров • Рейтинг {brand.averageRating}
-                        </p>
-                      )}
-                    </div>
-                  </Link>
-                </div>
-              ))}
+        <div className="reveal-up carousel-container mt-10">
+          <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/philips.svg"
+                alt="Philips"
+                className="h-full w-full object-contain"
+              />
             </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-4 md:mt-6 space-x-2">
-              {topBrands.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'bg-brand-copper w-4 md:w-6'
-                      : 'bg-brand-mid-gray'
-                  }`}
-                  aria-label={`Перейти к слайду ${index + 1}`}
-                />
-              ))}
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/microsoft.svg"
+                alt="Microsoft"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/emtop.svg"
+                alt="EMTOP"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Garmin.png"
+                alt="Garmin"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/music_hall.svg"
+                alt="MusicHall"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/onmusic_full_green.svg"
+                alt="ON"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/jbl.svg.png"
+                alt="JBL"
+                className="h-full w-full object-contain"
+              />
             </div>
           </div>
-
-          <div className="text-center mt-8 md:mt-12">
+        </div>
+        <div className="reveal-up carousel-container">
+          <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/geepas.svg"
+                alt="Geepas"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/mi.png"
+                alt="Mi"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/kyvol.png"
+                alt="Kyvol"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Sony_logo.svg"
+                alt="Sony"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/apple.svg"
+                alt="Apple"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Samsung.png"
+                alt="Samsung"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/babyplus.png"
+                alt="Babyplus"
+                className="h-full w-full object-contain"
+              />
+            </div>
+          </div>
+          <div className="text-center mt-8 mb-8 md:mt-12">
             <Link to={ROUTES.BRANDS} className="btn-secondary">
               Посмотреть все бренды
             </Link>
           </div>
         </div>
       </section>
+
+      
 
       {/* Featured Products Section */}
       {/* <section className="space-y-6 px-[18px] pb-8 md:pb-16">

@@ -1,24 +1,29 @@
 import { useState, useEffect } from 'react';
 import ProductList from '../../components/features/ProductList';
-import CategoryList from '../../components/features/CategoryList';
 import { useProducts, SortOption } from '../../hooks/useProducts';
 import { useCategories } from '../../hooks/useCategories';
+import { useBrands } from '../../hooks/useBrands';
 import { usePlatformUIControls } from '../../platform';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import { usePlatform } from '../../hooks/usePlatform';
-import CatalogSearch from '../../components/features/CatalogSearch';
+import CatalogFilters from '../../components/features/CatalogFilters';
 
 const Catalog = () => {
   const { categories } = useCategories();
+  const { brands } = useBrands();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
+  const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState<SortOption>('rating-desc');
 
   const { products, loading: productsLoading } = useProducts({
     categoryId: selectedCategoryId || undefined,
     searchQuery,
-    sortBy
+    sortBy,
+    brands: selectedBrands.length > 0 ? selectedBrands : undefined,
+    priceRange: selectedPriceRange || undefined
   });
 
   const { showMainButton, hideMainButton, navigateTo } = usePlatformUIControls();
@@ -100,19 +105,21 @@ const Catalog = () => {
       </div>
 
       <div className="mb-6">
-        <CatalogSearch
+        <CatalogFilters
+          categories={categories}
+          brands={brands}
+          selectedCategoryId={selectedCategoryId}
+          selectedBrands={selectedBrands}
+          selectedPriceRange={selectedPriceRange}
           searchQuery={searchQuery}
-          onSearchChange={setSearchQuery}
           sortBy={sortBy}
+          onCategoryChange={setSelectedCategoryId}
+          onBrandsChange={setSelectedBrands}
+          onPriceRangeChange={setSelectedPriceRange}
+          onSearchChange={setSearchQuery}
           onSortChange={setSortBy}
         />
       </div>
-
-      <CategoryList
-        categories={categories}
-        selectedCategoryId={selectedCategoryId}
-        onCategorySelect={handleSelectCategory}
-      />
 
       <ProductList
         products={products}
