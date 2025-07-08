@@ -1,16 +1,36 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import { useAppContext } from '../../../context/AppContext';
 
 const Header = () => {
   const { platformInfo } = useAppContext();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-  // const scrollToFooter = () => {
-  //   const footer = document.querySelector('footer');
-  //   if (footer) {
-  //     footer.scrollIntoView({ behavior: 'smooth' });
-  //   }
-  // };
+  const scrollToContacts = () => {
+    const contactsSection = document.getElementById('contacts');
+    if (contactsSection) {
+      contactsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleContactsClick = () => {
+    if (location.pathname === ROUTES.HOME) {
+      // If we're already on the home page, scroll to contacts section
+      scrollToContacts();
+    } else {
+      // If we're on another page, navigate to home and then scroll to contacts
+      // Store the intent to scroll to contacts in sessionStorage
+      sessionStorage.setItem('scrollToContacts', 'true');
+      navigate(ROUTES.HOME);
+    }
+  };
+
+  // Export the function for potential use in mobile menu
+  const contactsNavigation = {
+    scrollToContacts,
+    handleContactsClick
+  };
 
   return (
     <header className="sticky top-0 z-20 flex h-[60px] w-full items-center justify-between bg-black px-4 md:px-[5%] shadow-md">
@@ -45,12 +65,12 @@ const Header = () => {
         >
           Бренды
         </Link>
-        <Link
-          to={ROUTES.HOME}
+        <button
+          onClick={handleContactsClick}
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           Контакты
-        </Link>
+        </button>
 
         {/* <button
           onClick={scrollToFooter}

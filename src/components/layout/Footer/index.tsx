@@ -45,6 +45,9 @@ const Footer: FC = () => {
               <a href="/#/help" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Помощь
               </a>
+              <a href="/#/test-spline" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+                Spline Test
+              </a>
             </nav>
           </div>
 
@@ -54,9 +57,9 @@ const Footer: FC = () => {
               Контакты
             </h4>
             <div className="space-y-2 text-sm text-brand-light-gray">
-              <p>Email: info@musichall.com</p>
-              <p>Телефон: +7 (999) 123-45-67</p>
-              <p>Адрес: г. Москва, ул. Музыкальная, 15</p>
+              <p>Email: info@oneenergy.ru</p>
+              <p>Телефон: 8 800 505 22 75</p>
+              <p>Адрес: Российская Федерация, Московская область, городской округ Красногорск, территория автодорога «Балтия», 26-й километр, дом 5, строение 3</p>
             </div>
           </div>
         </div>

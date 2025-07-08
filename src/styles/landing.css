@@ -3,9 +3,9 @@
 
 :root {
   --bg-color: #000000;
-  --btn-color: #fdfdfd;
-  --btn-bg: #3FA16F;
-  --primary-text-color: #3FA16F;
+  --btn-color: #000000;
+  --btn-bg: #47B139;
+  --primary-text-color: #47B139;
   --header-link-hover: #3FA16F;
   --input-hover-bd-color: #73FA16F;
 }

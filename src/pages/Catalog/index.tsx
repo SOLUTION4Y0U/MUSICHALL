@@ -8,6 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import { usePlatform } from '../../hooks/usePlatform';
 import CatalogFilters from '../../components/features/CatalogFilters';
+import CategoryBanner from '../../components/features/CategoryBanner';
+
+// TEST: Import Spline for direct rendering
+import type { SplineProps } from '@splinetool/react-spline';
+import { useRef } from 'react';
 
 const Catalog = () => {
   const { categories } = useCategories();
@@ -29,6 +34,15 @@ const Catalog = () => {
   const { showMainButton, hideMainButton, navigateTo } = usePlatformUIControls();
   const navigate = useNavigate();
   const { isTma } = usePlatform();
+
+  // TEST: Spline direct render
+  const [Spline, setSpline] = useState<React.ComponentType<SplineProps> | null>(null);
+  useEffect(() => {
+    import('@splinetool/react-spline').then((module) => {
+      setSpline(() => module.default);
+    });
+  }, []);
+  const SplineComponent = Spline || (() => <div style={{color: 'red', fontWeight: 'bold'}}>Spline not loaded</div>);
 
   // Восстановление позиции скролла при возврате из товара
   useEffect(() => {
@@ -93,8 +107,20 @@ const Catalog = () => {
     setSelectedCategoryId(selectedCategoryId);
   };
 
+  const handleCategoryBannerSelect = (categoryId: string) => {
+    setSelectedCategoryId(categoryId);
+    // Scroll to filters after category selection
+    setTimeout(() => {
+      const filtersElement = document.querySelector('.catalog-filters');
+      if (filtersElement) {
+        filtersElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <div className="bg-brand-black md:px-[5%]">
+      
       <div className="flex flex-col space-y-4 mb-6">
         <h1 className="text-2xl md:text-3xl font-secondary font-bold text-brand-white">
           Каталог товаров
@@ -104,7 +130,15 @@ const Catalog = () => {
         </p>
       </div>
 
-      <div className="mb-6">
+      {/* Category Banner with Spline */}
+      <div className="mb-8">
+        <CategoryBanner 
+          categories={categories} 
+          onCategorySelect={handleCategoryBannerSelect}
+        />
+      </div>
+
+      <div className="mb-6 catalog-filters">
         <CatalogFilters
           categories={categories}
           brands={brands}

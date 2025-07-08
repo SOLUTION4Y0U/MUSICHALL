@@ -11,6 +11,8 @@ import Checkout from './pages/Checkout';
 import BrandsList from './pages/BrandsList';
 import BrandDetail from './pages/BrandDetail';
 import AppLayout from './components/layout/AppLayout';
+// TEST: Import TestSpline page
+import TestSpline from './pages/TestSpline';
 
 const router = createHashRouter([
   {
@@ -48,6 +50,11 @@ const router = createHashRouter([
       {
         path: ROUTES.BRAND_DETAIL,
         element: <BrandDetail />,
+      },
+      // TEST: Add /test-spline route
+      {
+        path: 'test-spline',
+        element: <TestSpline />,
       },
       {
         path: '*',

@@ -145,13 +145,13 @@ const Landing = () => {
               в сфере международных поставок
               мобильных телефонов, портативной электроники и бытовой техники
             </div>
-            <div className="reveal-up mt-10 max-w-[650px] text-pretty text-4xl p-2 text-center text-[#3FA16F] max-lg:max-w-full">
+            <div className="reveal-up mt-10 max-w-[650px] text-pretty text-4xl p-2 text-center text-[#47B139] max-lg:max-w-full">
               {`{ по России и ЕАЭС }`}
             </div>
 
             <div className="reveal-up mt-10 flex place-items-center">
               <button
-                className="btn bg-[#4fbb83] shadow-lg transition-transform duration-[0.3s] hover:scale-x-[1.03]"
+                className="btn shadow-lg transition-transform duration-[0.3s] hover:scale-x-[1.03] text-white"
                 onClick={() => scrollToSection('contacts')}
               >
                 Свяжитесь с нами

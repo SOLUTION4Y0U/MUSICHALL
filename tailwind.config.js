@@ -9,10 +9,11 @@ export default {
       colors: {
         'brand-black': '#040404',
         'brand-dark': '#2e2c2c',
+        'brand-dark-gray': '#1a1a1a',
         'brand-light-gray': '#e4e4e4',
         'brand-white': '#ffffff',
         'brand-mid-gray': '#9f9f9f',
-        'brand-copper': '#3FA16F',
+        'brand-copper': '#47B139',
         'brand-dark-copper': '#173B29',
         'brand-blue': '#194C99',
         'brand-blue-dark': '#103163',

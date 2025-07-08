@@ -34,6 +34,33 @@ const Home = () => {
     sessionStorage.removeItem('fromCatalog');
   }, []);
 
+  // Handle navigation to contacts section
+  useEffect(() => {
+    const scrollToContacts = () => {
+      const contactsSection = document.getElementById('contacts');
+      if (contactsSection) {
+        setTimeout(() => {
+          contactsSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    };
+
+    // Check for hash navigation
+    if (window.location.hash === '#contacts') {
+      scrollToContacts();
+    }
+    
+    // Check for sessionStorage intent to scroll to contacts
+    const shouldScrollToContacts = sessionStorage.getItem('scrollToContacts');
+    if (shouldScrollToContacts === 'true') {
+      sessionStorage.removeItem('scrollToContacts');
+      // Use a longer timeout to ensure the component is fully mounted
+      setTimeout(() => {
+        scrollToContacts();
+      }, 300);
+    }
+  }, []);
+
   // Обработчик прокрутки
   const handleScroll = () => {
     if (sliderRef.current) {
@@ -273,70 +300,45 @@ const Home = () => {
       </section> */}
 
       
-      <section
-            className="mt-5 flex min-h-[80vh] w-full flex-col place-content-center place-items-center p-[2%]"
-        >
-            <h3
-                className="text-4xl font-medium text-gray-200 max-md:text-2xl"
-                id = "contacts"
-            >
-                Контакты
-            </h3>
-            
-            <div
-                className="mt-6 flex max-w-[80%] flex-wrap place-content-center gap-8 max-lg:flex-col"
-            >
-                <div
-                    className="reveal-up flex h-fit w-[500px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[320px]"
-                >
-                    <p className="mt-4 text-gray-300">
-                        Общество с ограниченной ответственностью "ТЕЛЕКОМ РИТЕЙЛ"
-                    </p>    
-                    <div className="flex flex-col gap-1">
-                        
-                        <div className="text-gray-400">Москва, Пресненская Набережная, 12
-                        Башня Федерация Восток,
-                        этаж 56, офис 20 </div>
-                        <div className="text-gray-400">ИНН 7703417810, ОГРН 5167746195667</div>
-                    </div>
-                    
-                </div>
-                
-                <div
-                    className="reveal-up flex h-fit w-[500px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[320px]"
-                >
-                    <p className="mt-4 text-gray-300">
-                        По вопросам сотрудничества:
-                    </p>
-                    <div className="flex flex-col gap-1">
-                            <div className="font-semibold">info@telecom-retail.ru</div>
-                            <div className="font-semibold">8 800 505 22 75</div>
-                            <div className="text-gray-400">Общество с ограниченной ответственностью «ТЕЛЕКОМ РИТЕЙЛ»
+      {/* Contacts Section */}
+      <section className="mt-5 flex min-h-[80vh] w-full flex-col place-content-center place-items-center p-[2%]">
+        <h3 className="text-4xl font-medium text-gray-200 max-md:text-2xl" id="contacts">
+          Контакты
+        </h3>
+        <div className="mt-6 flex max-w-[90%] place-content-center gap-8 max-lg:flex-col">
+          
 
-Юридический адрес: 123 112, город Москва, Пресненская набережная, дом 12, этаж 56, офис 20; Фактический адрес: Фактический адрес: 123 112, город Москва, Пресненская набережная, дом 12, этаж 56, офис 20
-
-ИНН 7 703 417 810, ОГРН 5 167 746 195 667 сообщает, что на имеющихся 11 (одиннадцати) рабочих местах компании силами Автономной некоммерческой организация дополнительного профессионального образования «Учебно-консультационный центр «Труд», Регистрационный номер 136 от 19.10.2015, была проведена специальная оценка условий труда. Отчет утвержден 21.10.2020 г.
-
-По результатам идентификации не выявлены вредные и (или) опасные производственные факторы или условия труда по результатам исследований (испытаний) и измерений вредных и (или) опасных производственных факторов признаны оптимальными или допустимыми, условия труда соответствуют государственным нормативным требованиям охраны труда.</div>
-                        </div>
-                    
-                </div>
-                
-                
-                
+          <div className="reveal-up flex h-fit w-[600px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[400px]">
+            <p className="mt-4 text-gray-300">
+              По вопросам сотрудничества:
+            </p>
+            <div className="flex flex-col gap-1">
+              <div className="font-semibold">info@oneenergy.ru</div>
+              <div className="font-semibold">8 800 505 22 75</div>
+              <div className="text-gray-400">
+                Общество с ограниченной ответственностью «ВАНЭНЕРДЖИ»
+                <br /><br />
+                Юридический адрес: Российская Федерация, Московская область, городской округ Красногорск, территория автодорога «Балтия», 26-й километр, дом 5, строение 3.
+                <br />
+                Фактический адрес: Российская Федерация, Московская область, городской округ Красногорск, территория автодорога «Балтия», 26-й километр, дом 5, строение 3.
+                <br /><br />
+                Адрес склада: г. Истра, посёлок Октябрьской Фабрики, д.17
+                <br /><br />
+                ИНН 7725305764 КПП 770301001
+              </div>
             </div>
-        </section>
-        <section className="mt-20 flex justify-center px-4">
-        <div className="overflow-hidden rounded-xl shadow-lg w-full max-w-[800px]">
-            <iframe 
+          </div>
+          <div className="reveal-up overflow-hidden rounded-xl shadow-lg w-[800px] h-[400px] max-lg:w-[320px] max-lg:h-[300px]">
+          <iframe 
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A4d02973b5d70e6f56f4f3d16a840a1ef04d1d03e6faa85d6a9046b69d3d01186&amp;source=constructor" 
             width="800" 
             height="400" 
-            
-            className="block w-full"
-            ></iframe>
+            className="block w-full h-full"
+            title="Карта офиса"
+          ></iframe>
         </div>
-        </section>
+        </div>
+      </section>
 
     </div>
   );
