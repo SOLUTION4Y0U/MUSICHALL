@@ -36,15 +36,14 @@ const Footer: FC = () => {
               <a href="/#/brands" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Бренды
               </a>
-              <a href="https://maria-nik.github.io/landing-page-store-/" target="_blank" rel="noopener noreferrer" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="/#/landing" target="_blank" rel="noopener noreferrer" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 О нас
               </a>
-              <a href="/#/contact" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
-                Контакты
+              
+              <a href="/#/faq" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+                Дополнительная информация
               </a>
-              <a href="/#/help" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
-                Помощь
-              </a>
+              
             </nav>
           </div>
 
@@ -54,9 +53,9 @@ const Footer: FC = () => {
               Контакты
             </h4>
             <div className="space-y-2 text-sm text-brand-light-gray">
-              <p>Email: info@musichall.com</p>
-              <p>Телефон: +7 (999) 123-45-67</p>
-              <p>Адрес: г. Москва, ул. Музыкальная, 15</p>
+              <p>Email: info@oneenergy.ru</p>
+              <p>Телефон: 8 800 505 22 75</p>
+              <p>Адрес: Российская Федерация, Московская область, городской округ Красногорск, территория автодорога «Балтия», 26-й километр, дом 5, строение 3</p>
             </div>
           </div>
         </div>
@@ -65,16 +64,9 @@ const Footer: FC = () => {
         <div className="border-t border-brand-mid-gray mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-brand-mid-gray">
-              © {currentYear} MusicHall. Все права защищены.
+              © {currentYear} ONEENERGY. Все права защищены.
             </p>
-            <div className="flex space-x-4">
-              <a href="/privacy" className="text-sm text-brand-mid-gray hover:text-brand-copper transition-colors duration-300">
-                Политика конфиденциальности
-              </a>
-              <a href="/terms" className="text-sm text-brand-mid-gray hover:text-brand-copper transition-colors duration-300">
-                Условия использования
-              </a>
-            </div>
+            
           </div>
         </div>
       </div>

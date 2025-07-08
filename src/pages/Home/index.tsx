@@ -19,6 +19,13 @@ const Home = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   
 
+  const brandImages = [
+    './philips_banner1.png',
+    './music_banner.jpg',
+    './emtop_banner1.jpg',
+    './others_banner1.jpg'
+  ];
+
   const [Spline, setSpline] = useState<React.ComponentType<SplineProps> | null>(null);
   useEffect(() => {
     // Асинхронно загружаем компонент
@@ -32,6 +39,33 @@ const Home = () => {
   useEffect(() => {
     sessionStorage.removeItem('catalogScrollPosition');
     sessionStorage.removeItem('fromCatalog');
+  }, []);
+
+  // Handle navigation to contacts section
+  useEffect(() => {
+    const scrollToContacts = () => {
+      const contactsSection = document.getElementById('contacts');
+      if (contactsSection) {
+        setTimeout(() => {
+          contactsSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    };
+
+    // Check for hash navigation
+    if (window.location.hash === '#contacts') {
+      scrollToContacts();
+    }
+    
+    // Check for sessionStorage intent to scroll to contacts
+    const shouldScrollToContacts = sessionStorage.getItem('scrollToContacts');
+    if (shouldScrollToContacts === 'true') {
+      sessionStorage.removeItem('scrollToContacts');
+      // Use a longer timeout to ensure the component is fully mounted
+      setTimeout(() => {
+        scrollToContacts();
+      }, 300);
+    }
   }, []);
 
   // Обработчик прокрутки
@@ -57,11 +91,11 @@ const Home = () => {
   // Автоматическая прокрутка (опционально)
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextSlide = (currentSlide + 1) % Math.min(brands.length, 4);
+      const nextSlide = (currentSlide + 1) % brandImages.length;
       goToSlide(nextSlide);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentSlide, brands.length]);
+  }, [currentSlide, brandImages.length]);
 
   useEffect(() => {
     showMainButton('Перейти в каталог', () => {
@@ -76,8 +110,7 @@ const Home = () => {
 
   //const featuredProducts = products.slice(0, 4);
 
-  // Берем топ-4 бренда для отображения
-  const topBrands = brands.slice(0, 4);
+  
 
   if (loading) {
     return (
@@ -86,13 +119,6 @@ const Home = () => {
       </div>
     );
   }
-
-  const brandImages = [
-    './philips_banner1.png',
-    './music_banner.jpg',
-    './emtop_banner1.jpg',
-    './others_banner1.jpg'
-  ];
 
   return (
     <div className="min-h-screen bg-brand-black">
@@ -110,7 +136,7 @@ const Home = () => {
           </p>
           <Link
             to={ROUTES.CATALOG}
-            className="inline-flex items-center justify-center rounded-full bg-brand-copper text-brand-black font-bold text-sm md:text-3xl px-6 py-3 md:px-8 md:py-4 w-1/2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-brand-dark-copper shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2"
+            className="inline-flex items-center justify-center rounded-full bg-brand-white text-brand-black font-bold text-sm md:text-3xl px-6 py-3 md:px-8 md:py-4 w-1/2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-brand-dark-copper shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2"
           >
             <span className="hidden md:inline">Перейти в каталог</span>
             <span className="md:hidden">Каталог</span>
@@ -128,77 +154,127 @@ const Home = () => {
         </div>
       </div>
 
+
       {/* Brands Section */}
-      <section className="py-8 md:py-16 px-[18px]">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="font-secondary text-2xl md:text-3xl font-bold text-brand-white mb-4">
-            Наши бренды
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-brand-copper to-transparent mb-6 md:mb-8"></div>
+      <section className="relative flex w-full max-w-[100vw] flex-col place-content-center place-items-center overflow-hidden p-8">
+        <h2 className="reveal-up text-3xl max-md:text-xl">
+          Наши бренды
+        </h2>
 
-          {/* Slider Container */}
-          <div className="relative overflow-hidden">
-            <div
-              ref={sliderRef}
-              className="flex snap-x snap-mandatory overflow-x-auto no-scrollbar"
-              onScroll={handleScroll}
-              style={{ scrollBehavior: 'smooth' }}
-            >
-              {topBrands.map((brand, index) => (
-                <div
-                  key={brand.id}
-                  className="flex-shrink-0 w-full snap-start px-1 md:px-2"
-                >
-                  <Link
-                    to={index === topBrands.length - 1 ? ROUTES.BRANDS : `/brands/${brand.id}`}
-                    className="block relative h-[600px] sm:h-[600px] md:h-[600px] lg:h-[600px] group"
-                  >
-                    <div className="w-full h-full rounded-lg md:rounded-xl overflow-hidden shadow-lg">
-                      <img
-                        src={brandImages[index] || brandImages[3]}
-                        alt={brand.name}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 md:p-6 bg-gradient-to-t from-black/90 to-transparent">
-                      <h3 className="text-xl md:text-2xl font-bold text-brand-white group-hover:text-brand-copper transition-colors duration-300">
-                        {index === topBrands.length - 1 ? 'Все бренды' : brand.name}
-                      </h3>
-                      {index !== topBrands.length - 1 && (
-                        <p className="text-brand-light-gray/80 text-sm md:text-base mt-1">
-                          {brand.productsCount} товаров • Рейтинг {brand.averageRating}
-                        </p>
-                      )}
-                    </div>
-                  </Link>
-                </div>
-              ))}
+        <div className="reveal-up carousel-container mt-10">
+          <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/philips.svg"
+                alt="Philips"
+                className="h-full w-full object-contain"
+              />
             </div>
-
-            {/* Dots Indicator */}
-            <div className="flex justify-center mt-4 md:mt-6 space-x-2">
-              {topBrands.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => goToSlide(index)}
-                  className={`w-2 h-2 md:w-3 md:h-3 rounded-full transition-all duration-300 ${
-                    index === currentSlide
-                      ? 'bg-brand-copper w-4 md:w-6'
-                      : 'bg-brand-mid-gray'
-                  }`}
-                  aria-label={`Перейти к слайду ${index + 1}`}
-                />
-              ))}
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/microsoft.svg"
+                alt="Microsoft"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/emtop.svg"
+                alt="EMTOP"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Garmin.png"
+                alt="Garmin"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/music_hall.svg"
+                alt="MusicHall"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/onmusic_full_green.svg"
+                alt="ON"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/jbl.svg.png"
+                alt="JBL"
+                className="h-full w-full object-contain"
+              />
             </div>
           </div>
-
-          <div className="text-center mt-8 md:mt-12">
+        </div>
+        <div className="reveal-up carousel-container">
+          <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/geepas.svg"
+                alt="Geepas"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/mi.png"
+                alt="Mi"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/kyvol.png"
+                alt="Kyvol"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Sony_logo.svg"
+                alt="Sony"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/apple.svg"
+                alt="Apple"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Samsung.png"
+                alt="Samsung"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/babyplus.png"
+                alt="Babyplus"
+                className="h-full w-full object-contain"
+              />
+            </div>
+          </div>
+          <div className="text-center mt-8 mb-8 md:mt-12">
             <Link to={ROUTES.BRANDS} className="btn-secondary">
               Посмотреть все бренды
             </Link>
           </div>
         </div>
       </section>
+
+      
 
       {/* Featured Products Section */}
       {/* <section className="space-y-6 px-[18px] pb-8 md:pb-16">
@@ -225,70 +301,45 @@ const Home = () => {
       </section> */}
 
       
-      <section
-            className="mt-5 flex min-h-[80vh] w-full flex-col place-content-center place-items-center p-[2%]"
-        >
-            <h3
-                className="text-4xl font-medium text-gray-200 max-md:text-2xl"
-                id = "contacts"
-            >
-                Контакты
-            </h3>
-            
-            <div
-                className="mt-6 flex max-w-[80%] flex-wrap place-content-center gap-8 max-lg:flex-col"
-            >
-                <div
-                    className="reveal-up flex h-fit w-[500px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[320px]"
-                >
-                    <p className="mt-4 text-gray-300">
-                        Общество с ограниченной ответственностью "ТЕЛЕКОМ РИТЕЙЛ"
-                    </p>    
-                    <div className="flex flex-col gap-1">
-                        
-                        <div className="text-gray-400">Москва, Пресненская Набережная, 12
-                        Башня Федерация Восток,
-                        этаж 56, офис 20 </div>
-                        <div className="text-gray-400">ИНН 7703417810, ОГРН 5167746195667</div>
-                    </div>
-                    
-                </div>
-                
-                <div
-                    className="reveal-up flex h-fit w-[500px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[320px]"
-                >
-                    <p className="mt-4 text-gray-300">
-                        По вопросам сотрудничества:
-                    </p>
-                    <div className="flex flex-col gap-1">
-                            <div className="font-semibold">info@telecom-retail.ru</div>
-                            <div className="font-semibold">8 800 505 22 75</div>
-                            <div className="text-gray-400">Общество с ограниченной ответственностью «ТЕЛЕКОМ РИТЕЙЛ»
+      {/* Contacts Section */}
+      <section className="mt-5 flex min-h-[80vh] w-full flex-col place-content-center place-items-center p-[2%]">
+        <h3 className="text-4xl font-medium text-gray-200 max-md:text-2xl" id="contacts">
+          Контакты
+        </h3>
+        <div className="mt-6 flex max-w-[90%] place-content-center gap-8 max-lg:flex-col">
+          
 
-Юридический адрес: 123 112, город Москва, Пресненская набережная, дом 12, этаж 56, офис 20; Фактический адрес: Фактический адрес: 123 112, город Москва, Пресненская набережная, дом 12, этаж 56, офис 20
-
-ИНН 7 703 417 810, ОГРН 5 167 746 195 667 сообщает, что на имеющихся 11 (одиннадцати) рабочих местах компании силами Автономной некоммерческой организация дополнительного профессионального образования «Учебно-консультационный центр «Труд», Регистрационный номер 136 от 19.10.2015, была проведена специальная оценка условий труда. Отчет утвержден 21.10.2020 г.
-
-По результатам идентификации не выявлены вредные и (или) опасные производственные факторы или условия труда по результатам исследований (испытаний) и измерений вредных и (или) опасных производственных факторов признаны оптимальными или допустимыми, условия труда соответствуют государственным нормативным требованиям охраны труда.</div>
-                        </div>
-                    
-                </div>
-                
-                
-                
+          <div className="reveal-up flex h-fit w-[600px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[400px]">
+            <p className="mt-4 text-gray-300">
+              По вопросам сотрудничества:
+            </p>
+            <div className="flex flex-col gap-1">
+              <div className="font-semibold">info@oneenergy.ru</div>
+              <div className="font-semibold">8 800 505 22 75</div>
+              <div className="text-gray-400">
+                Общество с ограниченной ответственностью «ВАНЭНЕРДЖИ»
+                <br /><br />
+                Юридический адрес: Российская Федерация, Московская область, городской округ Красногорск, территория автодорога «Балтия», 26-й километр, дом 5, строение 3.
+                <br />
+                Фактический адрес: Российская Федерация, Московская область, городской округ Красногорск, территория автодорога «Балтия», 26-й километр, дом 5, строение 3.
+                <br /><br />
+                Адрес склада: г. Истра, посёлок Октябрьской Фабрики, д.17
+                <br /><br />
+                ИНН 7725305764 КПП 770301001
+              </div>
             </div>
-        </section>
-        <section className="mt-20 flex justify-center px-4">
-        <div className="overflow-hidden rounded-xl shadow-lg w-full max-w-[800px]">
-            <iframe 
+          </div>
+          <div className="reveal-up overflow-hidden rounded-xl shadow-lg w-[800px] h-[400px] max-lg:w-[320px] max-lg:h-[300px]">
+          <iframe 
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A4d02973b5d70e6f56f4f3d16a840a1ef04d1d03e6faa85d6a9046b69d3d01186&amp;source=constructor" 
             width="800" 
             height="400" 
-            
-            className="block w-full"
-            ></iframe>
+            className="block w-full h-full"
+            title="Карта офиса"
+          ></iframe>
         </div>
-        </section>
+        </div>
+      </section>
 
     </div>
   );

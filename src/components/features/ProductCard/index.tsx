@@ -64,11 +64,14 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
 
       {/* Image Container */}
       <div className="aspect-[3/4] bg-brand-light-gray/10 overflow-hidden">
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+        <div className="w-full h-full flex items-center justify-center">
+          <img
+            src={product.thumbnail}
+            alt={product.title}
+            className="transition-transform duration-700 group-hover:scale-105"
+            
+          />
+        </div>
       </div>
 
       {/* Content */}
