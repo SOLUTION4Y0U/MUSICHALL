@@ -8,7 +8,6 @@ interface BrandBannerProps {
 }
 
 const BrandBanner: React.FC<BrandBannerProps> = ({ 
-  brandName,
   categories,
   customHeight
 }) => {

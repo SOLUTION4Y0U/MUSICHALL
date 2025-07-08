@@ -7,10 +7,7 @@ import { usePlatformUIControls } from '../../platform';
 import { usePlatform } from '../../hooks/usePlatform';
 import { ROUTES } from '../../constants/routes';
 import { useCategories } from '../../hooks/useCategories';
-import CatalogSearch from '../../components/features/CatalogSearch';
-import CategoryList from '../../components/features/CategoryList';
 import CatalogFilters from '../../components/features/CatalogFilters';
-import CategoryBanner from '../../components/features/CategoryBanner';
 import BrandBanner from '../../components/features/BrandBanner';
 
 const BrandDetail = () => {
@@ -35,9 +32,7 @@ const BrandDetail = () => {
     sortBy
   });
 
-  const handleSelectCategory = (selectedCategoryId: string | undefined) => {
-    setSelectedCategoryId(selectedCategoryId);
-  };
+  
 
   const filteredCategories = allCategories.filter(category =>
     selectedProducts.some(product => product.category === category.id)

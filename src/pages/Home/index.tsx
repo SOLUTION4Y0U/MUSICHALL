@@ -11,11 +11,11 @@ import type { SplineProps } from '@splinetool/react-spline';
 
 
 const Home = () => {
-  const { brands, loading } = useBrands();
+  const { loading } = useBrands();
   //const { products } = useProducts({ sortBy: 'rating-desc' });
   const { showMainButton, hideMainButton, navigateTo } = usePlatformUIControls();
   const { isTma } = usePlatform();
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [currentSlide] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   
 
@@ -68,15 +68,7 @@ const Home = () => {
     }
   }, []);
 
-  // Обработчик прокрутки
-  const handleScroll = () => {
-    if (sliderRef.current) {
-      const scrollLeft = sliderRef.current.scrollLeft;
-      const slideWidth = sliderRef.current.clientWidth;
-      const newSlide = Math.round(scrollLeft / slideWidth);
-      setCurrentSlide(newSlide);
-    }
-  };
+  
 
   // Переключение слайдов по клику на точки
   const goToSlide = (index: number) => {

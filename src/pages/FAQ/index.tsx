@@ -17,13 +17,7 @@ const FAQ = () => {
       navigate(ROUTES.HOME);
     
   };
-  // Smooth scroll to section
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  
 
   return (
     <div className="flex min-h-[100vh] flex-col bg-black text-white">
