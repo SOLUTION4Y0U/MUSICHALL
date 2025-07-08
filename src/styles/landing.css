@@ -4,6 +4,7 @@
 :root {
   --bg-color: #000000;
   --btn-color: #000000;
+  --btn-color2: #ffffff;
   --btn-bg: #47B139;
   --primary-text-color: #47B139;
   --header-link-hover: #3FA16F;
@@ -107,7 +108,19 @@ header > .collapsible-header {
   border: none;
   text-decoration: none;
 }
-
+.btn2 {
+  padding: 10px 15px;
+  width: max-content;
+  border-radius: 5px;
+  color: var(--btn-color2);
+  background-color: var(--btn-bg);
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+}
 .btn:hover {
   text-decoration: none;
 }

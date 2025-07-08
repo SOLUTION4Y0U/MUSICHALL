@@ -16,6 +16,7 @@ interface CatalogFiltersProps {
   onPriceRangeChange: (priceRange: string) => void;
   onSearchChange: (searchQuery: string) => void;
   onSortChange: (sortBy: SortOption) => void;
+  hideBrandsFilter?: boolean;
 }
 
 const CatalogFilters = ({
@@ -30,7 +31,8 @@ const CatalogFilters = ({
   onBrandsChange,
   onPriceRangeChange,
   onSearchChange,
-  onSortChange
+  onSortChange,
+  hideBrandsFilter
 }: CatalogFiltersProps) => {
   const [isBrandsDropdownOpen, setIsBrandsDropdownOpen] = useState(false);
   const [isCategoriesDropdownOpen, setIsCategoriesDropdownOpen] = useState(false);
@@ -194,49 +196,51 @@ const CatalogFilters = ({
         </div>
 
         {/* Бренды */}
-        <div>
-          <label className="block text-sm font-medium text-brand-light-gray mb-2">
-            Бренды
-          </label>
-          <div className="relative" ref={brandsDropdownRef}>
-            <button
-              type="button"
-              onClick={() => setIsBrandsDropdownOpen(!isBrandsDropdownOpen)}
-              className="w-full pl-4 pr-10 py-3 bg-brand-black/50 border border-brand-mid-gray/20 rounded-xl text-brand-light-gray focus:ring-2 focus:ring-brand-copper focus:border-transparent focus:outline-none transition-all duration-200 text-left flex items-center justify-between"
-            >
-              <span className="truncate">{getBrandsDisplayText()}</span>
-              <svg 
-                className={`w-5 h-5 text-brand-mid-gray transition-transform duration-200 ${isBrandsDropdownOpen ? 'rotate-180' : ''}`} 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
+        {!hideBrandsFilter && (
+          <div>
+            <label className="block text-sm font-medium text-brand-light-gray mb-2">
+              Бренды
+            </label>
+            <div className="relative" ref={brandsDropdownRef}>
+              <button
+                type="button"
+                onClick={() => setIsBrandsDropdownOpen(!isBrandsDropdownOpen)}
+                className="w-full pl-4 pr-10 py-3 bg-brand-black/50 border border-brand-mid-gray/20 rounded-xl text-brand-light-gray focus:ring-2 focus:ring-brand-copper focus:border-transparent focus:outline-none transition-all duration-200 text-left flex items-center justify-between"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            
-            {isBrandsDropdownOpen && (
-              <div className="absolute z-10 w-full mt-1 bg-brand-black border border-brand-mid-gray/20 rounded-xl shadow-lg max-h-60 overflow-y-auto">
-                {brands.map((brand) => (
-                  <label
-                    key={brand.id}
-                    className="flex items-center px-4 py-3 hover:bg-brand-dark cursor-pointer transition-colors duration-150"
-                  >
-                    <input
-                      type="checkbox"
-                      checked={selectedBrands.includes(brand.name)}
-                      onChange={(e) => handleBrandChange(brand.name, e.target.checked)}
-                      className="w-4 h-4 text-brand-copper bg-brand-black border-brand-mid-gray/30 rounded focus:ring-brand-copper focus:ring-2"
-                    />
-                    <span className="ml-3 text-brand-light-gray">
-                      {brand.name} ({brand.productsCount})
-                    </span>
-                  </label>
-                ))}
-              </div>
-            )}
+                <span className="truncate">{getBrandsDisplayText()}</span>
+                <svg 
+                  className={`w-5 h-5 text-brand-mid-gray transition-transform duration-200 ${isBrandsDropdownOpen ? 'rotate-180' : ''}`} 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              
+              {isBrandsDropdownOpen && (
+                <div className="absolute z-10 w-full mt-1 bg-brand-black border border-brand-mid-gray/20 rounded-xl shadow-lg max-h-60 overflow-y-auto">
+                  {brands.map((brand) => (
+                    <label
+                      key={brand.id}
+                      className="flex items-center px-4 py-3 hover:bg-brand-dark cursor-pointer transition-colors duration-150"
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedBrands.includes(brand.name)}
+                        onChange={(e) => handleBrandChange(brand.name, e.target.checked)}
+                        className="w-4 h-4 text-brand-copper bg-brand-black border-brand-mid-gray/30 rounded focus:ring-brand-copper focus:ring-2"
+                      />
+                      <span className="ml-3 text-brand-light-gray">
+                        {brand.name} ({brand.productsCount})
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Ценовой диапазон */}
         <div>
@@ -354,7 +358,7 @@ const CatalogFilters = ({
         </div>
         
         {/* Отображение выбранных брендов */}
-        {selectedBrands.length > 0 && (
+        {!hideBrandsFilter && selectedBrands.length > 0 && (
           <div className="col-span-full mt-4">
             <div className="flex flex-wrap gap-2">
               <span className="text-sm text-brand-light-gray">Выбранные бренды:</span>

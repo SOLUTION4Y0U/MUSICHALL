@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import type { SplineProps } from '@splinetool/react-spline';
-import { Category } from '../../../types/product';
 
-interface CategoryBannerProps {
-  categories: Category[];
-  onCategorySelect?: (categoryId: string) => void;
+interface BrandBannerProps {
+  brandName: string;
+  categories: string[];
   customHeight?: string;
 }
 
-const CategoryBanner: React.FC<CategoryBannerProps> = ({ 
-  categories, 
-  onCategorySelect,
+const BrandBanner: React.FC<BrandBannerProps> = ({ 
+  brandName,
+  categories,
   customHeight
 }) => {
   const [currentCategoryIndex, setCurrentCategoryIndex] = useState(0);
-  const [Spline, setSpline] = useState<React.ComponentType<SplineProps> | null>(null);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [Spline, setSpline] = useState<React.ComponentType<SplineProps> | null>(null);
 
   // Load Spline component
   useEffect(() => {
@@ -39,42 +38,27 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
     return () => clearInterval(interval);
   }, [categories.length]);
 
-  const handleCategoryClick = (categoryId: string) => {
-    onCategorySelect?.(categoryId);
-  };
-
-  if (categories.length === 0) {
-    return null;
-  }
-
   return (
     <div 
       className={`relative w-full bg-gradient-to-r from-brand-black via-[#47B139]/20 to-brand-black rounded-2xl overflow-hidden shadow-2xl flex flex-row ${!customHeight ? 'h-80 md:h-[320px]' : ''}`}
       style={customHeight ? { height: customHeight } : undefined}
     >
-      {/* Left side: Animated categories */}
+      {/* Left side: Brand content */}
       <div className="flex flex-col justify-center h-full pl-8 md:pl-12 pr-4 md:pr-8 w-1/2 z-10">
-        <div className="mb-4">
-          <h3 className="text-[#47B139] text-2xl md:text-3xl font-secondary font-semibold uppercase tracking-wider mb-4">
-            Категории товаров
-          </h3>
-        </div>
-        {/* Single animated category name */}
+        
+        {/* Animated categories */}
         <div className="relative min-h-[7rem] md:min-h-[10rem] flex items-center">
           <div 
             className={`absolute inset-0 flex items-center transition-all duration-500 ease-in-out transform ${
               isAnimating ? 'translate-y-full opacity-0' : 'translate-y-0 opacity-100'
             }`}
           >
-            <button
-              onClick={() => handleCategoryClick(categories[currentCategoryIndex]?.id || '')}
-              className="block text-left w-full group"
-            >
+            <div className="block text-left w-full group">
               <span className="block break-words whitespace-pre-line text-2xl md:text-5xl font-extrabold text-white group-hover:text-brand-white transition-colors duration-300 leading-tight" style={{ wordBreak: 'break-word', maxHeight: '12rem', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
-                {categories[currentCategoryIndex]?.name}
+                {categories[currentCategoryIndex] || 'Категории товаров'}
               </span>
               <div className="w-0 group-hover:w-full h-1 bg-[#47B139] transition-all duration-300 mt-2"></div>
-            </button>
+            </div>
           </div>
         </div>
       </div>
@@ -94,4 +78,4 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
   );
 };
 
-export default CategoryBanner; 
+export default BrandBanner; 

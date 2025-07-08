@@ -28,9 +28,9 @@ const BrandsList = () => {
   }, [isTma, hideMainButton]);
 
   return (
-    <div className="min-h-screen bg-brand-dark text-brand-white">
+    <div className="min-h-screen bg-brand-black text-brand-white">
       {/* Header */}
-      <div className="sticky top-0 z-10 bg-brand-dark/95 backdrop-blur-sm border-b border-brand-mid-gray/20">
+      <div className="sticky top-0 z-10 bg-black/95 backdrop-blur-sm border-b border-brand-mid-gray/20">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="flex flex-col space-y-4">
             <div>

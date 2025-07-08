@@ -19,6 +19,13 @@ const Home = () => {
   const sliderRef = useRef<HTMLDivElement>(null);
   
 
+  const brandImages = [
+    './philips_banner1.png',
+    './music_banner.jpg',
+    './emtop_banner1.jpg',
+    './others_banner1.jpg'
+  ];
+
   const [Spline, setSpline] = useState<React.ComponentType<SplineProps> | null>(null);
   useEffect(() => {
     // Асинхронно загружаем компонент
@@ -84,11 +91,11 @@ const Home = () => {
   // Автоматическая прокрутка (опционально)
   useEffect(() => {
     const interval = setInterval(() => {
-      const nextSlide = (currentSlide + 1) % Math.min(brands.length, 4);
+      const nextSlide = (currentSlide + 1) % brandImages.length;
       goToSlide(nextSlide);
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentSlide, brands.length]);
+  }, [currentSlide, brandImages.length]);
 
   useEffect(() => {
     showMainButton('Перейти в каталог', () => {
@@ -103,8 +110,7 @@ const Home = () => {
 
   //const featuredProducts = products.slice(0, 4);
 
-  // Берем топ-4 бренда для отображения
-  const topBrands = brands.slice(0, 4);
+  
 
   if (loading) {
     return (
@@ -113,13 +119,6 @@ const Home = () => {
       </div>
     );
   }
-
-  const brandImages = [
-    './philips_banner1.png',
-    './music_banner.jpg',
-    './emtop_banner1.jpg',
-    './others_banner1.jpg'
-  ];
 
   return (
     <div className="min-h-screen bg-brand-black">
@@ -154,10 +153,12 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+
       {/* Brands Section */}
       <section className="relative flex w-full max-w-[100vw] flex-col place-content-center place-items-center overflow-hidden p-8">
         <h2 className="reveal-up text-3xl max-md:text-xl">
-          Нам доверяют бренды
+          Наши бренды
         </h2>
 
         <div className="reveal-up carousel-container mt-10">

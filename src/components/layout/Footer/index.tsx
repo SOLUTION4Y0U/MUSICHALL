@@ -36,18 +36,14 @@ const Footer: FC = () => {
               <a href="/#/brands" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 Бренды
               </a>
-              <a href="https://maria-nik.github.io/landing-page-store-/" target="_blank" rel="noopener noreferrer" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+              <a href="/#/landing" target="_blank" rel="noopener noreferrer" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
                 О нас
               </a>
-              <a href="/#/contact" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
-                Контакты
+              
+              <a href="/#/faq" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
+                Дополнительная информация
               </a>
-              <a href="/#/help" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
-                Помощь
-              </a>
-              <a href="/#/test-spline" className="block text-sm text-brand-light-gray hover:text-brand-copper transition-colors duration-300">
-                Spline Test
-              </a>
+              
             </nav>
           </div>
 

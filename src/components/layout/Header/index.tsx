@@ -26,11 +26,7 @@ const Header = () => {
     }
   };
 
-  // Export the function for potential use in mobile menu
-  const contactsNavigation = {
-    scrollToContacts,
-    handleContactsClick
-  };
+  
 
   return (
     <header className="sticky top-0 z-20 flex h-[60px] w-full items-center justify-between bg-black px-4 md:px-[5%] shadow-md">
@@ -65,12 +61,19 @@ const Header = () => {
         >
           Бренды
         </Link>
+        
         <button
           onClick={handleContactsClick}
           className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
         >
           Контакты
         </button>
+        <Link
+          to={ROUTES.FAQ}
+          className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
+        >
+          Дополнительная информация
+        </Link>
 
         {/* <button
           onClick={scrollToFooter}

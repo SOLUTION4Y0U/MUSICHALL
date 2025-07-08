@@ -13,26 +13,18 @@ const BrandCard: FC<BrandCardProps> = ({ brand }) => {
       className="glass-card group relative block rounded-xl overflow-hidden transition-all duration-500 hover:-translate-y-1.5"
     >
       {/* Brand Header */}
-      <div className="p-6 bg-gradient-to-br from-brand-black/90 to-brand-black/60">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center space-x-3">
-            {/* Brand Logo Placeholder */}
-            <div className="w-12 h-12 bg-brand-copper/20 rounded-lg flex items-center justify-center">
-              <span className="text-brand-copper font-bold text-lg">
-                {brand.name.charAt(0).toUpperCase()}
-              </span>
-            </div>
-            <div>
-              <h3 className="text-xl font-secondary font-bold text-brand-white group-hover:text-brand-copper transition-colors duration-300">
-                {brand.name}
-              </h3>
-            </div>
+      <div className="p-6 bg-gradient-to-br from-brand-dark/50 to-brand-dark/10">
+        <div className="relative mb-4">
+          {/* Brand Logo Placeholder - Left */}
+          <div className="absolute left-0 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-brand-copper/20 rounded-lg flex items-center justify-center">
+            <span className="text-brand-copper font-bold text-lg">
+              {brand.name.charAt(0).toUpperCase()}
+            </span>
           </div>
-
-          {/* Products Count Badge */}
-          <div className="bg-brand-copper/20 text-brand-copper px-3 py-1 rounded-full text-sm font-medium">
-            {brand.productsCount} товаров
-          </div>
+          {/* Brand Name - Centered across full width */}
+          <h3 className="text-xl font-secondary font-bold text-brand-copper group-hover:text-brand-white transition-colors duration-300 text-center">
+            {brand.name}
+          </h3>
         </div>
 
         {/* Stats */}

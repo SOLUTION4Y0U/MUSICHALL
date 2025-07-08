@@ -6,5 +6,6 @@ export const ROUTES = {
   CART: '/cart',
   CHECKOUT: '/checkout',
   BRANDS: '/brands',
-  BRAND_DETAIL: '/brands/:brandName'
+  BRAND_DETAIL: '/brands/:brandName',
+  FAQ: '/faq'
 };
