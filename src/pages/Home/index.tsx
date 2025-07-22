@@ -117,14 +117,14 @@ const Home = () => {
       {/* Hero Section */}
       <div className="relative flex h-screen">
         {/* Левая часть: текст и кнопки */}
-        <div className="absolute top-[150px] left-0 flex flex-col justify-center px-8 md:px-16 py-12 text-brand-light-gray z-10">
+        <div className="absolute top-[80px] left-0 flex flex-col justify-center px-8 md:px-16 py-12 text-brand-light-gray z-10">
           <img
             src="./logo main light.svg"
             alt="Логотип MusicHall"
             className="mx-auto md:mx-0 mb-6 h-[150px] w-[500px] object-contain"
           />
           <p className="text-lg md:text-6xl mb-6 md:mb-8 text-brand-light-gray/90 leading-relaxed w-2/3">
-            международный поставщик мобильных телефонов, портативной электроники и бытовой техники
+            Международный мультибрендовый дистрибьютор музыкальных инструментов, цифровой и портативной техники, аксессуаров, ручных и электро инструментов
           </p>
           <Link
             to={ROUTES.CATALOG}
@@ -164,8 +164,8 @@ const Home = () => {
             </div>
             <div className="carousel-img h-[30px] w-[150px]">
               <img
-                src="/assets/images/brand-logos/microsoft.svg"
-                alt="Microsoft"
+                src="/assets/images/brand-logos/Nothing.png"
+                alt="Nothing"
                 className="h-full w-full object-contain"
               />
             </div>
@@ -197,28 +197,16 @@ const Home = () => {
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="carousel-img h-[30px] w-[150px]">
-              <img
-                src="/assets/images/brand-logos/jbl.svg.png"
-                alt="JBL"
-                className="h-full w-full object-contain"
-              />
-            </div>
+            
           </div>
         </div>
         <div className="reveal-up carousel-container">
           <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
+            
             <div className="carousel-img h-[30px] w-[150px]">
               <img
-                src="/assets/images/brand-logos/geepas.svg"
-                alt="Geepas"
-                className="h-full w-full object-contain"
-              />
-            </div>
-            <div className="carousel-img h-[30px] w-[150px]">
-              <img
-                src="/assets/images/brand-logos/mi.png"
-                alt="Mi"
+                src="/assets/images/brand-logos/cmf-by-nothing.png.webp"
+                alt="cmf"
                 className="h-full w-full object-contain"
               />
             </div>
@@ -231,8 +219,8 @@ const Home = () => {
             </div>
             <div className="carousel-img h-[30px] w-[150px]">
               <img
-                src="/assets/images/brand-logos/Sony_logo.svg"
-                alt="Sony"
+                src="/assets/images/brand-logos/viwoods.png"
+                alt="Viwoods"
                 className="h-full w-full object-contain"
               />
             </div>
@@ -252,8 +240,8 @@ const Home = () => {
             </div>
             <div className="carousel-img h-[30px] w-[150px]">
               <img
-                src="/assets/images/brand-logos/babyplus.png"
-                alt="Babyplus"
+                src="/assets/images/brand-logos/imiki.png"
+                alt="imiki"
                 className="h-full w-full object-contain"
               />
             </div>

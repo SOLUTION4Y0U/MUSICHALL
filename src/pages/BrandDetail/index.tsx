@@ -19,7 +19,7 @@ const BrandDetail = () => {
   const { categories: allCategories } = useCategories();
   const [selectedCategoryId, setSelectedCategoryId] = useState<string | undefined>(undefined);
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<SortOption>('rating-desc');
+  const [sortBy, setSortBy] = useState<SortOption>('price-desc');
   const [selectedPriceRange, setSelectedPriceRange] = useState('');
   const [imageError, setImageError] = useState(false);
 
@@ -123,7 +123,7 @@ const BrandDetail = () => {
                   {brand.name}
                 </h1>
                 <p className="text-brand-mid-gray">
-                  {brand.productsCount} товаров • Рейтинг {brand.averageRating}
+                  {brand.productsCount} товаров • {brand.categoriesCount} категорий
                 </p>
               </div>
             </div>
@@ -138,9 +138,9 @@ const BrandDetail = () => {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-brand-copper">
-                  {brand.averageRating}
+                  {brand.categoriesCount}
                 </div>
-                <div className="text-sm text-brand-mid-gray">Рейтинг</div>
+                <div className="text-sm text-brand-mid-gray">Категорий</div>
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-brand-copper">

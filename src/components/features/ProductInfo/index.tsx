@@ -19,16 +19,15 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
     title,
     description,
     price,
-    discountPercentage,
-    rating,
+    // discountPercentage,
     stock,
     brand,
   } = product;
 
   // Рассчитываем цену со скидкой если скидка указана
-  const discountedPrice = discountPercentage
-    ? price - (price * discountPercentage / 100)
-    : null;
+  // const discountedPrice = discountPercentage
+  //   ? price - (price * discountPercentage / 100)
+  //   : null;
 
   const handleAddToCart = () => {
     addToCart(product, 1);
@@ -41,22 +40,18 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
 
       <div className="product-info-meta">
         <div className="product-brand">Бренд: <span>{brand}</span></div>
-        <div className="product-rating">
-          <span className="rating-stars">{'★'.repeat(Math.round(rating))}</span>
-          <span className="rating-value">{rating}</span>
-        </div>
       </div>
 
       <div className="product-info-price">
-        {discountedPrice ? (
+        {/* {discountedPrice ? (
           <>
             <span className="discounted-price">${discountedPrice.toFixed(2)}</span>
             <span className="original-price">${price.toFixed(2)}</span>
             <span className="discount-badge">-{discountPercentage}%</span>
           </>
-        ) : (
+        ) : ( */}
           <span className="price">${price.toFixed(2)}</span>
-        )}
+        {/* )} */}
       </div>
 
       <div className="product-stock">

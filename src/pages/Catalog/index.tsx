@@ -19,7 +19,7 @@ const Catalog = () => {
   const [selectedBrands, setSelectedBrands] = useState<string[]>([]);
   const [selectedPriceRange, setSelectedPriceRange] = useState<string>('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [sortBy, setSortBy] = useState<SortOption>('rating-desc');
+  const [sortBy, setSortBy] = useState<SortOption>('price-desc');
 
   const { products, loading: productsLoading } = useProducts({
     categoryId: selectedCategoryId || undefined,
