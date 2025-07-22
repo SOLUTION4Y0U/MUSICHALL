@@ -178,7 +178,9 @@ const CatalogFilters = ({
                 >
                   <span className="text-brand-light-gray">Все категории</span>
                 </div>
-                {categories.map((category) => (
+                {categories
+                  .sort((a, b) => a.name.localeCompare(b.name))
+                  .map((category) => (
                   <div
                     key={category.id}
                     className="px-4 py-3 hover:bg-brand-dark cursor-pointer transition-colors duration-150"
