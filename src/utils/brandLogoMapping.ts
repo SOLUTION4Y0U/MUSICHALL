@@ -10,8 +10,8 @@ export const getBrandLogo = (brandName: string): string | null => {
     'EMTOP': '/assets/images/brand-logos/emtop.svg',
     'MusicHall': '/assets/images/brand-logos/music_hall.svg',
     'ON': '/assets/images/brand-logos/onmusic_full_green.svg',
-    'ON home': '/assets/images/brand-logos/on.png',
-    'ON Kitchen': '/assets/images/brand-logos/on_kitchen.png',
+    // 'ON home': '/assets/images/brand-logos/on.png',
+    // 'ON Kitchen': '/assets/images/brand-logos/on_kitchen.png',
     'Kyvol': '/assets/images/brand-logos/kyvol.png',
     'imiki': '/assets/images/brand-logos/imiki.png',
     'viwoods': '/assets/images/brand-logos/viwoods.png',
@@ -25,6 +25,7 @@ export const getBrandLogo = (brandName: string): string | null => {
     'Airbnb': '/assets/images/brand-logos/airbnb.svg',
     'Reddit': '/assets/images/brand-logos/reddit.svg',
     'Stripe': '/assets/images/brand-logos/stripe.svg',
+    'CMF by Nothing': '/assets/images/brand-logos/cmf-by-nothing.png.webp',
   };
 
   // Try exact match first

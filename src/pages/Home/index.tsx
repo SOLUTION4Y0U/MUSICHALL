@@ -124,7 +124,7 @@ const Home = () => {
             className="mx-auto md:mx-0 mb-6 h-[150px] w-[500px] object-contain"
           />
           <p className="text-lg md:text-6xl mb-6 md:mb-8 text-brand-light-gray/90 leading-relaxed w-2/3">
-            Международный мультибрендовый дистрибьютор музыкальных инструментов, цифровой и портативной техники, аксессуаров, ручных и электро инструментов
+            Международный мультибрендовый дистрибьютор музыкальных инструментов, цифровой и портативной техники, аксессуаров, ручных и электроинструментов
           </p>
           <Link
             to={ROUTES.CATALOG}
@@ -155,6 +155,7 @@ const Home = () => {
 
         <div className="reveal-up carousel-container mt-10">
           <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
+            {/* First row of brands - duplicated for infinite scroll */}
             <div className="carousel-img h-[30px] w-[150px]">
               <img
                 src="/assets/images/brand-logos/philips.svg"
@@ -162,7 +163,7 @@ const Home = () => {
                 className="h-full w-full object-contain"
               />
             </div>
-            <div className="carousel-img h-[30px] w-[150px]">
+            <div className="carousel-img h-[50px] w-[180px] mb-[-40px]">
               <img
                 src="/assets/images/brand-logos/Nothing.png"
                 alt="Nothing"
@@ -197,12 +198,97 @@ const Home = () => {
                 className="h-full w-full object-contain"
               />
             </div>
-            
+            {/* Duplicate the same brands for seamless loop */}
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/philips.svg"
+                alt="Philips"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[50px] w-[180px] mb-[-40px]">
+              <img
+                src="/assets/images/brand-logos/Nothing.png"
+                alt="Nothing"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/emtop.svg"
+                alt="EMTOP"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Garmin.png"
+                alt="Garmin"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/music_hall.svg"
+                alt="MusicHall"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/onmusic_full_green.svg"
+                alt="ON"
+                className="h-full w-full object-contain"
+              />
+            </div>
           </div>
         </div>
         <div className="reveal-up carousel-container">
           <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
-            
+            {/* Second row of brands - duplicated for infinite scroll */}
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/cmf-by-nothing.png.webp"
+                alt="cmf"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/kyvol.png"
+                alt="Kyvol"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/viwoods.png"
+                alt="Viwoods"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/apple.svg"
+                alt="Apple"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/Samsung.png"
+                alt="Samsung"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            <div className="carousel-img h-[30px] w-[150px]">
+              <img
+                src="/assets/images/brand-logos/imiki.png"
+                alt="imiki"
+                className="h-full w-full object-contain"
+              />
+            </div>
+            {/* Duplicate the same brands for seamless loop */}
             <div className="carousel-img h-[30px] w-[150px]">
               <img
                 src="/assets/images/brand-logos/cmf-by-nothing.png.webp"
