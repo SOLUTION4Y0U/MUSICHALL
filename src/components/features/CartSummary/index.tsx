@@ -11,17 +11,17 @@ interface CartSummaryProps {
 const CartSummary: FC<CartSummaryProps> = ({ cart, onCheckout }) => {
   const { totalItems, totalPrice } = cart;
 
-  const totalDiscount = cart.items.reduce((sum, item) => {
-    if (item.product.discountPercentage) {
-      const fullPrice = item.product.price * item.quantity;
-      const discountedPrice = (item.product.price -
-        (item.product.price * item.product.discountPercentage / 100)) * item.quantity;
-      return sum + (fullPrice - discountedPrice);
-    }
-    return sum;
-  }, 0);
+  // const totalDiscount = cart.items.reduce((sum, item) => {
+  //   if (item.product.discountPercentage) {
+  //     const fullPrice = item.product.price * item.quantity;
+  //     const discountedPrice = (item.product.price -
+  //       (item.product.price * item.product.discountPercentage / 100)) * item.quantity;
+  //     return sum + (fullPrice - discountedPrice);
+  //   }
+  //   return sum;
+  // }, 0);
 
-  const originalPrice = totalPrice + totalDiscount;
+  // const originalPrice = totalPrice + totalDiscount;
 
   return (
     <div className="bg-brand-dark p-6 lg:p-8 rounded-xl shadow-lg border border-brand-mid-gray/20">
@@ -32,19 +32,19 @@ const CartSummary: FC<CartSummaryProps> = ({ cart, onCheckout }) => {
       <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
         <div className="flex justify-between items-center text-brand-light-gray">
           <span className="text-base lg:text-lg">Товары ({totalItems}):</span>
-          <span className="font-medium text-base lg:text-lg">${originalPrice.toFixed(2)}</span>
+          <span className="font-medium text-base lg:text-lg">{totalPrice.toFixed(2)}</span>
         </div>
 
-        {totalDiscount > 0 && (
+        {/* {totalDiscount > 0 && (
           <div className="flex justify-between items-center text-green-400">
             <span className="text-base lg:text-lg">Ваша скидка:</span>
-            <span className="font-medium text-base lg:text-lg">-${totalDiscount.toFixed(2)}</span>
+            <span className="font-medium text-base lg:text-lg">-{totalDiscount.toFixed(2)}</span>
           </div>
-        )}
+        )} */}
 
         <div className="flex justify-between items-center text-brand-white font-bold text-lg lg:text-xl pt-4 border-t border-brand-mid-gray/20">
           <span>Итого:</span>
-          <span>${totalPrice.toFixed(2)}</span>
+          <span>{totalPrice.toFixed(2)}</span>
         </div>
       </div>
 

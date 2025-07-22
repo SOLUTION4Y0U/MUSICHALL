@@ -21,7 +21,7 @@ def get_product_list():
             "visibility": "ALL"
         },
         "last_id": "",
-        "limit": 400
+        "limit": 450
     }
 
     try:
@@ -128,7 +128,7 @@ def get_product_attributes_for_active_products(active_products):
                 "offer_id": [product['offer_id']],
                 "visibility": "ALL"
             },
-            "limit": 400,
+            "limit": 450,
             "sort_dir": "ASC"
         }
 
@@ -168,7 +168,7 @@ def get_product_attributes_for_active_products(active_products):
 
 
 def get_product_prices(product_ids):
-    """Получает цены товаров"""
+    """Получает все данные о ценах товаров"""
     url = "https://api-seller.ozon.ru/v5/product/info/prices"
     headers = {
         "Client-Id": "69819",
@@ -180,7 +180,7 @@ def get_product_prices(product_ids):
             "product_id": product_ids,
             "visibility": "ALL"
         },
-        "limit": 400
+        "limit": 450
     }
     logging.basicConfig(
         level=logging.INFO,
@@ -204,18 +204,134 @@ def get_product_prices(product_ids):
                 logging.error("✗ Ошибка: Нет данных о ценах (ключ 'items' отсутствует или пуст).")
                 return {}
 
-            product_prices = {}
+            product_prices_data = {}
             for item in prices_response['items']:
                 product_id = item.get('product_id')
-                price_data = item.get('price', {})
-                net_price = price_data.get('price', None)  # Берем значение price
+                offer_id = item.get('offer_id')
+                
+                if not product_id:
+                    print(f"✗ Ошибка: product_id отсутствует в элементе")
+                    continue
 
-                if product_id and net_price is not None:
-                    product_prices[product_id] = net_price
-                else:
-                    print(f"✗ Ошибка при обработке товара с product_id: {product_id}. Цена не найдена.")
-            print(product_prices)
-            return product_prices
+                # Извлекаем все данные о ценах
+                price_info = {
+                    'product_id': product_id,
+                    'offer_id': offer_id,
+                    'acquiring': item.get('acquiring', 0),
+                    'volume_weight': item.get('volume_weight', 0),
+                    
+                    # Данные о ценах
+                    'price': {
+                        'auto_action_enabled': item.get('price', {}).get('auto_action_enabled', False),
+                        'auto_add_to_ozon_actions_list_enabled': item.get('price', {}).get('auto_add_to_ozon_actions_list_enabled', False),
+                        'currency_code': item.get('price', {}).get('currency_code', 'RUB'),
+                        'marketing_price': item.get('price', {}).get('marketing_price', 0),
+                        'marketing_seller_price': item.get('price', {}).get('marketing_seller_price', 0),
+                        'min_price': item.get('price', {}).get('min_price', 0),
+                        'net_price': item.get('price', {}).get('net_price', 0),
+                        'old_price': item.get('price', {}).get('old_price', 0),
+                        'price': item.get('price', {}).get('price', 0),
+                        'retail_price': item.get('price', {}).get('retail_price', 0),
+                        'vat': item.get('price', {}).get('vat', 0)
+                    },
+                    
+                    # Комиссии
+                    'commissions': {
+                        'fbo_deliv_to_customer_amount': item.get('commissions', {}).get('fbo_deliv_to_customer_amount', 0),
+                        'fbo_direct_flow_trans_max_amount': item.get('commissions', {}).get('fbo_direct_flow_trans_max_amount', 0),
+                        'fbo_direct_flow_trans_min_amount': item.get('commissions', {}).get('fbo_direct_flow_trans_min_amount', 0),
+                        'fbo_return_flow_amount': item.get('commissions', {}).get('fbo_return_flow_amount', 0),
+                        'fbs_deliv_to_customer_amount': item.get('commissions', {}).get('fbs_deliv_to_customer_amount', 0),
+                        'fbs_direct_flow_trans_max_amount': item.get('commissions', {}).get('fbs_direct_flow_trans_max_amount', 0),
+                        'fbs_direct_flow_trans_min_amount': item.get('commissions', {}).get('fbs_direct_flow_trans_min_amount', 0),
+                        'fbs_first_mile_max_amount': item.get('commissions', {}).get('fbs_first_mile_max_amount', 0),
+                        'fbs_first_mile_min_amount': item.get('commissions', {}).get('fbs_first_mile_min_amount', 0),
+                        'fbs_return_flow_amount': item.get('commissions', {}).get('fbs_return_flow_amount', 0),
+                        'sales_percent_fbo': item.get('commissions', {}).get('sales_percent_fbo', 0),
+                        'sales_percent_fbs': item.get('commissions', {}).get('sales_percent_fbs', 0)
+                    },
+                    
+                    # Маркетинговые акции
+                    'marketing_actions': {
+                        'actions': item.get('marketing_actions', {}).get('actions', []),
+                        'current_period_from': item.get('marketing_actions', {}).get('current_period_from', ''),
+                        'current_period_to': item.get('marketing_actions', {}).get('current_period_to', ''),
+                        'ozon_actions_exist': item.get('marketing_actions', {}).get('ozon_actions_exist', False)
+                    },
+                    
+                    # Индексы цен
+                    'price_indexes': {
+                        'color_index': item.get('price_indexes', {}).get('color_index', 'WITHOUT_INDEX'),
+                        'external_index_data': {
+                            'min_price': item.get('price_indexes', {}).get('external_index_data', {}).get('min_price', 0),
+                            'min_price_currency': item.get('price_indexes', {}).get('external_index_data', {}).get('min_price_currency', ''),
+                            'price_index_value': item.get('price_indexes', {}).get('external_index_data', {}).get('price_index_value', 0)
+                        },
+                        'ozon_index_data': {
+                            'min_price': item.get('price_indexes', {}).get('ozon_index_data', {}).get('min_price', 0),
+                            'min_price_currency': item.get('price_indexes', {}).get('ozon_index_data', {}).get('min_price_currency', ''),
+                            'price_index_value': item.get('price_indexes', {}).get('ozon_index_data', {}).get('price_index_value', 0)
+                        },
+                        'self_marketplaces_index_data': {
+                            'min_price': item.get('price_indexes', {}).get('self_marketplaces_index_data', {}).get('min_price', 0),
+                            'min_price_currency': item.get('price_indexes', {}).get('self_marketplaces_index_data', {}).get('min_price_currency', ''),
+                            'price_index_value': item.get('price_indexes', {}).get('self_marketplaces_index_data', {}).get('price_index_value', 0)
+                        }
+                    }
+                }
+                
+                product_prices_data[product_id] = price_info
+                print(f"✓ Обработан товар {product_id} (offer_id: {offer_id})")
+                print(f"  Основная цена: {price_info['price']['price']} {price_info['price']['currency_code']}")
+                print(f"  Старая цена: {price_info['price']['old_price']} {price_info['price']['currency_code']}")
+                print(f"  Маркетинговая цена: {price_info['price']['marketing_price']} {price_info['price']['currency_code']}")
+                
+                # Подробный вывод всех данных
+                print(f"\n📊 ПОЛНЫЕ ДАННЫЕ О ЦЕНАХ ДЛЯ ТОВАРА {product_id}:")
+                print("=" * 60)
+                
+                # Цены
+                print("💰 ЦЕНЫ:")
+                for key, value in price_info['price'].items():
+                    print(f"    {key}: {value}")
+                
+                # Комиссии
+                print("\n💸 КОМИССИИ:")
+                for key, value in price_info['commissions'].items():
+                    print(f"    {key}: {value}")
+                
+                # Маркетинговые акции
+                print("\n🎯 МАРКЕТИНГОВЫЕ АКЦИИ:")
+                print(f"    ozon_actions_exist: {price_info['marketing_actions']['ozon_actions_exist']}")
+                print(f"    current_period_from: {price_info['marketing_actions']['current_period_from']}")
+                print(f"    current_period_to: {price_info['marketing_actions']['current_period_to']}")
+                print(f"    actions_count: {len(price_info['marketing_actions']['actions'])}")
+                
+                # Индексы цен
+                print("\n📈 ИНДЕКСЫ ЦЕН:")
+                print(f"    color_index: {price_info['price_indexes']['color_index']}")
+                
+                print("    ozon_index_data:")
+                for key, value in price_info['price_indexes']['ozon_index_data'].items():
+                    print(f"      {key}: {value}")
+                
+                print("    self_marketplaces_index_data:")
+                for key, value in price_info['price_indexes']['self_marketplaces_index_data'].items():
+                    print(f"      {key}: {value}")
+                
+                print("    external_index_data:")
+                for key, value in price_info['price_indexes']['external_index_data'].items():
+                    print(f"      {key}: {value}")
+                
+                # Дополнительные данные
+                print(f"\n📦 ДОПОЛНИТЕЛЬНЫЕ ДАННЫЕ:")
+                print(f"    acquiring: {price_info['acquiring']}")
+                print(f"    volume_weight: {price_info['volume_weight']}")
+                
+                print("=" * 60)
+            
+            print(f"\n✓ Обработано товаров: {len(product_prices_data)}")
+            return product_prices_data
         else:
             try:
                 error_data = response.json()
@@ -364,16 +480,18 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 # Можно добавить другие атрибуты по их ID если нужно
 
 
-            # Извлекаем цену из marketing_seller_price или retail_price
-            # price = item.get('marketing_seller_price', item.get('retail_price', 999.99))
             # Извлекаем product_id
             product_id = item.get('product_id')
-            product_ids = [str(product['product_id']) for product in active_products]
-
-            # Получаем цены товаров
-            prices_response = get_product_prices(product_ids)
+            
+            # Получаем цены товаров (если еще не получены)
+            if 'prices_response' not in locals():
+                product_ids = [str(product['product_id']) for product in active_products]
+                prices_response = get_product_prices(product_ids)
+            
             # Ищем цену в словаре product_prices
-            price = prices_response.get(product_id, 0)
+            price_data = prices_response.get(product_id, {})
+            price = price_data.get('price', {}).get('price', 0) if price_data else 0
+            
             # Логируем цену для отладки
             print(f"✓ Товар {len(products)}: {name[:50]}... - цена: {price}")
             # Создаем товар с ID по порядку

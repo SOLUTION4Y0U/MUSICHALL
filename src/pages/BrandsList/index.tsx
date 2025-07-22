@@ -79,9 +79,9 @@ const BrandsList = () => {
           </div>
           <div className="glass-card p-6 text-center">
             <div className="text-3xl font-bold text-brand-copper mb-2">
-              {brandStats.topBrands.length > 0 ? brandStats.topBrands[0].averageRating : 0}
+              {brandStats.totalCategories}
             </div>
-            <div className="text-brand-mid-gray">Высший рейтинг</div>
+            <div className="text-brand-mid-gray">Категорий</div>
           </div>
         </div>
 

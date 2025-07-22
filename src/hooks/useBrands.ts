@@ -19,7 +19,7 @@ export const useBrands = (): UseBrandsResult => {
       // Группируем продукты по брендам
       const brandMap = new Map<string, {
         products: typeof mockProducts;
-        totalRating: number;
+        categories: Set<string>;
         minPrice: number;
         maxPrice: number;
       }>();
@@ -29,7 +29,7 @@ export const useBrands = (): UseBrandsResult => {
         if (!brandMap.has(brandName)) {
           brandMap.set(brandName, {
             products: [],
-            totalRating: 0,
+            categories: new Set(),
             minPrice: product.price,
             maxPrice: product.price
           });
@@ -37,7 +37,7 @@ export const useBrands = (): UseBrandsResult => {
 
         const brandData = brandMap.get(brandName)!;
         brandData.products.push(product);
-        brandData.totalRating += product.rating;
+        brandData.categories.add(product.category);
         brandData.minPrice = Math.min(brandData.minPrice, product.price);
         brandData.maxPrice = Math.max(brandData.maxPrice, product.price);
       });
@@ -47,7 +47,7 @@ export const useBrands = (): UseBrandsResult => {
         id: name.toLowerCase().replace(/\s+/g, '-'),
         name,
         productsCount: data.products.length,
-        averageRating: Number((data.totalRating / data.products.length).toFixed(1)),
+        categoriesCount: data.categories.size,
         priceRange: {
           min: data.minPrice,
           max: data.maxPrice
@@ -62,11 +62,22 @@ export const useBrands = (): UseBrandsResult => {
     }
   }, []);
 
-  const brandStats = useMemo((): BrandStats => ({
-    totalBrands: brands.length,
-    totalProducts: brands.reduce((sum, brand) => sum + brand.productsCount, 0),
-    topBrands: brands.slice(0, 5)
-  }), [brands]);
+  const brandStats = useMemo((): BrandStats => {
+    // Собираем все уникальные категории из всех брендов
+    const allCategories = new Set<string>();
+    brands.forEach(brand => {
+      // Для каждого бренда добавляем его категории
+      const brandProducts = mockProducts.filter(product => product.brand === brand.name);
+      brandProducts.forEach(product => allCategories.add(product.category));
+    });
+
+    return {
+      totalBrands: brands.length,
+      totalProducts: brands.reduce((sum, brand) => sum + brand.productsCount, 0),
+      totalCategories: allCategories.size,
+      topBrands: brands.slice(0, 5)
+    };
+  }, [brands]);
 
   const getBrandByName = (name: string): Brand | undefined => {
     return brands.find(brand =>

@@ -4,7 +4,7 @@ export interface Brand {
   description?: string;
   logo?: string;
   productsCount: number;
-  averageRating: number;
+  categoriesCount: number;
   priceRange: {
     min: number;
     max: number;
@@ -14,5 +14,6 @@ export interface Brand {
 export interface BrandStats {
   totalBrands: number;
   totalProducts: number;
+  totalCategories: number;
   topBrands: Brand[];
 }
