@@ -8,8 +8,12 @@ import './index.css'
 import WebApp from '@twa-dev/sdk'
 import { AppProvider } from './context/AppContext'
 import { Router } from './router'
+import { useUTMTracking } from './hooks/useUTMTracking'
 
 function App() {
+  // Инициализируем UTM-отслеживание
+  const { trackPageView } = useUTMTracking();
+
   useEffect(() => {
     // Инициализация Telegram Mini App
     WebApp.ready()
@@ -39,11 +43,14 @@ function App() {
     const originalListener = mediaQuery.onchange
     mediaQuery.onchange = null
 
+    // Отслеживаем просмотр главной страницы
+    trackPageView('Главная страница');
+
     return () => {
       // Восстанавливаем слушатель при размонтировании (хотя это не должно происходить)
       mediaQuery.onchange = originalListener
     }
-  }, [])
+  }, [trackPageView])
 
   return (
     <AppProvider>

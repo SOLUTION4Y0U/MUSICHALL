@@ -7,5 +7,6 @@ export const ROUTES = {
   CHECKOUT: '/checkout',
   BRANDS: '/brands',
   BRAND_DETAIL: '/brands/:brandName',
-  FAQ: '/faq'
+  FAQ: '/faq',
+  UTM_LINKS: '/utm-links'
 };

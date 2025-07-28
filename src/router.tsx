@@ -11,6 +11,7 @@ import Checkout from './pages/Checkout';
 import BrandsList from './pages/BrandsList';
 import BrandDetail from './pages/BrandDetail';
 import FAQ from './pages/FAQ';
+import UTMLinksPage from './pages/UTMLinks';
 import AppLayout from './components/layout/AppLayout';
 // TEST: Import TestSpline page
 import TestSpline from './pages/TestSpline';
@@ -55,6 +56,10 @@ const router = createHashRouter([
       {
         path: ROUTES.FAQ,
         element: <FAQ />,
+      },
+      {
+        path: ROUTES.UTM_LINKS,
+        element: <UTMLinksPage />,
       },
       // TEST: Add /test-spline route
       {
