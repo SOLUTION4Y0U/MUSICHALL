@@ -43,7 +43,7 @@ export const parseUTMParamsFromHash = (hash: string): UTMParams => {
     const hashWithoutHash = hash.startsWith('#') ? hash.slice(1) : hash;
     
     // Разделяем путь и параметры
-    const [path, queryString] = hashWithoutHash.split('?');
+    const [queryString] = hashWithoutHash.split('?');
     
     if (!queryString) return {};
     
