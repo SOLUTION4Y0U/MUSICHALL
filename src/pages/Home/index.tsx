@@ -117,27 +117,30 @@ const Home = () => {
       {/* Hero Section */}
       <div className="relative flex h-screen">
         {/* Левая часть: текст и кнопки */}
-        <div className="absolute top-[80px] left-0 flex flex-col justify-center px-8 md:px-16 py-12 text-brand-light-gray z-10">
-          <img
-            src="./logo main light.svg"
-            alt="Логотип MusicHall"
-            className="mx-auto md:mx-0 mb-6 h-[150px] w-[500px] object-contain"
-          />
-          <p className="text-lg md:text-6xl mb-6 md:mb-8 text-brand-light-gray/90 leading-relaxed w-2/3">
-            Международный мультибрендовый дистрибьютор музыкальных инструментов, цифровой и портативной техники, аксессуаров, ручных и электроинструментов
-          </p>
-          <Link
-            to={ROUTES.CATALOG}
-            className="inline-flex items-center justify-center rounded-full bg-brand-white text-brand-black font-bold text-sm md:text-3xl px-6 py-3 md:px-8 md:py-4 w-1/2 transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-brand-dark-copper shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2"
-          >
-            <span className="hidden md:inline">Перейти в каталог</span>
-            <span className="md:hidden">Каталог</span>
-          </Link>
-          
+        <div className="absolute top-[60px] md:top-[80px] left-0 flex flex-col justify-start md:justify-start px-8 md:px-16 py-8 md:py-12 text-brand-light-gray z-10 h-[calc(100vh-60px)] md:h-auto">
+          <div className="mt-0 md:mt-0">
+            <img
+              src="./logo main light.svg"
+              alt="Логотип MusicHall"
+              className="mx-auto md:mx-0 mb-6 h-[150px] w-[500px] object-contain"
+            />
+            <p className="text-lg md:text-6xl mb-6 md:mb-8 text-brand-light-gray/90 leading-relaxed w-full md:w-2/3 mx-auto md:mx-0 text-center md:text-left">
+              Международный мультибрендовый дистрибьютор музыкальных инструментов, цифровой и портативной техники, аксессуаров, ручных и электроинструментов
+            </p>
+            <div className="flex justify-center md:justify-start">
+              <Link
+                to={ROUTES.CATALOG}
+                className="inline-flex items-center justify-center rounded-full bg-brand-white text-brand-black font-bold text-sm md:text-3xl px-6 py-3 md:px-8 md:py-4 w-1/2 md:w-auto transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-brand-dark-copper shadow-lg hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-copper focus:ring-offset-2"
+              >
+                <span className="hidden md:inline">Перейти в каталог</span>
+                <span className="md:hidden">Каталог</span>
+              </Link>
+            </div>
+          </div>
         </div>
 
-        {/* Правая часть: Spline компонент */}
-        <div className="relative w-full h-full overflow-hidden">
+        {/* Правая часть: Spline компонент - скрыт на мобильных */}
+        <div className="hidden md:block relative w-full h-full overflow-hidden">
           <div className="absolute top-[-50px] left-[400px] h-full w-[calc(100%-400px)]">
             <SplineComponent
               scene="https://prod.spline.design/VOvM5rREhyEgRYbe/scene.splinecode" 
@@ -148,12 +151,12 @@ const Home = () => {
 
 
       {/* Brands Section */}
-      <section className="relative flex w-full max-w-[100vw] flex-col place-content-center place-items-center overflow-hidden p-8">
+      <section className="relative flex w-full max-w-[100vw] flex-col place-content-center place-items-center overflow-hidden p-2 md:p-8 -mt-40 md:mt-8">
         <h2 className="reveal-up text-3xl max-md:text-xl">
           Наши бренды
         </h2>
 
-        <div className="reveal-up carousel-container mt-10">
+        <div className="reveal-up carousel-container mt-4 md:mt-10">
           <div className="carousel lg:w-place-content-center mt-6 flex w-full gap-5 max-md:gap-2">
             {/* First row of brands - duplicated for infinite scroll */}
             <div className="carousel-img h-[30px] w-[150px]">
@@ -368,14 +371,14 @@ const Home = () => {
 
       
       {/* Contacts Section */}
-      <section className="mt-5 flex min-h-[80vh] w-full flex-col place-content-center place-items-center p-[2%]">
+      <section className="mt-5 flex min-h-[80vh] w-full flex-col place-content-center place-items-center p-2 md:p-[2%]">
         <h3 className="text-4xl font-medium text-gray-200 max-md:text-2xl" id="contacts">
           Контакты
         </h3>
-        <div className="mt-6 flex max-w-[90%] place-content-center gap-8 max-lg:flex-col">
+        <div className="mt-6 flex w-full max-w-[90%] place-content-center gap-4 md:gap-8 max-lg:flex-col">
           
 
-          <div className="reveal-up flex h-fit w-[600px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4 max-lg:w-[400px]">
+          <div className="reveal-up flex h-fit w-full max-w-[600px] break-inside-avoid flex-col gap-4 rounded-lg border-[1px] border-outlineColor bg-secondary p-4">
             <p className="mt-4 text-gray-300">
               По вопросам сотрудничества:
             </p>
@@ -395,7 +398,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-          <div className="reveal-up overflow-hidden rounded-xl shadow-lg w-[800px] h-[400px] max-lg:w-[320px] max-lg:h-[300px]">
+          <div className="reveal-up overflow-hidden rounded-xl shadow-lg w-full max-w-[800px] h-[300px] md:h-[400px]">
           <iframe 
             src="https://yandex.ru/map-widget/v1/?um=constructor%3A4d02973b5d70e6f56f4f3d16a840a1ef04d1d03e6faa85d6a9046b69d3d01186&amp;source=constructor" 
             width="800" 

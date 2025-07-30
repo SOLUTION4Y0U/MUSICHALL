@@ -65,7 +65,7 @@ const CatalogFilters = ({
     if (selectedBrands.length === 0) return 'Выберите бренды';
     if (selectedBrands.length === 1) return selectedBrands[0];
     if (selectedBrands.length <= 2) return selectedBrands.join(', ');
-    return `${selectedBrands[0]}, ${selectedBrands[1]} +${selectedBrands.length - 2}`;
+    return `{selectedBrands[0]}, ${selectedBrands[1]} +${selectedBrands.length - 2}`;
   };
 
   const getCategoryDisplayText = () => {
