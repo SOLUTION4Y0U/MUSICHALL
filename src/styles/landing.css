@@ -206,7 +206,7 @@ header > .collapsible-header {
 }
 
 .faq .content.active {
-  max-height: 500px;
+  max-height: 800px;
   padding: 15px 18px;
 }
 
@@ -217,6 +217,16 @@ header > .collapsible-header {
 
 /* Mobile styles */
 @media not all and (min-width: 1024px) {
+  /* FAQ mobile improvements */
+  .faq .content.active {
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .faq .content {
+    overflow-y: auto;
+  }
+  
   header .collapsible-header {
     position: fixed;
     right: 0px;

@@ -5,10 +5,103 @@
 
 body {
   font-family: 'Roboto Flex', sans-serif;
+  /* Mobile optimizations */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Prevent horizontal scroll on mobile */
+  overflow-x: hidden;
+  /* Smooth scrolling for iOS */
+  -webkit-overflow-scrolling: touch;
 }
 * {
   font-family: 'Roboto Flex', sans-serif;
 }
+
+/* Mobile viewport optimizations */
+html {
+  /* Prevent zoom on input focus in iOS */
+  -webkit-text-size-adjust: 100%;
+  /* Smooth scrolling */
+  scroll-behavior: smooth;
+}
+
+/* Mobile-specific optimizations (only for mobile devices) */
+@media (max-width: 768px) {
+  /* Touch-friendly interactions */
+  @media (hover: none) and (pointer: coarse) {
+    /* Increase touch targets on mobile */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Improve touch feedback */
+    .btn-primary, .btn-secondary, .btn-outline {
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary:active, .btn-secondary:active, .btn-outline:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Mobile-specific scrollbar improvements */
+  .carousel {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Smooth horizontal scrolling for brand carousel */
+  .carousel-container {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+
+  /* Mobile-specific animations and transitions */
+  .card {
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: none;
+  }
+  
+  .card:hover .card-image {
+    transform: none;
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Mobile-specific layout adjustments */
+  .telegram-safe-area {
+    padding-bottom: env(safe-area-inset-bottom, 1rem);
+  }
+
+  /* Mobile-specific text adjustments */
+  h1, h2, h3, h4, h5, h6 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Mobile-specific image optimizations */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 /* @font-face {
   font-family: 'Gotham Pro';
   src: url('/fonts/GothamPro.woff2') format('woff2'),
@@ -265,4 +358,12 @@ body {
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.3),
     0 0 12px rgba(63, 161, 111, 0.1);
+}
+
+/* Ensure proper rendering on high DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
 }

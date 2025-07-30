@@ -56,8 +56,8 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white">
-      <div className="max-w-7xl mx-auto p-4 md:p-6 lg:p-8">
+    <div className="min-h-screen bg-brand-black text-brand-white md:px-[5%]">
+      <div className="py-6 lg:py-8">
         <div className="mb-6 lg:mb-8">
           <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-4">Корзина</h1>
           <button
