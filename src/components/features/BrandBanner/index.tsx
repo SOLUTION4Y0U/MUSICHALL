@@ -43,7 +43,7 @@ const BrandBanner: React.FC<BrandBannerProps> = ({
       style={customHeight ? { height: customHeight } : undefined}
     >
       {/* Left side: Brand content */}
-      <div className="flex flex-col justify-center h-full pl-8 md:pl-12 pr-4 md:pr-8 w-1/2 z-10">
+      <div className="flex flex-col justify-center h-full pl-8 md:pl-12 pr-4 md:pr-8 w-full md:w-1/2 z-10">
         
         {/* Animated categories */}
         <div className="relative min-h-[7rem] md:min-h-[10rem] flex items-center">
@@ -61,8 +61,8 @@ const BrandBanner: React.FC<BrandBannerProps> = ({
           </div>
         </div>
       </div>
-      {/* Right side: Spline planet (wide, left-aligned) */}
-      <div className="w-1/2 h-full relative overflow-hidden flex items-center justify-end">
+      {/* Right side: Spline planet (wide, left-aligned) - hidden on mobile */}
+      <div className="hidden md:block w-1/2 h-full relative overflow-hidden flex items-center justify-end">
         <div style={{ width: 1000, height: 500, borderRadius: 16, background: 'transparent' }}>
           <SplineComponent
             scene="https://prod.spline.design/VOvM5rREhyEgRYbe/scene.splinecode"

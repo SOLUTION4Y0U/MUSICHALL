@@ -97,9 +97,9 @@ const FAQ = () => {
                 Да, вы можете найти наши магазины на следующих маркетплейсах:
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pb-4">
                 {/* Ozon */}
-                <div className="flex flex-col items-center p-4 rounded-lg border border-gray-600 bg-black">
+                <div className="flex flex-col items-center p-4 rounded-lg border border-gray-600 bg-black min-h-[200px]">
                   <div className="w-24 h-16 mb-3 flex items-center justify-center">
                     <img 
                       src="/logos_partners/1200px-ОЗОН_ЛОГО.png" 
@@ -115,7 +115,7 @@ const FAQ = () => {
                   >
                     Перейти в магазин
                   </a>
-                  <div className="w-24 h-24 rounded-lg flex items-center justify-center">
+                  <div className="w-24 h-24 md:w-24 md:h-24 rounded-lg flex items-center justify-center">
                     <img 
                       src="/QR-codes/qr-code-ozon.png" 
                       alt="QR код Ozon" 
@@ -125,7 +125,7 @@ const FAQ = () => {
                 </div>
 
                 {/* Wildberries */}
-                <div className="flex flex-col items-center p-4 rounded-lg border border-gray-600 bg-black">
+                <div className="flex flex-col items-center p-4 rounded-lg border border-gray-600 bg-black min-h-[200px]">
                   <div className="w-24 h-16 mb-3 flex items-center justify-center">
                     <img 
                       src="/logos_partners/Wildberries_Logo.png" 
@@ -141,7 +141,7 @@ const FAQ = () => {
                   >
                     Перейти в магазин
                   </a>
-                  <div className="w-24 h-24 rounded-lg flex items-center justify-center">
+                  <div className="w-24 h-24 md:w-24 md:h-24 rounded-lg flex items-center justify-center">
                     <img 
                       src="/QR-codes/qr-code-wildberries.png" 
                       alt="QR код Wildberries" 
@@ -151,7 +151,7 @@ const FAQ = () => {
                 </div>
 
                 {/* Яндекс.Маркет */}
-                <div className="flex flex-col items-center p-4 rounded-lg border border-gray-600 bg-black">
+                <div className="flex flex-col items-center p-4 rounded-lg border border-gray-600 bg-black min-h-[200px]">
                   <div className="w-30 h-16 mb-3 flex items-center justify-center">
                     <img 
                       src="/logos_partners/yandex_market.png" 
@@ -167,7 +167,7 @@ const FAQ = () => {
                   >
                     Перейти в магазин
                   </a>
-                  <div className="w-24 h-24 rounded-lg flex items-center justify-center">
+                  <div className="w-24 h-24 md:w-24 md:h-24 rounded-lg flex items-center justify-center">
                     <img 
                       src="/QR-codes/qr-code-yandex.png" 
                       alt="QR код Яндекс.Маркет" 

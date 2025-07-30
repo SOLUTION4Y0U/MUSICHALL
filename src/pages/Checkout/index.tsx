@@ -98,7 +98,7 @@ const CheckoutPage = () => {
   }
 
   return (
-    <div className="space-y-8 bg-brand-black">
+    <div className="space-y-8 bg-brand-black md:px-[5%]">
       <div className="text-center">
         <h1 className="text-3xl font-secondary font-bold text-brand-white mb-2">
           Оформление заказа

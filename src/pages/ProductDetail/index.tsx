@@ -130,7 +130,7 @@ const ProductDetail = () => {
   //   : null;
 
   return (
-    <div className="space-y-8 bg-brand-black">
+    <div className="space-y-8 bg-brand-black md:px-[5%]">
       {/* Breadcrumb */}
       <nav className="text-sm">
         <ol className="flex items-center space-x-2 text-brand-mid-gray">

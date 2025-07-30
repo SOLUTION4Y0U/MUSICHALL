@@ -85,7 +85,7 @@ const BrandDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-brand-black text-brand-white">
+    <div className="min-h-screen bg-brand-black text-brand-white md:px-[5%]">
       {/* Header */}
       <div className="bg-gradient-to-br from-brand-black/90 to-brand-black/60 border-b border-brand-mid-gray/20">
         <div className="max-w-6xl mx-auto px-4 py-8">
@@ -176,7 +176,7 @@ const BrandDetail = () => {
         )}
       </div>
       {/* Filters Section */}
-      <div className="max-w-8xl mx-auto px-10 py-6">
+      <div className="mb-6">
         <CatalogFilters
           categories={filteredCategories}
           brands={[]}
@@ -195,7 +195,7 @@ const BrandDetail = () => {
       </div>
 
       {/* Products */}
-      <div className="max-w-fit mx-auto px-10 py-8">
+      <div className="mb-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-secondary font-bold text-brand-white">
             Товары бренда {brand.name}
