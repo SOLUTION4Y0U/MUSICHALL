@@ -480,8 +480,12 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 # Можно добавить другие атрибуты по их ID если нужно
 
 
-            # Извлекаем product_id
+            # Извлекаем product_id и SKU
             product_id = item.get('product_id')
+            # Извлекаем SKU из result массива (первый элемент)
+            sku = None
+            if 'result' in item and item['result']:
+                sku = item['result'][0].get('sku')
             
             # Получаем цены товаров (если еще не получены)
             if 'prices_response' not in locals():
@@ -492,8 +496,8 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
             price_data = prices_response.get(product_id, {})
             price = price_data.get('price', {}).get('price', 0) if price_data else 0
             
-            # Логируем цену для отладки
-            print(f"✓ Товар {len(products)}: {name[:50]}... - цена: {price}")
+            # Логируем цену и SKU для отладки
+            print(f"✓ Товар {len(products)}: {name[:50]}... - цена: {price}, SKU: {sku}")
             # Создаем товар с ID по порядку
             product = {
                 'id': str(len(products) + 1),  # Генерируем ID по порядку начиная с 1
@@ -518,6 +522,10 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                     'unit': weight_unit
                 }
             }
+            
+            # Добавляем SKU если он есть
+            if sku:
+                product['sku'] = str(sku)
             # Добавляем скидку для некоторых товаров
             if i % 3 == 0:
                 product['discountPercentage'] = 5 + (i % 15)
@@ -566,8 +574,13 @@ export const products: Product[] = [
             ts_content += f"    weight: {{\n"
             ts_content += f"      value: {product['weight']['value']},\n"
             ts_content += f"      unit: '{product['weight']['unit']}'\n"
-            ts_content += '    }\n'
-            ts_content += '  },\n'
+            ts_content += '    }'
+            
+            # Добавляем SKU если он есть
+            if 'sku' in product:
+                ts_content += f",\n    sku: '{product['sku']}'"
+            
+            ts_content += '\n  },\n'
         ts_content += '];\n'
 
         # Выводим содержимое файла для отладки

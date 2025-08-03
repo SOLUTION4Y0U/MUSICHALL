@@ -4,11 +4,11 @@ import { ROUTES } from '../../constants/routes';
 import CartItem from '../../components/features/CartItem';
 import CartSummary from '../../components/features/CartSummary';
 import { useCart } from '../../hooks/useCart';
-import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
+// import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
 import { useTelegramUI } from '../../context/TelegramUIContext';
 
 const Cart = () => {
-  const { cart, goToCheckout, clearCart } = useCart();
+  const { cart, clearCart } = useCart();
   const { hapticFeedback } = useTelegramUI();
 
   // Очищаем данные скролла каталога при переходе в корзину
@@ -17,28 +17,29 @@ const Cart = () => {
     sessionStorage.removeItem('fromCatalog');
   }, []);
 
-  const mainButton = useTelegramMainButton({
-    text: 'Оформить заказ',
-    isVisible: cart.items.length > 0
-  });
+  // Временно отключена функция оформления заказа
+  // const mainButton = useTelegramMainButton({
+  //   text: 'Оформить заказ',
+  //   isVisible: cart.items.length > 0
+  // });
 
-  const handleGoToCheckout = () => {
-    hapticFeedback.impactOccurred('medium');
-    goToCheckout();
-  };
+  // const handleGoToCheckout = () => {
+  //   hapticFeedback.impactOccurred('medium');
+  //   goToCheckout();
+  // };
 
-  useEffect(() => {
-    if (cart.items.length > 0) {
-      mainButton.setOnClick(handleGoToCheckout);
-      mainButton.show();
-    } else {
-      mainButton.hide();
-    }
+  // useEffect(() => {
+  //   if (cart.items.length > 0) {
+  //     mainButton.setOnClick(handleGoToCheckout);
+  //     mainButton.show();
+  //   } else {
+  //     mainButton.hide();
+  //   }
 
-    return () => {
-      mainButton.hide();
-    };
-  }, [cart.items.length, mainButton, handleGoToCheckout]);
+  //   return () => {
+  //     mainButton.hide();
+  //   };
+  // }, [cart.items.length, mainButton, handleGoToCheckout]);
 
   if (cart.items.length === 0) {
     return (
@@ -73,7 +74,24 @@ const Cart = () => {
 
         <div className="flex flex-col xl:flex-row gap-6 lg:gap-8">
           <div className="flex-1 min-w-0">
-
+            {/* Заголовки колонок для десктопной версии */}
+            <div className="hidden lg:grid grid-cols-12 gap-4 items-center mb-4 px-4">
+              <div className="col-span-6">
+                <h3 className="text-sm font-medium text-brand-mid-gray uppercase tracking-wide">Товар</h3>
+              </div>
+              <div className="col-span-2 text-center">
+                <h3 className="text-sm font-medium text-brand-mid-gray uppercase tracking-wide">Количество</h3>
+              </div>
+              <div className="col-span-2 text-right">
+                <h3 className="text-sm font-medium text-brand-mid-gray uppercase tracking-wide">Сумма</h3>
+              </div>
+              <div className="col-span-1 text-center">
+                <h3 className="text-sm font-medium text-brand-mid-gray uppercase tracking-wide">Ozon</h3>
+              </div>
+              <div className="col-span-1 text-center">
+                <h3 className="text-sm font-medium text-brand-mid-gray uppercase tracking-wide">Удалить</h3>
+              </div>
+            </div>
 
             <div className="space-y-4">
               {cart.items.map(item => (
@@ -91,7 +109,7 @@ const Cart = () => {
             <div className="sticky top-4">
               <CartSummary
                 cart={cart}
-                onCheckout={handleGoToCheckout}
+                onCheckout={() => {}} // Временно отключена функция оформления заказа
               />
             </div>
           </div>

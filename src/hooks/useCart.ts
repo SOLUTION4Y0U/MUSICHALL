@@ -53,19 +53,20 @@ export const useCart = () => {
     showAlert('Корзина очищена');
   };
 
-  const handleGoToCheckout = () => {
-    if (cart.items.length === 0) {
-      showAlert('Ваша корзина пуста');
-      return;
-    }
+  // Временно отключена функция оформления заказа
+  // const handleGoToCheckout = () => {
+  //   if (cart.items.length === 0) {
+  //     showAlert('Ваша корзина пуста');
+  //     return;
+  //   }
 
-    // Используем разную навигацию для TMA и браузера
-    if (isTma) {
-      navigateTo(ROUTES.CHECKOUT);
-    } else {
-      navigate(ROUTES.CHECKOUT);
-    }
-  };
+  //   // Используем разную навигацию для TMA и браузера
+  //   if (isTma) {
+  //     navigateTo(ROUTES.CHECKOUT);
+  //   } else {
+  //     navigate(ROUTES.CHECKOUT);
+  //   }
+  // };
 
   return {
     cart,
@@ -73,7 +74,7 @@ export const useCart = () => {
     removeFromCart: handleRemoveFromCart,
     updateQuantity: handleUpdateQuantity,
     clearCart: handleClearCart,
-    goToCheckout: handleGoToCheckout,
+    // goToCheckout: handleGoToCheckout, // Временно отключена функция оформления заказа
     isInCart,
     getCartItemById
   };
