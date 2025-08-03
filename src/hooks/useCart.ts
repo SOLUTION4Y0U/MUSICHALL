@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { usePlatformUIControls } from '../platform';
 import { useCartStore } from '../store/cart';
-import { ROUTES } from '../constants/routes';
+// import { ROUTES } from '../constants/routes';
 import { Product } from '../types/product';
-import { usePlatform } from './usePlatform';
+// import { usePlatform } from './usePlatform';
 
 export const useCart = () => {
   const {
@@ -16,9 +16,9 @@ export const useCart = () => {
     getCartItemById
   } = useCartStore();
 
-  const { showAlert, navigateTo } = usePlatformUIControls();
-  const navigate = useNavigate();
-  const { isTma } = usePlatform();
+  const { showAlert } = usePlatformUIControls();
+  // const navigate = useNavigate();
+  // const { isTma } = usePlatform();
 
   const handleAddToCart = (product: Product, quantity = 1) => {
     if (product.stock < quantity) {

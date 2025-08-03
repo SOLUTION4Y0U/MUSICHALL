@@ -1,5 +1,5 @@
-import WebApp from '@twa-dev/sdk';
-import { OrderDetails } from '../../types/cart';
+// import WebApp from '@twa-dev/sdk';
+// import { OrderDetails } from '../../types/cart';
 
 // Временно отключены функции оплаты
 // export const processTelegramPayment = async (order: OrderDetails): Promise<boolean> => {

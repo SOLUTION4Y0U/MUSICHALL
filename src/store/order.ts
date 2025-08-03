@@ -1,7 +1,7 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
-import { Customer, OrderDetails } from '../types/cart';
-import { useCartStore } from './cart';
+// import { create } from 'zustand';
+// import { persist } from 'zustand/middleware';
+// import { Customer, OrderDetails } from '../types/cart';
+// import { useCartStore } from './cart';
 
 // Временно отключена функциональность заказов
 // Дополнительные типы для заказа
