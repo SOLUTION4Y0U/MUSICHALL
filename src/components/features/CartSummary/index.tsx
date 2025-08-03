@@ -8,7 +8,7 @@ interface CartSummaryProps {
   onCheckout: () => void;
 }
 
-const CartSummary: FC<CartSummaryProps> = ({ cart, onCheckout }) => {
+const CartSummary: FC<CartSummaryProps> = ({ cart }) => {
   const { totalItems, totalPrice } = cart;
 
   // const totalDiscount = cart.items.reduce((sum, item) => {

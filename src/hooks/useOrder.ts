@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../constants/routes';
-import { usePlatformUIControls } from '../platform';
+// import { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { ROUTES } from '../constants/routes';
+// import { usePlatformUIControls } from '../platform';
 // import { useOrderStore } from '../store/order'; // Временно отключена функциональность заказов
-import { Customer, OrderDetails } from '../types/cart';
+// import { Customer, OrderDetails } from '../types/cart';
 
 // Временно отключена функциональность заказов
 // export const useOrder = () => {
