@@ -7,7 +7,7 @@ import Landing from './pages/Landing';
 import Catalog from './pages/Catalog';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
-import Checkout from './pages/Checkout';
+// import Checkout from './pages/Checkout'; // Временно отключена функция оформления заказа
 import BrandsList from './pages/BrandsList';
 import BrandDetail from './pages/BrandDetail';
 import FAQ from './pages/FAQ';
@@ -40,10 +40,11 @@ const router = createHashRouter([
         path: ROUTES.CART,
         element: <Cart />,
       },
-      {
-        path: `${ROUTES.CHECKOUT}/*`,
-        element: <Checkout />,
-      },
+      // Временно отключена функция оформления заказа
+      // {
+      //   path: `${ROUTES.CHECKOUT}/*`,
+      //   element: <Checkout />,
+      // },
       {
         path: ROUTES.BRANDS,
         element: <BrandsList />,

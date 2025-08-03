@@ -49,7 +49,8 @@ const CartSummary: FC<CartSummaryProps> = ({ cart, onCheckout }) => {
       </div>
 
       <div className="space-y-4 lg:space-y-6">
-        <button
+        {/* Временно отключена функция оформления заказа */}
+        {/* <button
           onClick={onCheckout}
           disabled={cart.items.length === 0}
           className={`w-full py-3 lg:py-4 px-6 rounded-lg font-medium text-base lg:text-lg transition-all duration-300 ${
@@ -62,7 +63,13 @@ const CartSummary: FC<CartSummaryProps> = ({ cart, onCheckout }) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
           <span>Оформить заказ</span>
-        </button>
+        </button> */}
+
+        <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg p-4 text-center">
+          <p className="text-blue-400 text-sm">
+            💡 Для покупки товаров используйте кнопки "Купить на Ozon" рядом с каждым товаром
+          </p>
+        </div>
 
         <Link
           to={ROUTES.CATALOG}
