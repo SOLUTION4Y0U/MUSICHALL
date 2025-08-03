@@ -52,3 +52,12 @@
 // export const isSupported = (): boolean => {
 //   return WebApp.isVersionAtLeast('6.1');
 // };
+
+// Временно отключены функции оплаты - добавляем пустые экспорты для совместимости
+export const processTelegramPayment = async (): Promise<boolean> => {
+  return false;
+};
+
+export const isSupported = (): boolean => {
+  return false;
+};

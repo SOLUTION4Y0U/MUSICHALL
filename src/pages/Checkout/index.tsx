@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useCartStore } from '../../store/cart';
 import { ROUTES } from '../../constants/routes';
 import { usePlatform } from '../../hooks/usePlatform';
 
