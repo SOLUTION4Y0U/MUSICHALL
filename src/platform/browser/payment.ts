@@ -27,3 +27,16 @@
 // export const isSupported = (): boolean => {
 //   return true; // Платежи картой поддерживаются в браузере
 // };
+
+// Временно отключены функции оплаты - добавляем пустые экспорты для совместимости
+export const processTelegramPayment = async (): Promise<boolean> => {
+  return false;
+};
+
+export const processCardPayment = async (): Promise<boolean> => {
+  return false;
+};
+
+export const isSupported = (): boolean => {
+  return false;
+};
