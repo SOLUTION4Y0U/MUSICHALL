@@ -108,17 +108,14 @@ const Landing = () => {
         <div className="relative z-10 flex h-full min-h-[100vh] w-full flex-col place-content-center gap-6 p-[5%] max-xl:place-items-center max-lg:p-4">
           <div className="flex flex-col place-content-center items-center">
             <div className="reveal-up gradient-text text-center text-6xl font-semibold uppercase leading-[80px] max-lg:text-4xl max-md:leading-snug">
-              <span>Мультипрофильная</span>
+              <span>Международный</span>
               <br />
-              <span>дистрибуция</span>
+              <span>дистрибьютор</span>
             </div>
             <div className="reveal-up mt-10 max-w-[600px] text-4xl p-2 text-center text-gray-300 max-lg:max-w-full">
-              в сфере международных поставок
-              мобильных телефонов, портативной электроники и бытовой техники
+            музыкальных инструментов, цифровой и портативной техники, аксессуаров, ручных и электроинструментов
             </div>
-            <div className="reveal-up mt-10 max-w-[650px] text-pretty text-4xl p-2 text-center text-[#47B139] max-lg:max-w-full">
-              {`{ по России и ЕАЭС }`}
-            </div>
+            
 
             <div className="reveal-up mt-10 flex place-items-center">
               <button
