@@ -21,7 +21,7 @@ def get_product_list():
             "visibility": "ALL"
         },
         "last_id": "",
-        "limit": 450
+        "limit": 500
     }
 
     try:
@@ -128,7 +128,7 @@ def get_product_attributes_for_active_products(active_products):
                 "offer_id": [product['offer_id']],
                 "visibility": "ALL"
             },
-            "limit": 450,
+            "limit": 500,
             "sort_dir": "ASC"
         }
 
@@ -180,7 +180,7 @@ def get_product_prices(product_ids):
             "product_id": product_ids,
             "visibility": "ALL"
         },
-        "limit": 450
+        "limit": 500
     }
     logging.basicConfig(
         level=logging.INFO,
