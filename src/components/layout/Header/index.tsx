@@ -101,7 +101,7 @@ const Header = () => {
 
           <Link
             to={ROUTES.CATALOG}
-            className="flex items-center justify-center rounded-full bg-[#47B139] px-2 py-1 md:px-4 md:py-2 text-sm md:text-base text-brand-black transition-all hover:bg-brand-dark-copper hover:translate-x-0.5"
+            className="flex items-center justify-center rounded-full bg-[#69B897] px-2 py-1 md:px-4 md:py-2 text-sm md:text-base text-brand-black transition-all hover:bg-brand-dark-copper hover:translate-x-0.5"
           >
             <span className="hidden md:inline">Перейти в каталог</span>
             <span className="md:hidden">Каталог</span>

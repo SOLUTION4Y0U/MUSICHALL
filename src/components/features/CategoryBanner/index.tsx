@@ -49,13 +49,13 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
 
   return (
     <div 
-      className={`relative w-full bg-gradient-to-r from-brand-black via-[#47B139]/20 to-brand-black rounded-2xl overflow-hidden shadow-2xl flex flex-row ${!customHeight ? 'h-80 md:h-[320px]' : ''}`}
+      className={`relative w-full bg-gradient-to-r from-brand-black via-[#69B897]/20 to-brand-black rounded-2xl overflow-hidden shadow-2xl flex flex-row ${!customHeight ? 'h-80 md:h-[320px]' : ''}`}
       style={customHeight ? { height: customHeight } : undefined}
     >
       {/* Left side: Animated categories */}
       <div className="flex flex-col justify-center h-full pl-8 md:pl-12 pr-4 md:pr-8 w-full md:w-1/2 z-10">
         <div className="mb-4">
-          <h3 className="text-[#47B139] text-2xl md:text-3xl font-secondary font-semibold uppercase tracking-wider mb-4">
+          <h3 className="text-[#69B897] text-2xl md:text-3xl font-secondary font-semibold uppercase tracking-wider mb-4">
             Категории товаров
           </h3>
         </div>
@@ -73,7 +73,7 @@ const CategoryBanner: React.FC<CategoryBannerProps> = ({
               <span className="block break-words whitespace-pre-line text-2xl md:text-5xl font-extrabold text-white group-hover:text-brand-white transition-colors duration-300 leading-tight" style={{ wordBreak: 'break-word', maxHeight: '12rem', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 3, WebkitBoxOrient: 'vertical' }}>
                 {categories[currentCategoryIndex]?.name}
               </span>
-              <div className="w-0 group-hover:w-full h-1 bg-[#47B139] transition-all duration-300 mt-2"></div>
+              <div className="w-0 group-hover:w-full h-1 bg-[#69B897] transition-all duration-300 mt-2"></div>
             </button>
           </div>
         </div>
