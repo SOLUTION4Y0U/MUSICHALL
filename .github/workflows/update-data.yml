@@ -1,0 +1,96 @@
+name: Update Product Data
+
+on:
+  # Run twice daily: 6 AM and 6 PM UTC
+  schedule:
+    - cron: '0 3 * * *'  # 6 AM UTC
+    - cron: '0 15 * * *' # 6 PM UTC
+  
+  # Allow manual trigger
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r server/requirements.txt
+      
+      - name: Run backend script to update data
+        run: |
+          cd server
+          python backend.py
+        env:
+          # Add any environment variables your script needs
+          PYTHONPATH: ${{ github.workspace }}
+        continue-on-error: false
+      
+      - name: Check if data was updated
+        id: check-changes
+        run: |
+          if git diff --quiet src/api/mock-data.ts; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in mock-data.ts"
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in mock-data.ts"
+          fi
+      
+      - name: Commit and push changes
+        if: steps.check-changes.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add src/api/mock-data.ts
+          git add product_attributes.json
+          git commit -m "🤖 Auto-update: Product data refreshed $(date '+%Y-%m-%d %H:%M UTC')"
+          git push
+      
+      - name: Trigger site rebuild
+        if: steps.check-changes.outputs.changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            // Trigger the deployment workflow using repository dispatch
+            await github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: 'deploy-site',
+              client_payload: {
+                triggered_by: 'data-update',
+                timestamp: new Date().toISOString()
+              }
+            });
+      
+      - name: Summary
+        run: |
+          if [ "${{ steps.check-changes.outputs.changed }}" == "true" ]; then
+            echo "✅ Data updated successfully and site rebuild triggered"
+            echo "📊 Summary: Product data refreshed at $(date '+%Y-%m-%d %H:%M UTC')"
+          else
+            echo "ℹ️ No data changes detected, skipping rebuild"
+          fi
+      
+      - name: Notify completion
+        if: always()
+        run: |
+          echo "🏁 Workflow completed with status: ${{ job.status }}"
+          echo "⏰ Completed at: $(date '+%Y-%m-%d %H:%M:%S UTC')"
