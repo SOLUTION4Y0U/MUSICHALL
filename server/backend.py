@@ -425,6 +425,14 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
         # Собираем категории и товары
         categories = {}
         products = []
+        
+        # Получаем цены товаров один раз для всех товаров
+        product_ids = [str(item.get('product_id')) for item in all_attributes if item.get('product_id')]
+        if product_ids:
+            prices_response = get_product_prices(product_ids)
+        else:
+            prices_response = {}
+        
         for i, item in enumerate(all_attributes):
             if 'result' not in item or not item['result']:
                 continue
@@ -467,7 +475,6 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
             category_name = 'Общая категория'
             brand = 'MusicHall'
             color = 'Не указано'
-            # price = item.get('price', 999.99)  # Цена из retail_price
             for attr in attributes:
                 attr_id = attr.get('id', 0)
                 values = attr.get('values', [])
@@ -477,8 +484,6 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 # ID 10096 - это цвет
                 if attr_id == 10096 and values:
                     color = values[0].get('value', color)
-                # Можно добавить другие атрибуты по их ID если нужно
-
 
             # Извлекаем product_id и SKU
             product_id = item.get('product_id')
@@ -486,11 +491,6 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
             sku = None
             if 'result' in item and item['result']:
                 sku = item['result'][0].get('sku')
-            
-            # Получаем цены товаров (если еще не получены)
-            if 'prices_response' not in locals():
-                product_ids = [str(product['product_id']) for product in active_products]
-                prices_response = get_product_prices(product_ids)
             
             # Ищем цену в словаре product_prices
             price_data = prices_response.get(product_id, {})
@@ -616,21 +616,58 @@ export const products: Product[] = [
 
 # Основная функция
 if __name__ == "__main__":
-    # Сначала получаем список товаров
-    product_list = get_product_list()
-    if product_list:
+    print("🚀 Starting automated product data update...")
+    print(f"⏰ Timestamp: {time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())}")
+    
+    try:
+        # Сначала получаем список товаров
+        print("\n📋 Step 1: Fetching product list from Ozon API...")
+        product_list = get_product_list()
+        
+        if not product_list:
+            print("❌ Failed to fetch product list. Exiting.")
+            exit(1)
+        
         # Парсим активные товары
+        print("\n🔍 Step 2: Parsing active products...")
         active_products = parse_active_products(product_list)
-        if active_products:
-            # Получаем характеристики для всех активных товаров
-            all_attributes = get_product_attributes_for_active_products(active_products)
-            # Сохраняем результат в файл для удобства
-            try:
-                with open('product_attributes.json', 'w', encoding='utf-8') as f:
-                    json.dump(all_attributes, f, indent=2, ensure_ascii=False)
-                print("✓ Файл 'product_attributes.json' успешно создан!")
-            except Exception as e:
-                print(f"✗ Ошибка при записи файла 'product_attributes.json': {e}")
-            print(f"\nВсе характеристики сохранены в файл 'product_attributes.json'")
-            # Создаем mock-data.ts файл
-            create_mock_data_from_json()
+        
+        if not active_products:
+            print("❌ No active products found. Exiting.")
+            exit(1)
+        
+        # Получаем характеристики для всех активных товаров
+        print(f"\n📊 Step 3: Fetching attributes for {len(active_products)} products...")
+        all_attributes = get_product_attributes_for_active_products(active_products)
+        
+        if not all_attributes:
+            print("❌ Failed to fetch product attributes. Exiting.")
+            exit(1)
+        
+        # Сохраняем результат в файл для удобства
+        print("\n💾 Step 4: Saving data to JSON file...")
+        try:
+            with open('product_attributes.json', 'w', encoding='utf-8') as f:
+                json.dump(all_attributes, f, indent=2, ensure_ascii=False)
+            print("✅ File 'product_attributes.json' created successfully!")
+        except Exception as e:
+            print(f"❌ Error saving 'product_attributes.json': {e}")
+            exit(1)
+        
+        # Создаем mock-data.ts файл
+        print("\n🔧 Step 5: Generating TypeScript mock data...")
+        success = create_mock_data_from_json()
+        
+        if success:
+            print("\n🎉 SUCCESS: Product data update completed successfully!")
+            print(f"📈 Processed {len(all_attributes)} products")
+            print(f"⏰ Completed at: {time.strftime('%Y-%m-%d %H:%M:%S UTC', time.gmtime())}")
+        else:
+            print("\n❌ FAILED: Error generating mock data file")
+            exit(1)
+            
+    except Exception as e:
+        print(f"\n💥 CRITICAL ERROR: {e}")
+        import traceback
+        traceback.print_exc()
+        exit(1)
