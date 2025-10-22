@@ -34,7 +34,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r server/requirements.txt
       
-      - name: Run backend script to update data
+      - name: Run backend script to update product data
         run: |
           cd server
           python backend.py
@@ -43,51 +43,70 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
         continue-on-error: false
       
-      - name: Check if data was updated
+      - name: Run category script to update categories
+        run: |
+          cd server
+          python category.py
+        env:
+          # Add any environment variables your script needs
+          PYTHONPATH: ${{ github.workspace }}
+        continue-on-error: false
+      
+      - name: Check for changes
         id: check-changes
         run: |
-          if git diff --quiet src/api/mock-data.ts; then
+          if git diff --quiet src/api/mock-data.ts product_attributes.json; then
             echo "changed=false" >> $GITHUB_OUTPUT
-            echo "No changes detected in mock-data.ts"
+            echo "No changes detected in data files"
           else
             echo "changed=true" >> $GITHUB_OUTPUT
-            echo "Changes detected in mock-data.ts"
+            echo "Changes detected in data files"
           fi
       
       - name: Commit and push changes
-        if: steps.check-changes.outputs.changed == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add src/api/mock-data.ts
           git add product_attributes.json
-          git commit -m "🤖 Auto-update: Product data refreshed $(date '+%Y-%m-%d %H:%M UTC')"
+          
+          # Always commit, even if no changes detected (for timestamp update)
+          if [ "${{ steps.check-changes.outputs.changed }}" == "true" ]; then
+            git commit -m "🤖 Auto-update: Product data and categories refreshed $(date '+%Y-%m-%d %H:%M UTC')"
+            echo "✅ Changes committed and pushed"
+          else
+            git commit -m "🤖 Auto-update: Data refresh completed (no changes) $(date '+%Y-%m-%d %H:%M UTC')" --allow-empty
+            echo "ℹ️ No changes detected, but commit created for timestamp"
+          fi
+          
           git push
       
       - name: Trigger site rebuild
-        if: steps.check-changes.outputs.changed == 'true'
         uses: actions/github-script@v7
         with:
           script: |
-            // Trigger the deployment workflow using repository dispatch
+            // Always trigger the deployment workflow
             await github.rest.repos.createDispatchEvent({
               owner: context.repo.owner,
               repo: context.repo.repo,
               event_type: 'deploy-site',
               client_payload: {
                 triggered_by: 'data-update',
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                changes_detected: '${{ steps.check-changes.outputs.changed }}'
               }
             });
       
       - name: Summary
         run: |
+          echo "🎉 Automated data update completed!"
+          echo "📊 Summary: Product data and categories refreshed at $(date '+%Y-%m-%d %H:%M UTC')"
           if [ "${{ steps.check-changes.outputs.changed }}" == "true" ]; then
-            echo "✅ Data updated successfully and site rebuild triggered"
-            echo "📊 Summary: Product data refreshed at $(date '+%Y-%m-%d %H:%M UTC')"
+            echo "✅ Changes detected and committed"
           else
-            echo "ℹ️ No data changes detected, skipping rebuild"
+            echo "ℹ️ No changes detected, but site rebuild triggered anyway"
           fi
+          echo "🚀 Site rebuild has been triggered"
       
       - name: Notify completion
         if: always()
