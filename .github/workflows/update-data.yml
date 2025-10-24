@@ -9,9 +9,9 @@ on:
   # Allow manual trigger
   workflow_dispatch:
   
-  # Run on pushes to last_fixes branch
+  # Run on pushes to main branch
   push:
-    branches: ['last_fixes']
+    branches: ['main']
 
 permissions:
   contents: write
