@@ -13,7 +13,7 @@ export default {
         'brand-light-gray': '#e4e4e4',
         'brand-white': '#ffffff',
         'brand-mid-gray': '#9f9f9f',
-        'brand-copper': '#47B139',
+        'brand-copper': '#69B897',
         'brand-dark-copper': '#173B29',
         'brand-blue': '#194C99',
         'brand-blue-dark': '#103163',

@@ -13,7 +13,7 @@ export interface Product {
   color: string;
   dimensions: {height: number; depth: number; width: number; unit: string;};
   weight: {value: number; unit: string;} ;
-  
+  sku?: string; // Ozon SKU for direct purchase links
 }
 
 export interface Category {

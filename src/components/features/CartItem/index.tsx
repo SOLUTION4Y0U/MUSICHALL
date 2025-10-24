@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { CartItem as CartItemType } from '../../../types/cart';
 import { useCartStore } from '../../../store/cart';
+import { getOzonProductUrl } from '../../../utils/productSkuMapping';
 
 interface CartItemProps {
   item: CartItemType;
@@ -27,6 +28,7 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
   };
 
   const itemTotal = item.product.price * item.quantity;
+  const ozonUrl = item.product.sku ? getOzonProductUrl(item.product.sku) : null;
 
   return (
     <div className="bg-brand-light-gray rounded-lg p-3 md:p-4 mb-3">
@@ -68,35 +70,50 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
           </button>
         </div>
 
-        {/* Нижняя часть: количество и общая стоимость */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <span className="text-sm text-brand-black font-medium">Количество:</span>
+        {/* Нижняя часть: количество, общая стоимость и кнопка покупки */}
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <button
-                onClick={() => handleQuantityChange(item.quantity - 1)}
-                className="w-7 h-7 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
-              >
-                <span className="text-sm">-</span>
-              </button>
-              <span className="w-8 text-center font-medium text-brand-black text-sm">
-                {item.quantity}
-              </span>
-              <button
-                onClick={() => handleQuantityChange(item.quantity + 1)}
-                className="w-7 h-7 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
-              >
-                <span className="text-sm">+</span>
-              </button>
+              <span className="text-sm text-brand-black font-medium">Количество:</span>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => handleQuantityChange(item.quantity - 1)}
+                  className="w-7 h-7 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
+                >
+                  <span className="text-sm">-</span>
+                </button>
+                <span className="w-8 text-center font-medium text-brand-black text-sm">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={() => handleQuantityChange(item.quantity + 1)}
+                  className="w-7 h-7 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
+                >
+                  <span className="text-sm">+</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="text-right">
+              <p className="text-sm text-brand-mid-gray">Итого:</p>
+              <p className="text-base font-bold text-brand-black">
+                {itemTotal.toFixed(2)}
+              </p>
             </div>
           </div>
 
-          <div className="text-right">
-            <p className="text-sm text-brand-mid-gray">Итого:</p>
-            <p className="text-base font-bold text-brand-black">
-              {itemTotal.toFixed(2)}
-            </p>
-          </div>
+          {/* Кнопка покупки на Ozon */}
+          {ozonUrl && (
+            <a
+              href={ozonUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full bg-brand-copper hover:bg-brand-dark-copper text-white font-medium py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center space-x-2"
+            >
+              <span>🛒</span>
+              <span>Купить на Ozon</span>
+            </a>
+          )}
         </div>
       </div>
 
@@ -129,8 +146,8 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
           </div>
         </div>
 
-        {/* Количество (3 колонки) */}
-        <div className="col-span-3 flex items-center justify-center space-x-2">
+        {/* Количество (2 колонки) */}
+        <div className="col-span-2 flex items-center justify-center space-x-2">
           <button
             onClick={() => handleQuantityChange(item.quantity - 1)}
             className="w-8 h-8 bg-brand-copper text-brand-white rounded-full flex items-center justify-center hover:bg-brand-dark-copper transition-colors duration-300"
@@ -153,6 +170,23 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
           <p className="text-lg font-bold text-brand-black">
             {itemTotal.toFixed(2)}
           </p>
+        </div>
+
+        {/* Кнопка покупки на Ozon (1 колонка) */}
+        <div className="col-span-1 flex justify-center">
+          {ozonUrl ? (
+            <a
+              href={ozonUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-brand-copper hover:bg-brand-dark-copper text-white font-medium py-2 px-3 rounded-lg transition-colors duration-300 text-sm"
+              title="Купить на Ozon"
+            >
+              🛒
+            </a>
+          ) : (
+            <span className="text-gray-400 text-sm">-</span>
+          )}
         </div>
 
         {/* Кнопка удаления (1 колонка) */}

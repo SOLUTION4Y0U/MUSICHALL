@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { usePlatformUIControls } from '../platform';
 import { useCartStore } from '../store/cart';
-import { ROUTES } from '../constants/routes';
+// import { ROUTES } from '../constants/routes';
 import { Product } from '../types/product';
-import { usePlatform } from './usePlatform';
+// import { usePlatform } from './usePlatform';
 
 export const useCart = () => {
   const {
@@ -16,9 +16,9 @@ export const useCart = () => {
     getCartItemById
   } = useCartStore();
 
-  const { showAlert, navigateTo } = usePlatformUIControls();
-  const navigate = useNavigate();
-  const { isTma } = usePlatform();
+  const { showAlert } = usePlatformUIControls();
+  // const navigate = useNavigate();
+  // const { isTma } = usePlatform();
 
   const handleAddToCart = (product: Product, quantity = 1) => {
     if (product.stock < quantity) {
@@ -53,19 +53,20 @@ export const useCart = () => {
     showAlert('Корзина очищена');
   };
 
-  const handleGoToCheckout = () => {
-    if (cart.items.length === 0) {
-      showAlert('Ваша корзина пуста');
-      return;
-    }
+  // Временно отключена функция оформления заказа
+  // const handleGoToCheckout = () => {
+  //   if (cart.items.length === 0) {
+  //     showAlert('Ваша корзина пуста');
+  //     return;
+  //   }
 
-    // Используем разную навигацию для TMA и браузера
-    if (isTma) {
-      navigateTo(ROUTES.CHECKOUT);
-    } else {
-      navigate(ROUTES.CHECKOUT);
-    }
-  };
+  //   // Используем разную навигацию для TMA и браузера
+  //   if (isTma) {
+  //     navigateTo(ROUTES.CHECKOUT);
+  //   } else {
+  //     navigate(ROUTES.CHECKOUT);
+  //   }
+  // };
 
   return {
     cart,
@@ -73,7 +74,7 @@ export const useCart = () => {
     removeFromCart: handleRemoveFromCart,
     updateQuantity: handleUpdateQuantity,
     clearCart: handleClearCart,
-    goToCheckout: handleGoToCheckout,
+    // goToCheckout: handleGoToCheckout, // Временно отключена функция оформления заказа
     isInCart,
     getCartItemById
   };
