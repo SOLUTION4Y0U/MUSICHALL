@@ -414,7 +414,7 @@ import logging
 
 
 
-def create_mock_data_from_json(json_file_path='product_attributes.json', output_file='src/api/mock-data.ts'):
+def create_mock_data_from_json(json_file_path='product_attributes.json', output_file='../src/api/mock-data.ts'):
     """Создает mock-data.ts файл из JSON с характеристиками товаров"""
     try:
         # Читаем JSON файл

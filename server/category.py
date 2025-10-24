@@ -101,7 +101,7 @@ def filter_categories_by_ids(categories, category_ids):
         print(f"  ID: {category['id']}, Название: {category['name']}")
     return filtered_categories
 
-def update_mock_data_with_filtered_categories(filtered_categories, output_file='src/api/mock-data.ts'):
+def update_mock_data_with_filtered_categories(filtered_categories, output_file='../src/api/mock-data.ts'):
     """Обновляет mock-data.ts, добавляя или заменяя секцию с отфильтрованными категориями"""
     try:
         # Читаем текущий файл mock-data.ts
