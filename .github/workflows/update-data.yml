@@ -8,6 +8,10 @@ on:
   
   # Allow manual trigger
   workflow_dispatch:
+  
+  # Run on pushes to last_fixes branch
+  push:
+    branches: ['last_fixes']
 
 permissions:
   contents: write
