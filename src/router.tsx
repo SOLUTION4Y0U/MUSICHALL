@@ -11,6 +11,7 @@ import Cart from './pages/Cart';
 import BrandsList from './pages/BrandsList';
 import BrandDetail from './pages/BrandDetail';
 import FAQ from './pages/FAQ';
+import Articles from './pages/Articles';
 import AppLayout from './components/layout/AppLayout';
 // TEST: Import TestSpline page
 import TestSpline from './pages/TestSpline';
@@ -56,6 +57,10 @@ const router = createHashRouter([
       {
         path: ROUTES.FAQ,
         element: <FAQ />,
+      },
+      {
+        path: ROUTES.ARTICLES,
+        element: <Articles />,
       },
       // TEST: Add /test-spline route
       {

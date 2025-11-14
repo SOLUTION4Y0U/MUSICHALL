@@ -71,6 +71,13 @@ const Header = () => {
           >
             Бренды
           </Link>
+
+          <Link
+            to={ROUTES.ARTICLES}
+            className="text-brand-white hover:text-brand-copper transition-colors whitespace-nowrap"
+          >
+            Пресса
+          </Link>
           
           <button
             onClick={handleContactsClick}
@@ -179,6 +186,14 @@ const Header = () => {
               className="text-brand-white hover:text-brand-copper transition-colors text-lg font-medium"
             >
               Бренды
+            </Link>
+
+            <Link
+              to={ROUTES.ARTICLES}
+              onClick={handleMobileNavClick}
+              className="text-brand-white hover:text-brand-copper transition-colors text-lg font-medium"
+            >
+              Пресса
             </Link>
             
             <button
