@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { Cart } from '../../../types/cart';
+import { formatPrice } from '../../../utils/formatPrice';
 
 interface OrderSummaryProps {
   cart: Cart;
@@ -56,7 +57,7 @@ const OrderSummary: FC<OrderSummaryProps> = ({ cart }) => {
                   </p>
                 )} */}
                 <p className="text-brand-white font-medium">
-                  {(itemPrice * item.quantity).toFixed(2)}
+                  {formatPrice(itemPrice * item.quantity)}
                 </p>
               </div>
             </div>
@@ -67,7 +68,7 @@ const OrderSummary: FC<OrderSummaryProps> = ({ cart }) => {
       <div className="space-y-3 pt-4 border-t border-brand-mid-gray/20">
         <div className="flex justify-between text-brand-light-gray">
           <span>Товары ({totalItems}):</span>
-          <span>{totalPrice.toFixed(2)}</span>
+          <span>{formatPrice(totalPrice)}</span>
         </div>
 
         {/* {totalDiscount > 0 && (
@@ -79,7 +80,7 @@ const OrderSummary: FC<OrderSummaryProps> = ({ cart }) => {
 
         <div className="flex justify-between text-brand-white font-bold text-lg pt-3 mt-3 border-t border-brand-mid-gray/20">
           <span>Итого к оплате:</span>
-          <span>{totalPrice.toFixed(2)}</span>
+          <span>{formatPrice(totalPrice)}</span>
         </div>
       </div>
     </div>

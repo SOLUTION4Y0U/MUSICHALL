@@ -9,6 +9,7 @@ import { ROUTES } from '../../constants/routes';
 import { useCategories } from '../../hooks/useCategories';
 import CatalogFilters from '../../components/features/CatalogFilters';
 import BrandBanner from '../../components/features/BrandBanner';
+import { formatPrice } from '../../utils/formatPrice';
 
 const BrandDetail = () => {
   const { brandName } = useParams<{ brandName: string }>();
@@ -144,7 +145,7 @@ const BrandDetail = () => {
               </div>
               <div className="text-center">
                 <div className="text-2xl font-bold text-brand-copper">
-                  {brand.priceRange.min.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}₽
+                  {formatPrice(brand.priceRange.min, { suffix: '₽' })}
                 </div>
                 <div className="text-sm text-brand-mid-gray">От</div>
               </div>

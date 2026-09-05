@@ -2,6 +2,7 @@ import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Brand } from '../../../types/brand';
 import { getBrandLogo } from '../../../utils/brandLogoMapping';
+import { formatPrice } from '../../../utils/formatPrice';
 
 interface BrandCardProps {
   brand: Brand;
@@ -74,11 +75,11 @@ const BrandCard: FC<BrandCardProps> = ({ brand }) => {
           <div className="text-sm text-brand-mid-gray mb-1">Диапазон цен</div>
           <div className="flex items-center justify-between">
             <span className="text-brand-white font-medium">
-              {brand.priceRange.min.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽
+              {formatPrice(brand.priceRange.min, { suffix: ' ₽' })}
             </span>
             <span className="text-brand-mid-gray">—</span>
             <span className="text-brand-white font-medium">
-              {brand.priceRange.max.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")} ₽
+              {formatPrice(brand.priceRange.max, { suffix: ' ₽' })}
             </span>
           </div>
         </div>

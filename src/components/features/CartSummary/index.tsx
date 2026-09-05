@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants/routes';
 import { Cart } from '../../../types/cart';
+import { formatPrice } from '../../../utils/formatPrice';
 
 interface CartSummaryProps {
   cart: Cart;
@@ -32,7 +33,7 @@ const CartSummary: FC<CartSummaryProps> = ({ cart }) => {
       <div className="space-y-4 lg:space-y-6 mb-6 lg:mb-8">
         <div className="flex justify-between items-center text-brand-light-gray">
           <span className="text-base lg:text-lg">Товары ({totalItems}):</span>
-          <span className="font-medium text-base lg:text-lg">{totalPrice.toFixed(2)}</span>
+          <span className="font-medium text-base lg:text-lg">{formatPrice(totalPrice)}</span>
         </div>
 
         {/* {totalDiscount > 0 && (
@@ -44,7 +45,7 @@ const CartSummary: FC<CartSummaryProps> = ({ cart }) => {
 
         <div className="flex justify-between items-center text-brand-white font-bold text-lg lg:text-xl pt-4 border-t border-brand-mid-gray/20">
           <span>Итого:</span>
-          <span>{totalPrice.toFixed(2)}</span>
+          <span>{formatPrice(totalPrice)}</span>
         </div>
       </div>
 
