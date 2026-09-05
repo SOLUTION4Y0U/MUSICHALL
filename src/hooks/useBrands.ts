@@ -38,8 +38,12 @@ export const useBrands = (): UseBrandsResult => {
         const brandData = brandMap.get(brandName)!;
         brandData.products.push(product);
         brandData.categories.add(product.category);
-        brandData.minPrice = Math.min(brandData.minPrice, product.price);
-        brandData.maxPrice = Math.max(brandData.maxPrice, product.price);
+        if (product.price > 0) {
+          brandData.minPrice = brandData.minPrice === 0
+            ? product.price
+            : Math.min(brandData.minPrice, product.price);
+          brandData.maxPrice = Math.max(brandData.maxPrice, product.price);
+        }
       });
 
       // Преобразуем в массив объектов Brand

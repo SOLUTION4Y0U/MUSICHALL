@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CartItem as CartItemType } from '../../../types/cart';
 import { useCartStore } from '../../../store/cart';
 import { getOzonProductUrl } from '../../../utils/productSkuMapping';
+import { formatPrice } from '../../../utils/formatPrice';
 
 interface CartItemProps {
   item: CartItemType;
@@ -57,7 +58,7 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
               Бренд: {item.product.brand}
             </p>
             <p className="text-base font-bold text-brand-copper">
-              {item.product.price.toFixed(2)}
+              {formatPrice(item.product.price)}
             </p>
           </div>
 
@@ -97,7 +98,7 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
             <div className="text-right">
               <p className="text-sm text-brand-mid-gray">Итого:</p>
               <p className="text-base font-bold text-brand-black">
-                {itemTotal.toFixed(2)}
+                {formatPrice(itemTotal)}
               </p>
             </div>
           </div>
@@ -141,7 +142,7 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
               Бренд: {item.product.brand}
             </p>
             <p className="text-lg font-bold text-brand-copper">
-              {item.product.price.toFixed(2)}
+              {formatPrice(item.product.price)}
             </p>
           </div>
         </div>
@@ -168,7 +169,7 @@ const CartItem: FC<CartItemProps> = ({ item, onQuantityChange, onRemove }) => {
         {/* Сумма (2 колонки) */}
         <div className="col-span-2 text-right">
           <p className="text-lg font-bold text-brand-black">
-            {itemTotal.toFixed(2)}
+            {formatPrice(itemTotal)}
           </p>
         </div>
 

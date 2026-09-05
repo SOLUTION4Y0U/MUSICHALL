@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Product } from '../../../types/product';
 import { useCartStore } from '../../../store/cart';
+import { formatPrice, hasPrice } from '../../../utils/formatPrice';
 
 interface ProductCardProps {
   product: Product;
@@ -104,8 +105,11 @@ const ProductCard: FC<ProductCardProps> = ({ product }) => {
                 </span>
             </>
           ) : ( */}
-            <span className="text-lg sm:text-xl font-bold text-brand-copper">
-              {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+            <span className={hasPrice(product.price)
+              ? "text-lg sm:text-xl font-bold text-brand-copper"
+              : "text-sm sm:text-base font-medium text-brand-mid-gray"
+            }>
+              {formatPrice(product.price)}
             </span>
           {/* )} */}
         </div>

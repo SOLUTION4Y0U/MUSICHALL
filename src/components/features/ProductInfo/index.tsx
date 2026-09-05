@@ -2,6 +2,7 @@ import { FC } from 'react';
 import { Product } from '../../../types/product';
 import { usePlatformUIControls } from '../../../platform';
 import { useCartStore } from '../../../store/cart';
+import { formatPrice } from '../../../utils/formatPrice';
 
 interface ProductInfoProps {
   product: Product;
@@ -50,7 +51,7 @@ const ProductInfo: FC<ProductInfoProps> = ({ product }) => {
             <span className="discount-badge">-{discountPercentage}%</span>
           </>
         ) : ( */}
-          <span className="price">${price.toFixed(2)}</span>
+          <span className="price">{formatPrice(price)}</span>
         {/* )} */}
       </div>
 

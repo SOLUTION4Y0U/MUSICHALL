@@ -7,6 +7,7 @@ import RecommendedProducts from '../../components/features/RecommendedProducts';
 import { useTelegramMainButton } from '../../hooks/useTelegramMainButton';
 import { useTelegramUI } from '../../context/TelegramUIContext';
 import { usePlatform } from '../../hooks/usePlatform';
+import { formatPrice, hasPrice } from '../../utils/formatPrice';
 
 
 const ProductDetail = () => {
@@ -283,8 +284,11 @@ const ProductDetail = () => {
           {/* Price */}
           <div className="space-y-2">
             <div className="flex items-center space-x-3">
-              <span className="text-3xl font-bold text-brand-white">
-                {product.price.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, " ")}
+              <span className={hasPrice(product.price)
+                ? "text-3xl font-bold text-brand-white"
+                : "text-xl font-medium text-brand-mid-gray"
+              }>
+                {formatPrice(product.price)}
               </span>
               {/* {discountedPrice && (
                 <span className="text-xl text-brand-mid-gray line-through">
