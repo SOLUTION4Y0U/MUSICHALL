@@ -6,6 +6,11 @@ import time
 import os
 
 
+def _as_dict(value):
+    """Treat API nulls / non-dicts as {} so nested .get() never crashes."""
+    return value if isinstance(value, dict) else {}
+
+
 def get_product_list():
     """Получает список товаров"""
     url = "https://api-seller.ozon.ru/v3/product/list"
@@ -199,19 +204,27 @@ def get_product_prices(product_ids):
             logging.info("Ответ сервера: %s", json.dumps(prices_response, indent=2, ensure_ascii=False))
 
             # Проверяем наличие ключа 'items'
-            items = prices_response.get('items', [])
+            items = prices_response.get('items') or []
             if not items:
                 logging.error("✗ Ошибка: Нет данных о ценах (ключ 'items' отсутствует или пуст).")
                 return {}
 
             product_prices_data = {}
-            for item in prices_response['items']:
+            for item in items:
                 product_id = item.get('product_id')
                 offer_id = item.get('offer_id')
                 
                 if not product_id:
                     print(f"✗ Ошибка: product_id отсутствует в элементе")
                     continue
+
+                price = _as_dict(item.get('price'))
+                commissions = _as_dict(item.get('commissions'))
+                marketing_actions = _as_dict(item.get('marketing_actions'))
+                price_indexes = _as_dict(item.get('price_indexes'))
+                external_index_data = _as_dict(price_indexes.get('external_index_data'))
+                ozon_index_data = _as_dict(price_indexes.get('ozon_index_data'))
+                self_marketplaces_index_data = _as_dict(price_indexes.get('self_marketplaces_index_data'))
 
                 # Извлекаем все данные о ценах
                 price_info = {
@@ -222,60 +235,60 @@ def get_product_prices(product_ids):
                     
                     # Данные о ценах
                     'price': {
-                        'auto_action_enabled': item.get('price', {}).get('auto_action_enabled', False),
-                        'auto_add_to_ozon_actions_list_enabled': item.get('price', {}).get('auto_add_to_ozon_actions_list_enabled', False),
-                        'currency_code': item.get('price', {}).get('currency_code', 'RUB'),
-                        'marketing_price': item.get('price', {}).get('marketing_price', 0),
-                        'marketing_seller_price': item.get('price', {}).get('marketing_seller_price', 0),
-                        'min_price': item.get('price', {}).get('min_price', 0),
-                        'net_price': item.get('price', {}).get('net_price', 0),
-                        'old_price': item.get('price', {}).get('old_price', 0),
-                        'price': item.get('price', {}).get('price', 0),
-                        'retail_price': item.get('price', {}).get('retail_price', 0),
-                        'vat': item.get('price', {}).get('vat', 0)
+                        'auto_action_enabled': price.get('auto_action_enabled', False),
+                        'auto_add_to_ozon_actions_list_enabled': price.get('auto_add_to_ozon_actions_list_enabled', False),
+                        'currency_code': price.get('currency_code', 'RUB'),
+                        'marketing_price': price.get('marketing_price', 0),
+                        'marketing_seller_price': price.get('marketing_seller_price', 0),
+                        'min_price': price.get('min_price', 0),
+                        'net_price': price.get('net_price', 0),
+                        'old_price': price.get('old_price', 0),
+                        'price': price.get('price', 0),
+                        'retail_price': price.get('retail_price', 0),
+                        'vat': price.get('vat', 0)
                     },
                     
                     # Комиссии
                     'commissions': {
-                        'fbo_deliv_to_customer_amount': item.get('commissions', {}).get('fbo_deliv_to_customer_amount', 0),
-                        'fbo_direct_flow_trans_max_amount': item.get('commissions', {}).get('fbo_direct_flow_trans_max_amount', 0),
-                        'fbo_direct_flow_trans_min_amount': item.get('commissions', {}).get('fbo_direct_flow_trans_min_amount', 0),
-                        'fbo_return_flow_amount': item.get('commissions', {}).get('fbo_return_flow_amount', 0),
-                        'fbs_deliv_to_customer_amount': item.get('commissions', {}).get('fbs_deliv_to_customer_amount', 0),
-                        'fbs_direct_flow_trans_max_amount': item.get('commissions', {}).get('fbs_direct_flow_trans_max_amount', 0),
-                        'fbs_direct_flow_trans_min_amount': item.get('commissions', {}).get('fbs_direct_flow_trans_min_amount', 0),
-                        'fbs_first_mile_max_amount': item.get('commissions', {}).get('fbs_first_mile_max_amount', 0),
-                        'fbs_first_mile_min_amount': item.get('commissions', {}).get('fbs_first_mile_min_amount', 0),
-                        'fbs_return_flow_amount': item.get('commissions', {}).get('fbs_return_flow_amount', 0),
-                        'sales_percent_fbo': item.get('commissions', {}).get('sales_percent_fbo', 0),
-                        'sales_percent_fbs': item.get('commissions', {}).get('sales_percent_fbs', 0)
+                        'fbo_deliv_to_customer_amount': commissions.get('fbo_deliv_to_customer_amount', 0),
+                        'fbo_direct_flow_trans_max_amount': commissions.get('fbo_direct_flow_trans_max_amount', 0),
+                        'fbo_direct_flow_trans_min_amount': commissions.get('fbo_direct_flow_trans_min_amount', 0),
+                        'fbo_return_flow_amount': commissions.get('fbo_return_flow_amount', 0),
+                        'fbs_deliv_to_customer_amount': commissions.get('fbs_deliv_to_customer_amount', 0),
+                        'fbs_direct_flow_trans_max_amount': commissions.get('fbs_direct_flow_trans_max_amount', 0),
+                        'fbs_direct_flow_trans_min_amount': commissions.get('fbs_direct_flow_trans_min_amount', 0),
+                        'fbs_first_mile_max_amount': commissions.get('fbs_first_mile_max_amount', 0),
+                        'fbs_first_mile_min_amount': commissions.get('fbs_first_mile_min_amount', 0),
+                        'fbs_return_flow_amount': commissions.get('fbs_return_flow_amount', 0),
+                        'sales_percent_fbo': commissions.get('sales_percent_fbo', 0),
+                        'sales_percent_fbs': commissions.get('sales_percent_fbs', 0)
                     },
                     
                     # Маркетинговые акции
                     'marketing_actions': {
-                        'actions': item.get('marketing_actions', {}).get('actions', []),
-                        'current_period_from': item.get('marketing_actions', {}).get('current_period_from', ''),
-                        'current_period_to': item.get('marketing_actions', {}).get('current_period_to', ''),
-                        'ozon_actions_exist': item.get('marketing_actions', {}).get('ozon_actions_exist', False)
+                        'actions': marketing_actions.get('actions') or [],
+                        'current_period_from': marketing_actions.get('current_period_from', ''),
+                        'current_period_to': marketing_actions.get('current_period_to', ''),
+                        'ozon_actions_exist': marketing_actions.get('ozon_actions_exist', False)
                     },
                     
                     # Индексы цен
                     'price_indexes': {
-                        'color_index': item.get('price_indexes', {}).get('color_index', 'WITHOUT_INDEX'),
+                        'color_index': price_indexes.get('color_index', 'WITHOUT_INDEX'),
                         'external_index_data': {
-                            'min_price': item.get('price_indexes', {}).get('external_index_data', {}).get('min_price', 0),
-                            'min_price_currency': item.get('price_indexes', {}).get('external_index_data', {}).get('min_price_currency', ''),
-                            'price_index_value': item.get('price_indexes', {}).get('external_index_data', {}).get('price_index_value', 0)
+                            'min_price': external_index_data.get('min_price', 0),
+                            'min_price_currency': external_index_data.get('min_price_currency', ''),
+                            'price_index_value': external_index_data.get('price_index_value', 0)
                         },
                         'ozon_index_data': {
-                            'min_price': item.get('price_indexes', {}).get('ozon_index_data', {}).get('min_price', 0),
-                            'min_price_currency': item.get('price_indexes', {}).get('ozon_index_data', {}).get('min_price_currency', ''),
-                            'price_index_value': item.get('price_indexes', {}).get('ozon_index_data', {}).get('price_index_value', 0)
+                            'min_price': ozon_index_data.get('min_price', 0),
+                            'min_price_currency': ozon_index_data.get('min_price_currency', ''),
+                            'price_index_value': ozon_index_data.get('price_index_value', 0)
                         },
                         'self_marketplaces_index_data': {
-                            'min_price': item.get('price_indexes', {}).get('self_marketplaces_index_data', {}).get('min_price', 0),
-                            'min_price_currency': item.get('price_indexes', {}).get('self_marketplaces_index_data', {}).get('min_price_currency', ''),
-                            'price_index_value': item.get('price_indexes', {}).get('self_marketplaces_index_data', {}).get('price_index_value', 0)
+                            'min_price': self_marketplaces_index_data.get('min_price', 0),
+                            'min_price_currency': self_marketplaces_index_data.get('min_price_currency', ''),
+                            'price_index_value': self_marketplaces_index_data.get('price_index_value', 0)
                         }
                     }
                 }
@@ -338,11 +351,11 @@ def get_product_prices(product_ids):
                 print(f"Ошибка API: {error_data.get('message', 'Неизвестная ошибка')}")
             except ValueError:
                 print(f"Ошибка API: {response.text}")
-            return None
+            return {}
 
     except requests.exceptions.RequestException as e:
         print(f"Ошибка при выполнении запроса цен товаров: {e}")
-        return None
+        return {}
 
 import logging
 
@@ -429,7 +442,7 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
         # Получаем цены товаров один раз для всех товаров
         product_ids = [str(item.get('product_id')) for item in all_attributes if item.get('product_id')]
         if product_ids:
-            prices_response = get_product_prices(product_ids)
+            prices_response = get_product_prices(product_ids) or {}
         else:
             prices_response = {}
         
@@ -493,8 +506,8 @@ def create_mock_data_from_json(json_file_path='product_attributes.json', output_
                 sku = item['result'][0].get('sku')
             
             # Ищем цену в словаре product_prices
-            price_data = prices_response.get(product_id, {})
-            price = price_data.get('price', {}).get('price', 0) if price_data else 0
+            price_data = _as_dict(prices_response.get(product_id))
+            price = _as_dict(price_data.get('price')).get('price', 0)
             
             # Логируем цену и SKU для отладки
             print(f"✓ Товар {len(products)}: {name[:50]}... - цена: {price}, SKU: {sku}")
